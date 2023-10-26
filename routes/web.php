@@ -21,6 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 //Admin
-Route::get('admin/dashbourd', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+Route::get('admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
 
