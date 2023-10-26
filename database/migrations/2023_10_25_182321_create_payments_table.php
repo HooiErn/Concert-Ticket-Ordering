@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('payment_date');
             $table->double('payment_amount',8,2);
             $table->string('payment_status');
-            $table->int('order_id');
+            $table->string('order_id');
             $table->string('description')->nullable();
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payements');
+        Schema::dropIfExists('payments');
     }
 };
