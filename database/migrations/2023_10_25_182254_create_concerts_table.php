@@ -19,7 +19,7 @@ return new class extends Migration
             $table->datetime('date_time');
             $table->string('venue');
             $table->string('concert_image');
-            $table->decimal('ticket_price',8,2);
+            $table->double('ticket_price',8,2);
             $table->string('description')->nullable();
             $table->timestamps();
         });
