@@ -25,7 +25,7 @@
       
     @if(Auth::user()->isAdmin())
         <script>
-            window.location.href = "{{ url('admin/dashbourd') }}";
+            window.location.href = "{{ url('admin/dashboard') }}";
         </script>
     @elseif(Auth::user()->isMember())
         <script>
