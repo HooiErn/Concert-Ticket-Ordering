@@ -14,9 +14,17 @@ use App\Http\Controllers\AdminController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend/main');
 });
+
+Route::get('/contact', 'App\Http\Controllers\FrontendController@contact')->name('contact');
+
+// Route::get('/event', 'FrontendController@event');
 
 Auth::routes();
 
