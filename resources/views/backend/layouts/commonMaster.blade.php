@@ -29,17 +29,18 @@
         <!-- Page Wrapper -->
         <div id="wrapper">
             @include('backend/layouts/sections/bar/sidebar')
-            <!-- Content Wrapper -->
+                <!-- Content Wrapper -->
                 <div id="content-wrapper" class="d-flex flex-column">
-                <!-- Main Content -->
-                <div id="content">
-                    @include('backend/layouts/sections/bar/topbar')
-                    @yield('layoutContent')
+                    <!-- Main Content -->
+                    <div id="content">
+                        @include('backend/layouts/sections/bar/topbar')
+                        @yield('layoutContent')
+                    </div>
+                    <!-- End of Main Content -->
+                    @include('backend/layouts/sections/footer/footer')
                 </div>
-                <!-- End of Main Content -->
-            </div>
-            <!-- End of Content Wrapper -->
-            @include('backend/layouts/sections/footer/footer')
+                <!-- End of Content Wrapper -->
+            
         </div>
         <!-- End of Page Wrapper -->
         @include('backend/layouts/sections/button/scroll_to_top_button')

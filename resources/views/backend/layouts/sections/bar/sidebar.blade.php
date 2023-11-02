@@ -38,7 +38,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="buttons.html">Add Concert</a>
             <a class="collapse-item" href="cards.html">Contert List</a>
-            <a class="collapse-item" href="{{route('category.add')}}">Create Ticket Type</a>
+            <a class="collapse-item" href="">Create Ticket Type</a>
         </div>
     </div>
 </li>

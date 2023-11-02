@@ -22,7 +22,7 @@ class AdminController extends Controller
     }
 
     public function indexCategory(){
-        return view('admin/category/AddTicketType');
+        return view('backend/content/category/AddTicketType');
     }
 
      //Add Category
@@ -42,7 +42,7 @@ class AdminController extends Controller
         ]);
 
         Toastr::success('A new ticket category has been added', 'Add Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
-        return redirect('admin/category/AddTicketType');
+        return redirect('backend/content/category/AddTicketType');
     }
 
      //Update Category
@@ -58,15 +58,15 @@ class AdminController extends Controller
         $categories -> save();
        
         Toastr::success('A new ticket category has been updated', 'Updated Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
-        return redirect('admin/category');
+        return redirect('backend/content/category');
     }
 
      //Delete Category
-     public function DeleteCategory(Request $request){
-        $categories = Ticket_type::where('id',$id)->first();
-        $categories -> delete();
+    //  public function DeleteCategory(Request $request){
+    //     $categories = Ticket_type::where('id',$id)->first();
+    //     $categories -> delete();
 
-        Toastr::success('A ticket category has been deleted', 'Deleted Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
-        return redirect('admin/category');
-    }
+    //     Toastr::success('A ticket category has been deleted', 'Deleted Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
+    //     return redirect('backend/content/category');
+    // }
 }

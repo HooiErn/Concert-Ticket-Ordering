@@ -32,7 +32,7 @@ Auth::routes();
 Route::get('admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
 //Ticket Category
-Route::get('admin/addTicketType',[AdminController::class,'indexCategory']);
+Route::get('/add',[AdminController::class,'indexCategory']);
 // Route::post('admin/addTicketType/post',[AdminController::class,'addCategory'])->name('category.add');
 
 Route::get('/admin_dashboard', function () {
@@ -42,3 +42,7 @@ Route::get('/admin_dashboard', function () {
 Route::get('/add_event', function () {
     return view('backend/content/event/add_event');
 });
+
+// Route::get('/add_ticket_type', function () {
+//     return view('backend/content/category/AddTicketType');
+// });
