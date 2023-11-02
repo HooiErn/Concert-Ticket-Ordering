@@ -12,8 +12,9 @@
     </head>
     <body>
         <div class="container">
-            <form action="{{ route('category.add') }}" method="POST">
+            <form action="{{route('category.add')}}" method="POST">
                 @csrf
+
                 <div class="form-group">
                     <label for="categoryName">Category Name</label>
                     <input type="text" class="form-control" id="c_name" name="c_name">

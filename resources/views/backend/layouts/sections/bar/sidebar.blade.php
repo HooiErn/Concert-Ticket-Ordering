@@ -32,12 +32,13 @@
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
-        <span>Event</span>
+        <span>Concert</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="buttons.html">Add Event</a>
-            <a class="collapse-item" href="cards.html">Event List</a>
+            <a class="collapse-item" href="buttons.html">Add Concert</a>
+            <a class="collapse-item" href="cards.html">Contert List</a>
+            <a class="collapse-item" href="{{route('category.add')}}">Create Ticket Type</a>
         </div>
     </div>
 </li>

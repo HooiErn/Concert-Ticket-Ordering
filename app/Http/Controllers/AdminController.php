@@ -10,6 +10,7 @@ use App\Models\Ticket_type;
 use App\Models\Order;
 use App\Models\Concert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Brian2694\Toastr\Facades\Toastr;
 
 class AdminController extends Controller
@@ -20,11 +21,15 @@ class AdminController extends Controller
         return view('admin/dashboard');
     }
 
+    public function indexCategory(){
+        return view('admin/category/AddTicketType');
+    }
+
      //Add Category
      public function addCategory(Request $request){
 
         $validator = Validator::make($request->all(), [
-            'c_name' => 'unique:categories,name',
+            'c_name' => 'unique:ticket_types,name',
         ]);
 
         if ($validator->fails()) {
@@ -37,7 +42,7 @@ class AdminController extends Controller
         ]);
 
         Toastr::success('A new ticket category has been added', 'Add Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
-        return redirect('admin/category');
+        return redirect('admin/category/AddTicketType');
     }
 
      //Update Category
