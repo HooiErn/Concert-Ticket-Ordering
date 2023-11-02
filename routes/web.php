@@ -34,4 +34,10 @@ Route::get('admin/dashboard', [App\Http\Controllers\AdminController::class, 'ind
 //Ticket Category
 Route::post('admin/addCategory',[AdminController::class,'addCategory'])->name('category.add');
 
+Route::get('/admin_dashboard', function () {
+    return view('backend/content/admin_dashboard');
+});
 
+Route::get('/add_event', function () {
+    return view('backend/content/event/add_event');
+});
