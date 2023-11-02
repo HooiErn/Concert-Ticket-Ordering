@@ -16,7 +16,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="categoryName">Category Name</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control" id="c_name" name="c_name">
                 </div>
                 <button class="btn btn-primary" type="submit">Submit</button>
                 @if($errors->any())
