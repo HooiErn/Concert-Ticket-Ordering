@@ -32,8 +32,8 @@ Auth::routes();
 Route::get('admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
 //Ticket Category
-Route::get('admin/addTicketType',[AdminController::class,'indexCategory']);
-// Route::post('admin/addTicketType/post',[AdminController::class,'addCategory'])->name('category.add');
+Route::get('admin/addTicketType',[AdminController::class,'indexCategory'])->name('category');
+Route::post('admin/addTicketType/post',[AdminController::class,'addCategory'])->name('category.add');
 
 Route::get('/admin_dashboard', function () {
     return view('backend/content/admin_dashboard');

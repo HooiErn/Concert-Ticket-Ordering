@@ -1,3 +1,5 @@
+@extends('backend/layouts/commonMaster')
+@section('content')
 <!Doctype html>
 <html>
     <head>
@@ -29,3 +31,4 @@
         </div>
     </body>
 </html>
+@endsection
