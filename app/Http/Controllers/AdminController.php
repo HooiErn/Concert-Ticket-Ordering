@@ -42,7 +42,7 @@ class AdminController extends Controller
         ]);
 
         Toastr::success('A new ticket category has been added', 'Add Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
-        return redirect('backend/content/category/AddTicketType');
+        return redirect('admin/category/AddTicketType');
     }
 
      //Update Category
