@@ -31,4 +31,7 @@ Auth::routes();
 //Admin
 Route::get('admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
+//Ticket Category
+Route::post('admin/addCategory',[AdminController::class,'addCategory'])->name('category.add');
+
 
