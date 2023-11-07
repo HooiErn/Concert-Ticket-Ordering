@@ -34,7 +34,7 @@
                 <!-- Main Content -->
                 <div id="content">
                     @include('backend/layouts/sections/bar/topbar')
-                    @yield('layoutContent')
+                    @yield('content')
                 </div>
                 <!-- End of Main Content -->
             </div>

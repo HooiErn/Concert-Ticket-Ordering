@@ -333,5 +333,5 @@
 </div>
 <!-- End of Main Content -->
 
-<!-- End of session('layoutContent') -->
+<!-- End of session('content') -->
 @endsection
