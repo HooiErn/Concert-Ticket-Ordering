@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,12 @@ use App\Http\Controllers\AdminController;
 Route::get('/', function () {
     return view('frontend/main');
 });
+
+// Login & Logout
+Route::get('/login/form', [HomeController::class, 'login_form'])->name('login.form');
+Route::post('/checkLogin', [HomeController::class, 'check_login']);
+Route::get('/logout', [HomeController::class, 'logout']);
+
 
 Route::get('/contact', 'App\Http\Controllers\FrontendController@contact')->name('contact');
 
