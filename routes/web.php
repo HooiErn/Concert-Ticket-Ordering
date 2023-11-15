@@ -39,10 +39,17 @@ Route::get('/admin_dashboard', function () {
     return view('backend/content/admin_dashboard');
 });
 
-Route::get('/add_event', function () {
+Route::get('admin/add_event', function () {
     return view('backend/content/event/add_event');
 });
 
+Route::get('admin/add_date', function () {
+    return view('backend/content/event/add_date');
+});
+
+Route::get('/add_ticket_type', function () {
+    return view('backend/content/event/add_ticket_type');
+});
 // Route::get('/add_ticket_type', function () {
 //     return view('backend/content/category/AddTicketType');
 // });

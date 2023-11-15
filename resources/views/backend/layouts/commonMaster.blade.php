@@ -11,18 +11,20 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="backend/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/backend/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="backend/assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="backend/assets/css/custom.css" rel="stylesheet">
+    <link href="/backend/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/backend/assets/css/custom.css" rel="stylesheet">
 
     <!--Bootstrap CDN-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
+    <!-- jquery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     </head>
 
     <body id="page-top">
@@ -36,15 +38,15 @@
                         @include('backend/layouts/sections/bar/topbar')
                         @yield('layoutContent')
                     </div>
-                    <!-- End of Main Content -->
                     @include('backend/layouts/sections/footer/footer')
                 </div>
                 <!-- End of Content Wrapper -->
-            
+                <!-- End of Main Content -->
         </div>
-        <!-- End of Page Wrapper -->
-        @include('backend/layouts/sections/button/scroll_to_top_button')
-        @include('backend/layouts/sections/modal/logout_modal')
-        @include('backend/layouts/script_included')
+          <!-- End of Page Wrapper -->
+        
+        @include('/backend/layouts/sections/button/scroll_to_top_button')
+        @include('/backend/layouts/sections/modal/logout_modal')
+        @include('/backend/layouts/script_included')
     </body>
 </html>
