@@ -86,32 +86,36 @@ class HomeController extends Controller
     }
 
     
-    public function registerMember(Request $request){
+    public function registerMember(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'm_name' => [
                 Rule::unique('users', 'name')->where(function ($query) {
                     return $query->where('role', 2);
                 }),
             ],
-            'm_password' => 'max:12',
-            'm_confirm_password' => 'same:m_password',
+            'm_email' => 'required|email|unique:users,email',
+            'm_password' => 'required|max:12',
+            'm_confirm_password' => 'required|same:m_password',
+            'm_contact_number' => 'required|numeric', 
         ]);
-
-        if($validator -> fails()){
-            Toastr::error('Invalid input please try again.', 'Validate Fail', ["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
+    
+        if ($validator->fails()) {
+            Toastr::error('Invalid input, please try again.', 'Validate Fail', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
             return redirect()->back()->withInput()->withErrors($validator);
         }
-        
+    
         $addMember = User::create([
-            'name' => $request -> m_name,
+            'name' => $request->m_name,
+            'email' => $request->m_email,
             'role' => 2,
-            'password' => Hash::make($request -> m_password),
+            'password' => Hash::make($request->m_password),
+            'contact_number' => $request->m_contact_number, // Add this line for the contact number
         ]);
-
-        Toastr::success('You successfully register a new member account','Register',["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
+    
+        Toastr::success('You successfully registered a new member account', 'Register', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
         return redirect()->back();
     }
-
  
     // Show Forgot Password Form
     public function showForgotPasswordForm()

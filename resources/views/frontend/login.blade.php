@@ -80,26 +80,35 @@
                                 </form>
                             </div>
 
-                            <!-- Register Form -->
-                            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                <h3>Create an Account</h3>
-                                <form action="" method="post">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="registerEmail">Email address</label>
-                                        <input type="email" class="form-control" id="registerEmail" placeholder="Enter your email" name="registerEmail">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="registerPassword">Password</label>
-                                        <input type="password" class="form-control" id="registerPassword" placeholder="Choose a password" name="registerPassword">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="confirmPassword">Confirm Password</label>
-                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" name="confirmPassword">
-                                    </div>
-                                    <button type="submit" class="btn oneMusic-btn mt-15">Sign Up</button>
-                                </form>
-                            </div>
+                 <!-- Register Form -->
+                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                    <h3>Create an Account</h3>
+                    <form action="{{ route('user.register') }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="registerName">Full Name</label>
+                            <input type="text" class="form-control" id="registerName" placeholder="Enter your full name" name="m_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email address</label>
+                            <input type="email" class="form-control" id="registerEmail" placeholder="Enter your email" name="m_email">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+                            <input type="password" class="form-control" id="registerPassword" placeholder="Choose a password" name="m_password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" name="m_confirm_password">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactNumber">Contact Number</label>
+                            <input type="text" class="form-control" id="contactNumber" placeholder="Enter your contact number" name="m_contact_number">
+                        </div>
+                        <button type="submit" class="btn oneMusic-btn mt-15">Sign Up</button>
+                    </form>
+                </div>
+
 
                         </div>
                     </div>
