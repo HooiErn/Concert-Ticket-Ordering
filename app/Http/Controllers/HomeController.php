@@ -88,22 +88,13 @@ class HomeController extends Controller
     
     public function registerMember(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'm_name' => [
-                Rule::unique('users', 'name')->where(function ($query) {
-                    return $query->where('role', 2);
-                }),
-            ],
+        $request->validate([
+            'm_name' => 'required',
             'm_email' => 'required|email|unique:users,email',
             'm_password' => 'required|max:12',
             'm_confirm_password' => 'required|same:m_password',
-            'm_contact_number' => 'required|numeric', 
+            'm_contact_number' => 'required|numeric|regex:/^[0-9]{10}$/',
         ]);
-    
-        if ($validator->fails()) {
-            Toastr::error('Invalid input, please try again.', 'Validate Fail', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
-            return redirect()->back()->withInput()->withErrors($validator);
-        }
     
         $addMember = User::create([
             'name' => $request->m_name,
@@ -113,9 +104,15 @@ class HomeController extends Controller
             'contact_number' => $request->m_contact_number,
         ]);
     
-        Toastr::success('You successfully registered a new member account', 'Register', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
-        return redirect()->back();
+        if ($addMember) {
+            Toastr::success('Account has been successfully registered', 'Register Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-full-width"]);
+            return redirect('/login/form');
+        } else {
+            Toastr::error('Registration failed. Please try again', 'Error', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-full-width"]);
+            return redirect('/login/form')->withInput();
+        }
     }
+    
  
     // Show Forgot Password Form
     public function showForgotPasswordForm()
