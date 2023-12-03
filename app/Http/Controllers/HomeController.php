@@ -69,7 +69,7 @@ class HomeController extends Controller
             // Check user role and redirect accordingly
             if ($user->isAdmin()) {
                 Toastr::success('Welcome back ' . $request->email, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
-                return redirect('backend/content/admin_dashboard');
+                return redirect('/admin_dashboard');
             } elseif ($user->isMember()) {
                 Toastr::success('Welcome back ' . $request->email, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
                 return redirect('/');

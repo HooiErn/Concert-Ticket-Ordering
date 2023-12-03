@@ -90,7 +90,16 @@
         </div>
     </div>
 </li>
-
+        <!-- Nav Item - Logout -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('logout')}}" onclick="confirmLogout(event)">
+                <i class="fas fa-fw fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </li>
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 
@@ -100,4 +109,14 @@
 </div>
 
 </ul>
+
+<!-- JavaScript for Logout Confirmation -->
+<script>
+    function confirmLogout(event) {
+        if (confirm('Are you sure you want to logout?')) {
+            event.preventDefault();
+            document.getElementById('logout-form').submit();
+        }
+    }
+</script>
 <!-- End of Sidebar -->
