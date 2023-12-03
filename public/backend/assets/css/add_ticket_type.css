@@ -1,0 +1,32 @@
+.main-ticket-type-input{
+    padding: 20px 10%;
+}
+
+.main-ticket-type-table{
+    width: 80%;
+}
+
+.add-button {
+    background: #4DB7FE;
+    height: 50px;
+    min-width: 30%;
+    color: #fff;
+    border: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    cursor: pointer;
+
+}
+
+.remove-ticket-type {
+    /* float: right; */
+    color: #757575 !important;
+    /* font-size: 14px; */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    position: relative;
+    top: 10px;
+}

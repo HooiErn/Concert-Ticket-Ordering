@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('ticket_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            //$table->double('ticket_price',8,2);
+            //$table->integer('total_ticket');
+
             $table->timestamps();
         });
     }

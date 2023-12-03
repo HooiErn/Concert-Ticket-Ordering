@@ -42,7 +42,7 @@ Route::get('admin/dashboard', [App\Http\Controllers\AdminController::class, 'ind
 Route::get('/add',[AdminController::class,'indexCategory']);
 // Route::post('admin/addTicketType/post',[AdminController::class,'addCategory'])->name('category.add');
 
-Route::get('/admin_dashboard', function () {
+Route::get('/admin/dashboard', function () {
     return view('backend/content/admin_dashboard');
 });
 
@@ -50,13 +50,15 @@ Route::get('admin/add_event', function () {
     return view('backend/content/event/add_event');
 });
 
-Route::get('admin/add_date', function () {
-    return view('backend/content/event/add_date');
+Route::get('admin/event_details', function () {
+    return view('backend/content/event/event_details');
 });
 
-Route::get('/add_ticket_type', function () {
-    return view('backend/content/event/add_ticket_type');
-});
 // Route::get('/add_ticket_type', function () {
-//     return view('backend/content/category/AddTicketType');
+//     return view('backend/content/event/add_ticket_type');
 // });
+
+Route::get('admin/show_event', function () {
+    return view('backend/content/event/show_event');
+});
+
