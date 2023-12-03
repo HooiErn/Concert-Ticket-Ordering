@@ -27,7 +27,13 @@ Route::get('/', function () {
 Route::get('/login/form', [HomeController::class, 'login_form'])->name('login.form');
 Route::post('/checkLogin', [HomeController::class, 'check_login'])->name('check.login');
 Route::get('/logout', [HomeController::class, 'logout']);
+Route::post('/register', [HomeController::class, 'registerMember'])->name('user.register');
 
+// Forgot Password and Reset Password Routes
+Route::get('/forgot-password', [HomeController::class, 'showForgotPasswordForm'])->name('password.show');
+Route::post('/forgot-password', [HomeController::class, 'sendResetLinkEmail'])->name('reset.email');
+Route::get('/reset-password/{token}', [HomeController::class, 'showResetPasswordForm'])->name('password.reset.show');
+Route::post('/reset-password', [HomeController::class, 'resetPassword'])->name('password.reset.submit');
 
 Route::get('/contact', 'App\Http\Controllers\FrontendController@contact')->name('contact');
 

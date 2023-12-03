@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 use App\Models\User;
-use Carbon\Carbon;
 use Cookie;
 use DB;
 
@@ -110,6 +111,66 @@ class HomeController extends Controller
 
         Toastr::success('You successfully register a new member account','Register',["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
         return redirect()->back();
+    }
+
+ 
+    // Show Forgot Password Form
+    public function showForgotPasswordForm()
+    {
+        return view('auth.passwords.email');
+    }
+
+    // Send Reset Password Email
+    public function sendResetLinkEmail(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validator->fails()) {
+            Toastr::error('Invalid email format.', 'Validation Error', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with('status', __($status))
+            : back()->withErrors(['email' => __($status)]);
+    }
+
+    // Show Reset Password Form
+    public function showResetPasswordForm($token)
+    {
+        return view('auth.passwords.reset')->with(['token' => $token, 'email' => request('email')]);
+    }
+
+    // Reset Password
+    public function resetPassword(Request $request)
+    {
+        $this->validate($request, [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $response = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password),
+                    'remember_token' => Str::random(60), // Use Str::random(60) to generate a random token
+                ])->save();
+
+                $this->guard()->login($user);
+            }
+        );
+
+        return $response === Password::PASSWORD_RESET
+            ? redirect($this->redirectPath())
+            : back()->withErrors(['email' => [__($response)]]);
     }
 
 }

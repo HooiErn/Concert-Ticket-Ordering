@@ -1,5 +1,6 @@
 @extends('frontend/layout')
-@section('title','Login')
+@include('functions.toastr')
+@section('title', 'Login')
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
@@ -18,24 +19,17 @@
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Include Toastr CSS and JS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
-    <!-- Toastr  -->
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
 </head>
 
 <body>
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg); height:100px">
-        <!-- <div class="bradcumbContent">
-            <h2>Login</h2>
-        </div> -->
     </section>
     <!-- ##### Breadcumb Area End ##### -->
 
@@ -45,25 +39,68 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
                     <div class="login-content">
-                        <h3>Welcome Back</h3>
-                        <!-- Login Form -->
-                        <div class="login-form">
-                            <form action="{{route('check.login')}}" method="post">
-                            @csrf
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter E-mail" name="email">
-                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
-                                </div>
-                                <div class="form-group">
-                                <input type="checkbox" name="rememberme" id="rememberme" @if(Cookie::has('name')) checked @endif><span>Remember Me</span>
-                                </div>
-                                <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
-                            </form>
+
+                        <!-- Nav Tabs -->
+                        <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab Content -->
+                        <div class="tab-content" id="myTabsContent">
+
+                            <!-- Login Form -->
+                            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                <h3>Welcome Back</h3>
+                                <form action="{{ route('check.login') }}" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter E-mail" name="email">
+                                        <small id="emailHelp" class="form-text text-muted">
+                                            <i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.
+                                        </small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" name="rememberme" id="rememberme" @if(Cookie::has('name')) checked @endif>
+                                        <span>Remember Me</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <a class="small forgot-password" href="{{ route('password.request') }}">Forgot your password?</a>
+                                    </div>
+                                    <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
+                                </form>
+                            </div>
+
+                            <!-- Register Form -->
+                            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                <h3>Create an Account</h3>
+                                <form action="" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="registerEmail">Email address</label>
+                                        <input type="email" class="form-control" id="registerEmail" placeholder="Enter your email" name="registerEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="registerPassword">Password</label>
+                                        <input type="password" class="form-control" id="registerPassword" placeholder="Choose a password" name="registerPassword">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm Password</label>
+                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" name="confirmPassword">
+                                    </div>
+                                    <button type="submit" class="btn oneMusic-btn mt-15">Sign Up</button>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -71,23 +108,33 @@
         </div>
     </section>
     <!-- ##### Login Area End ##### -->
+
     <!-- Toastr Initialization -->
     <script>
         @if(Session::has('toastr'))
             {!! Session::get('toastr') !!}
         @endif
     </script>
-    <!-- ##### All Javascript Script ##### -->
-    <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
+    <script src="{{ asset('js/plugins/plugins.js') }}"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="{{ asset('js/active.js') }}"></script>
+
+    <!-- Activate Bootstrap Tabs -->
+    <script>
+        $(document).ready(function () {
+            $('#myTabs a').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+    </script>
+
 </body>
 
 </html>
