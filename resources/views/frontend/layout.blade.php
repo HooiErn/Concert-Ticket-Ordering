@@ -17,9 +17,17 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
+    <!-- Include Toastr CSS and JS -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
 </head>
 
 <body>
+    <!-- Include Toastr CSS and JS -->
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
+
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="lds-ellipsis">

@@ -1,6 +1,6 @@
 @extends('frontend/layout')
 @include('functions.toastr')
-@section('title', 'Login')
+@section('title', 'Login/Register')
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
@@ -22,12 +22,13 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Include Toastr CSS and JS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    {!! Toastr::message() !!}
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 </head>
 
 <body>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg); height:100px">
     </section>
@@ -117,13 +118,6 @@
         </div>
     </section>
     <!-- ##### Login Area End ##### -->
-
-    <!-- Toastr Initialization -->
-    <script>
-        @if(Session::has('toastr'))
-            {!! Session::get('toastr') !!}
-        @endif
-    </script>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
