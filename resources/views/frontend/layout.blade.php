@@ -104,10 +104,18 @@
 
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
+                                    <!-- Check if the user is authenticated -->
+                                @auth
+                                    <!-- Display user's name if authenticated -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="{{route('login.form')}}" id="loginBtn">Login / Register</a>
+                                        <span>Welcome, {{ Auth::user()->name }}</span>
                                     </div>
+                                @else
+                                    <!-- Display login/register link if not authenticated -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="{{ route('login.form') }}" id="loginBtn">Login / Register</a>
+                                    </div>
+                                @endauth
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
