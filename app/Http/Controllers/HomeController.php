@@ -88,13 +88,19 @@ class HomeController extends Controller
     
     public function registerMember(Request $request)
     {
-        $request->validate([
+        
+        $validator = Validator::make($request->all(), [
             'm_name' => 'required',
             'm_email' => 'required|email|unique:users,email',
-            'm_password' => 'required|max:12',
+            'm_password' => 'required|min:8|max:12',
             'm_confirm_password' => 'required|same:m_password',
-            'm_contact_number' => 'required|numeric|regex:/^[0-9]{10}$/',
+            'm_contact_number' => 'required|numeric|regex:/^[0-9]{10,}$/',
         ]);
+        
+        if ($validator->fails()) {
+            Toastr::error('Invalid input, please try again.', 'Validation Error', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
     
         $addMember = User::create([
             'name' => $request->m_name,
@@ -111,6 +117,7 @@ class HomeController extends Controller
             Toastr::error('Registration failed. Please try again', 'Error', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-full-width"]);
             return redirect('/login/form')->withInput();
         }
+        
     }
     
  
