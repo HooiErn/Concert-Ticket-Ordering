@@ -106,7 +106,6 @@ class HomeController extends Controller
             'name' => $request -> m_name,
             'role' => 2,
             'password' => Hash::make($request -> m_password),
-            'contact_number'=> $request -> m_contact_number,
         ]);
 
         Toastr::success('You successfully register a new member account','Register',["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
