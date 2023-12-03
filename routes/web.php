@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 // Login & Logout
 Route::get('/login/form', [HomeController::class, 'login_form'])->name('login.form');
-Route::post('/checkLogin', [HomeController::class, 'check_login']);
+Route::post('/checkLogin', [HomeController::class, 'check_login'])->name('check.login');
 Route::get('/logout', [HomeController::class, 'logout']);
 
 
