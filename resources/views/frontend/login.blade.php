@@ -20,6 +20,14 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
+    <!-- Include Toastr CSS and JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
+    <!-- Toastr  -->
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
 </head>
 
 <body>
@@ -40,15 +48,19 @@
                         <h3>Welcome Back</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form action="#" method="post">
+                            <form action="{{route('check.login')}}" method="post">
+                            @csrf
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter E-mail">
+                                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter E-mail" name="email">
                                     <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                                </div>
+                                <div class="form-group">
+                                <input type="checkbox" name="rememberme" id="rememberme" @if(Cookie::has('name')) checked @endif><span>Remember Me</span>
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
                             </form>
@@ -59,7 +71,12 @@
         </div>
     </section>
     <!-- ##### Login Area End ##### -->
-
+    <!-- Toastr Initialization -->
+    <script>
+        @if(Session::has('toastr'))
+            {!! Session::get('toastr') !!}
+        @endif
+    </script>
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
