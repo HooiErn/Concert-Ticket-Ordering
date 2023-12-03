@@ -50,7 +50,7 @@ Route::get('/add',[AdminController::class,'indexCategory']);
 
 Route::get('/admin_dashboard', function () {
     return view('backend/content/admin_dashboard');
-});
+})->name('admin.dashboard');
 
 Route::get('admin/add_event', function () {
     return view('backend/content/event/add_event');

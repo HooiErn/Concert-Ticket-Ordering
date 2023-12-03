@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Cookie;
@@ -41,38 +40,48 @@ class HomeController extends Controller
     // Check Login
     public function check_login(Request $request)
     {
-        $validator = $request->validate([
-            'email' => 'required',
+        // Validate the input using Validator facade
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
             'password' => 'required',
         ]);
     
+        // Check if validation fails
+        if ($validator->fails()) {
+            Toastr::error('Invalid email or password', 'Error');
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
+        // Attempt to authenticate the user
         $credentials = $request->only('email', 'password');
-    
-        $user = User::where('email', $request->email)->first();
-    
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            if($request->has('rememberme')){
-                Cookie::queue('email',$request->email,1440); //1440 means it stays for 24 hours
-                Cookie::queue('password',$request->password,1440);
-            }
-            else{
+    
+            // Remember me functionality with cookies
+            if ($request->has('rememberme')) {
+                Cookie::queue('email', $request->email, 1440); // 1440 means it stays for 24 hours
+                Cookie::queue('password', $request->password, 1440);
+            } else {
                 Cookie::queue(Cookie::forget('email'));
                 Cookie::queue(Cookie::forget('password'));
             }
     
+            // Check user role and redirect accordingly
             if ($user->isAdmin()) {
-                Toastr::success('Welcome back '.$request->email, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
-                return redirect('admin/dashboard');
+                Toastr::success('Welcome back ' . $request->email, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
+                return redirect('backend/content/admin_dashboard');
             } elseif ($user->isMember()) {
-                Toastr::success('Welcome back '.$request->email, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
+                Toastr::success('Welcome back ' . $request->email, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
                 return redirect('/');
-            }    
+            }
+    
+            // Default redirect if user role is neither admin nor member
             return redirect()->back();
         }
     
+        // Authentication failed
         Toastr::error('Invalid email or password', 'Error');
-        return redirect()->back()->withErrors($validator)->withInput();
+        return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput();
     }
     
     // Logout
@@ -94,7 +103,8 @@ class HomeController extends Controller
             'm_email' => 'required|email|unique:users,email',
             'm_password' => 'required|min:8|max:12',
             'm_confirm_password' => 'required|same:m_password',
-            'm_contact_number' => 'required|numeric|regex:/^[0-9]{10,}$/',
+            'm_contact_number' => 'required|regex:/^[0-9 \-]{10,}$/',
+
         ]);
         
         if ($validator->fails()) {
@@ -111,10 +121,10 @@ class HomeController extends Controller
         ]);
     
         if ($addMember) {
-            Toastr::success('Account has been successfully registered', 'Register Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-full-width"]);
+            Toastr::success('Account has been successfully registered', 'Register Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
             return redirect('/login/form');
         } else {
-            Toastr::error('Registration failed. Please try again', 'Error', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-full-width"]);
+            Toastr::error('Registration failed. Please try again', 'Error', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
             return redirect('/login/form')->withInput();
         }
         
