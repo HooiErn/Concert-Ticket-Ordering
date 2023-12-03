@@ -2,7 +2,7 @@
 <ul class="navbar-nav sidebar sidebar-dark accordion bg-gradient-primary-custom" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.dashboard')}}">
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
@@ -14,7 +14,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="{{route('admin.dashboard')}}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
@@ -90,7 +90,16 @@
         </div>
     </div>
 </li>
-
+        <!-- Nav Item - Logout -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('logout')}}" onclick="confirmLogout(event)">
+                <i class="fas fa-fw fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </li>
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 
@@ -100,4 +109,14 @@
 </div>
 
 </ul>
+
+<!-- JavaScript for Logout Confirmation -->
+<script>
+    function confirmLogout(event) {
+        if (confirm('Are you sure you want to logout?')) {
+            event.preventDefault();
+            document.getElementById('logout-form').submit();
+        }
+    }
+</script>
 <!-- End of Sidebar -->

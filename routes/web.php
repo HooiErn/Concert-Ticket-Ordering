@@ -25,9 +25,15 @@ Route::get('/', function () {
 
 // Login & Logout
 Route::get('/login/form', [HomeController::class, 'login_form'])->name('login.form');
-Route::post('/checkLogin', [HomeController::class, 'check_login']);
+Route::post('/checkLogin', [HomeController::class, 'check_login'])->name('check.login');
 Route::get('/logout', [HomeController::class, 'logout']);
+Route::post('/user-register', [HomeController::class, 'registerMember'])->name('user.register');
 
+// Forgot Password and Reset Password Routes
+Route::get('/forgot-password', [HomeController::class, 'showForgotPasswordForm'])->name('password.show');
+Route::post('/forgot-password', [HomeController::class, 'sendResetLinkEmail'])->name('reset.email');
+Route::get('/reset-password/{token}', [HomeController::class, 'showResetPasswordForm'])->name('password.reset.show');
+Route::post('/reset-password', [HomeController::class, 'resetPassword'])->name('password.reset.submit');
 
 Route::get('/contact', 'App\Http\Controllers\FrontendController@contact')->name('contact');
 
@@ -44,7 +50,7 @@ Route::get('/add',[AdminController::class,'indexCategory']);
 
 Route::get('/admin/dashboard', function () {
     return view('backend/content/admin_dashboard');
-});
+})->name('admin.dashboard');
 
 Route::get('admin/add_event', function () {
     return view('backend/content/event/add_event');

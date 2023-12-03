@@ -18,7 +18,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin/dashboard');
+        return view('backend/content/admin_dashboard');
     }
 
     public function indexCategory(){

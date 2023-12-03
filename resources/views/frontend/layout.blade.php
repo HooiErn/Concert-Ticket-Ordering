@@ -17,9 +17,17 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
+    <!-- Include Toastr CSS and JS -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
 </head>
 
 <body>
+    <!-- Include Toastr CSS and JS -->
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
+
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="lds-ellipsis">
@@ -96,10 +104,18 @@
 
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
+                                    <!-- Check if the user is authenticated -->
+                                @auth
+                                    <!-- Display user's name if authenticated -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="{{route('login.form')}}" id="loginBtn">Login / Register</a>
+                                        <span>Welcome, {{ Auth::user()->name }}</span>
                                     </div>
+                                @else
+                                    <!-- Display login/register link if not authenticated -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="{{ route('login.form') }}" id="loginBtn">Login / Register</a>
+                                    </div>
+                                @endauth
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
