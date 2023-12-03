@@ -1,5 +1,4 @@
 @extends('frontend/layout')
-@include('functions.toastr')
 @section('title', 'Login/Register')
 @section('content')
 <!DOCTYPE html>
@@ -99,8 +98,8 @@
                             <input type="password" class="form-control" id="registerPassword" placeholder="Choose a password" name="m_password">
                         </div>
                         <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" name="m_confirm_password">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" name="m_confirm_password">
                         </div>
                         <div class="form-group">
                             <label for="contactNumber">Contact Number</label>
@@ -118,6 +117,7 @@
         </div>
     </section>
     <!-- ##### Login Area End ##### -->
+
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
