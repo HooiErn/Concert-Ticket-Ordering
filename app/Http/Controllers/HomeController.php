@@ -36,7 +36,7 @@ class HomeController extends Controller
     {
         return view('frontend/login');
     }
-    
+
     // Check Login
     public function check_login(Request $request)
     {
@@ -45,18 +45,18 @@ class HomeController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
         // Check if validation fails
         if ($validator->fails()) {
             Toastr::error('Invalid email or password', 'Error');
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
+
         // Attempt to authenticate the user
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-    
+
             // Remember me functionality with cookies
             if ($request->has('rememberme')) {
                 Cookie::queue('email', $request->email, 1440); // 1440 means it stays for 24 hours
@@ -65,25 +65,25 @@ class HomeController extends Controller
                 Cookie::queue(Cookie::forget('email'));
                 Cookie::queue(Cookie::forget('password'));
             }
-    
+
             // Check user role and redirect accordingly
             if ($user->isAdmin()) {
                 Toastr::success('Welcome back ' . $request->email, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
-                return redirect('/admin_dashboard');
+                return redirect('/admin/dashboard');
             } elseif ($user->isMember()) {
                 Toastr::success('Welcome back ' . $request->email, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
                 return redirect('/');
             }
-    
+
             // Default redirect if user role is neither admin nor member
             return redirect()->back();
         }
-    
+
         // Authentication failed
         Toastr::error('Invalid email or password', 'Error');
         return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput();
     }
-    
+
     // Logout
     public function logout()
     {
@@ -94,10 +94,10 @@ class HomeController extends Controller
         return redirect('/');
     }
 
-    
+
     public function registerMember(Request $request)
     {
-        
+
         $validator = Validator::make($request->all(), [
             'm_name' => 'required',
             'm_email' => 'required|email|unique:users,email',
@@ -106,12 +106,12 @@ class HomeController extends Controller
             'm_contact_number' => 'required|regex:/^[0-9 \-]{10,}$/',
 
         ]);
-        
+
         if ($validator->fails()) {
             Toastr::error('Invalid input, please try again.', 'Validation Error', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
             return redirect()->back()->withInput()->withErrors($validator);
         }
-    
+
         $addMember = User::create([
             'name' => $request->m_name,
             'email' => $request->m_email,
@@ -119,7 +119,7 @@ class HomeController extends Controller
             'password' => Hash::make($request->m_password),
             'contact_number' => $request->m_contact_number,
         ]);
-    
+
         if ($addMember) {
             Toastr::success('Account has been successfully registered', 'Register Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
             return redirect('/login/form');
@@ -127,10 +127,10 @@ class HomeController extends Controller
             Toastr::error('Registration failed. Please try again', 'Error', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
             return redirect('/login/form')->withInput();
         }
-        
+
     }
-    
- 
+
+
     // Show Forgot Password Form
     public function showForgotPasswordForm()
     {
