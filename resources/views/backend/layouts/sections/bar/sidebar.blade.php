@@ -36,8 +36,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html">Add Concert</a>
-                <a class="collapse-item" href="cards.html">Contert List</a>
+                <a class="collapse-item" href="{{ url('/admin/add_event') }}">Add Concert</a>
+                <a class="collapse-item" href="{{ url('/admin/show_event') }}">Contert List</a>
                 <a class="collapse-item" href="">Create Ticket Type</a>
             </div>
         </div>

@@ -1,5 +1,5 @@
 @extends('frontend/layout')
-@section('title', 'Contact')
+@section('title', 'Event')
 @section('content')
 
     <!-- Preloader -->
