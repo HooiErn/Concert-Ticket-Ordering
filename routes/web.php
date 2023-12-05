@@ -68,3 +68,15 @@ Route::get('admin/show_event', function () {
     return view('backend/content/event/show_event');
 });
 
+Route::get('admin/order_list', function () {
+    return view('backend/content/order/order_list');
+});
+
+Route::get('ticket_details', function () {
+    return view('backend/content/ticket/ticket_details');
+});
+
+Route::get('ticket_history', function () {
+    return view('backend/content/ticket/ticket_history');
+});
+
