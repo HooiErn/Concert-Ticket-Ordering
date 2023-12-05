@@ -16,5 +16,6 @@ class Concert extends Model
         'ticket_price',
         'description',
         'organizer_name',
+        'organizer_contact_number'
     ];
 }
