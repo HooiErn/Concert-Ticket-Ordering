@@ -86,7 +86,7 @@
 
                                 <!-- Register Form -->
                                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                    <h3>Create an Account</h3>
+                                    <h3>Create your Account</h3>
                                     <form action="{{ route('user.register') }}" method="post">
                                         @csrf
                                         <div class="form-group">
