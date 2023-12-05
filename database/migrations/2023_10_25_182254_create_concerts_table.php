@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('concert_image');
             $table->double('ticket_price',8,2);
             $table->string('description')->nullable();
+            $table->string('orginazer_name');
+            $table->string('orginazer_contact_number')->nullable();
             $table->timestamps();
         });
     }

@@ -21,5 +21,10 @@ class FrontendController extends Controller
         return view('frontend.event');
     }
 
+    public function booking(){
+
+        return view('frontend.booking');
+    }
+
     // Add similar methods for other views as needed
 }

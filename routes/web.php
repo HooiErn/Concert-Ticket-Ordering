@@ -45,6 +45,9 @@ Route::get('/event', [FrontendController::class, 'event'])->name('event');
 // Contact Page and Function
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
+// Booking and Function
+Route::get('/booking', [FrontendController::class, 'booking'])->name('booking');
+
 // Route::get('/event', 'FrontendController@event');
 
 Auth::routes();
