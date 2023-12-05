@@ -108,6 +108,9 @@
                                             <label for="confirmPassword">Confirm Password</label>
                                             <input type="password" class="form-control" id="confirmPassword"
                                                 placeholder="Confirm your password" name="m_confirm_password">
+                                                <small id="PasswordHelp" class="form-text text-muted">
+                                                    <i class="fa fa-key mr-2"></i>Password must be between 8 and 12 characters.
+                                                </small>
                                         </div>
                                         <div class="form-group">
                                             <label for="contactNumber">Contact Number</label>
