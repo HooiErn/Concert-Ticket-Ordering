@@ -12,10 +12,10 @@
     <title>@yield('title')</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('img/core-img/favicon.ico')}}">
+    <link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Include Toastr CSS and JS -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
@@ -67,8 +67,8 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="{{ url('/') }}">Home</a></li>
-                                    <li><a href="albums-store.html">Albums</a></li>
-                                    <li><a href="#">Pages</a>
+                                    {{-- <li><a href="albums-store.html">Albums</a></li> --}}
+                                    {{-- <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="index.html">Home</a></li>
                                             <li><a href="albums-store.html">Albums</a></li>
@@ -95,9 +95,9 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
+                                    </li> --}}
+                                    <li><a href="{{ url('/event') }}">Events</a></li>
+                                    {{-- <li><a href="blog.html">News</a></li> --}}
                                     <li><a href="{{ route('contact') }}">Contact</a></li>
 
                                 </ul>
@@ -105,17 +105,19 @@
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Check if the user is authenticated -->
-                                @auth
-                                    <!-- Display user's name if authenticated -->
-                                    <div class="login-register-btn mr-50">
-                                        <span>Welcome, {{ Auth::user()->name }}</span>
-                                    </div>
-                                @else
-                                    <!-- Display login/register link if not authenticated -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="{{ route('login.form') }}" id="loginBtn">Login / Register</a>
-                                    </div>
-                                @endauth
+                                    @auth
+                                        <!-- Display user's name if authenticated -->
+                                        <div class="login-register-btn mr-50">
+                                            <a href="{{ url('/logout') }}" id="logout-link">
+                                                <span onclick="confirmLogout(event)">Welcome, {{ Auth::user()->name }}</span>
+                                            </a>
+                                        </div>
+                                    @else
+                                        <!-- Display login/register link if not authenticated -->
+                                        <div class="login-register-btn mr-50">
+                                            <a href="{{ route('login.form') }}" id="loginBtn">Login / Register</a>
+                                        </div>
+                                    @endauth
 
                                     <!-- Cart Button -->
                                     <div class="cart-btn">
@@ -133,18 +135,24 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-	<!--Content -->
-	@yield('content')
+    <!--Content -->
+    @yield('content')
 
-     <!-- ##### Footer Area Start ##### -->
+    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
             <div class="row d-flex flex-wrap align-items-center">
                 <div class="col-12 col-md-6">
                     <a href="#"><img src="img/core-img/logo.png" alt=""></a>
-                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">LCP</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    <p class="copywrite-text"><a
+                            href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i
+                                class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                target="_blank">LCP</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
 
                 <div class="col-12 col-md-6">
@@ -162,6 +170,33 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- ##### Footer Area Start ##### -->
+
+    <!-- JavaScript for Logout Confirmation -->
+    {{-- <script>
+        function confirmLogout(event) {
+            if (confirm('Are you sure you want to logout?')) {
+                event.preventDefault();
+                document.getElementById('logout-form').submit();
+            }
+        }
+    </script> --}}
+
+    <script>
+        function confirmLogout(event) {
+            event.preventDefault(); // Prevent the default behavior of the link
+
+            // Show a confirmation dialog
+            var confirmation = confirm("Are you sure you want to log out?");
+
+            // If the user confirms, proceed with the logout
+            if (confirmation) {
+                window.location.href = document.getElementById('logout-link').href;
+            } else {
+                // If the user cancels, do nothing or perform any other desired action
+                console.log("Logout cancelled");
+            }
+        }
+    </script>
 
     <!-- ##### All Javascript Script ##### -->
     <script src="{{ asset('js/jquery/jquery-2.2.4.min.js') }}"></script>
