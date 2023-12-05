@@ -28,7 +28,7 @@ Route::get('/', function () {
 // Login & Logout
 Route::get('/login/form', [HomeController::class, 'login_form'])->name('login.form');
 Route::post('/checkLogin', [HomeController::class, 'check_login'])->name('check.login');
-Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+Route::get('/logout', [HomeController::class, 'logout']);
 Route::post('/user-register', [HomeController::class, 'registerMember'])->name('user.register');
 
 // Forgot Password and Reset Password Routes
