@@ -27,7 +27,7 @@ class AdminController extends Controller
 
         } else {
 
-            return redirect()->route('login'); // Change 'login' to the actual route name of your login form
+            return redirect()->route('login.form'); 
         }
     }
 

@@ -31,12 +31,6 @@ Route::post('/checkLogin', [HomeController::class, 'check_login'])->name('check.
 Route::get('/logout', [HomeController::class, 'logout']);
 Route::post('/user-register', [HomeController::class, 'registerMember'])->name('user.register');
 
-// Forgot Password and Reset Password Routes
-Route::get('/forgot-password', [HomeController::class, 'showForgotPasswordForm'])->name('password.show');
-Route::post('/forgot-password', [HomeController::class, 'sendResetLinkEmail'])->name('reset.email');
-Route::get('/reset-password/{token}', [HomeController::class, 'showResetPasswordForm'])->name('password.reset.show');
-Route::post('/reset-password', [HomeController::class, 'resetPassword'])->name('password.reset.submit');
-
 //---------------------------------------------------------------Frontend Area-------------------------------------------------//
 
 // Event Page and Function
@@ -85,4 +79,16 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
 // Route::get('/add_ticket_type', function () {
 //     return view('backend/content/event/add_ticket_type');
 // });
+
+Route::get('admin/order_list', function () {
+    return view('backend/content/order/order_list');
+});
+
+Route::get('ticket_details', function () {
+    return view('backend/content/ticket/ticket_details');
+});
+
+Route::get('ticket_history', function () {
+    return view('backend/content/ticket/ticket_history');
+});
 

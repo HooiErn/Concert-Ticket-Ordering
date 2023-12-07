@@ -68,10 +68,10 @@ class HomeController extends Controller
 
             // Check user role and redirect accordingly
             if ($user->isAdmin()) {
-                Toastr::success('Welcome back ' . $request->email, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
+                Toastr::success('Welcome back ' . $user->name, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
                 return redirect('/admin/dashboard');
             } elseif ($user->isMember()) {
-                Toastr::success('Welcome back ' . $request->email, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
+                Toastr::success('Welcome back ' . $user->name, 'Login Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
                 return redirect('/');
             }
 
@@ -130,64 +130,5 @@ class HomeController extends Controller
 
     }
 
-
-    // Show Forgot Password Form
-    public function showForgotPasswordForm()
-    {
-        return view('auth.passwords.email');
-    }
-
-    // Send Reset Password Email
-    public function sendResetLinkEmail(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-        ]);
-
-        if ($validator->fails()) {
-            Toastr::error('Invalid email format.', 'Validation Error', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
-
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with('status', __($status))
-            : back()->withErrors(['email' => __($status)]);
-    }
-
-    // Show Reset Password Form
-    public function showResetPasswordForm($token)
-    {
-        return view('auth.passwords.reset')->with(['token' => $token, 'email' => request('email')]);
-    }
-
-    // Reset Password
-    public function resetPassword(Request $request)
-    {
-        $this->validate($request, [
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:6',
-        ]);
-
-        $response = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user, $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password),
-                    'remember_token' => Str::random(60), // Use Str::random(60) to generate a random token
-                ])->save();
-
-                $this->guard()->login($user);
-            }
-        );
-
-        return $response === Password::PASSWORD_RESET
-            ? redirect($this->redirectPath())
-            : back()->withErrors(['email' => [__($response)]]);
-    }
 
 }

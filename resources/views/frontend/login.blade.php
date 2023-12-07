@@ -86,7 +86,7 @@
 
                                 <!-- Register Form -->
                                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                    <h3>Create an Account</h3>
+                                    <h3>Create your Account</h3>
                                     <form action="{{ route('user.register') }}" method="post">
                                         @csrf
                                         <div class="form-group">
@@ -108,6 +108,9 @@
                                             <label for="confirmPassword">Confirm Password</label>
                                             <input type="password" class="form-control" id="confirmPassword"
                                                 placeholder="Confirm your password" name="m_confirm_password">
+                                                <small id="PasswordHelp" class="form-text text-muted">
+                                                    <i class="fa fa-key mr-2"></i>Password must be between 8 and 12 characters.
+                                                </small>
                                         </div>
                                         <div class="form-group">
                                             <label for="contactNumber">Contact Number</label>

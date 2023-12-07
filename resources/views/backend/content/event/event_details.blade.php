@@ -1,7 +1,9 @@
 <head>
     <title>Concerts</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> -->
     <link href="/backend/assets/css/event_details.css" rel="stylesheet" />
+    <link href="/backend/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 @extends('backend/layouts/commonMaster')
 @section('layoutContent')
@@ -129,7 +131,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-ticket-type-info" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-ticket-type-info" id="ticket-type-table" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Ticket Type</th>
@@ -154,6 +156,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection
