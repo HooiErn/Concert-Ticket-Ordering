@@ -11,10 +11,11 @@ class Ticket extends Model
 
     protected $fillable = [
         'ticket_id',
+        'concert_id',
         'concert_name',
-        'role',
-        'password',
-        'contact_number',
+        'ticket_type',
+        'ticket_price',
+        'seat_number',
     ];
 
 }

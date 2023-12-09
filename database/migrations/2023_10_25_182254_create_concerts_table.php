@@ -19,7 +19,6 @@ return new class extends Migration
             $table->datetime('date_time');
             $table->string('venue');
             $table->string('concert_image');
-            $table->double('ticket_price',8,2);
             $table->string('description')->nullable();
             $table->string('orginazer_name');
             $table->string('orginazer_contact_number')->nullable();

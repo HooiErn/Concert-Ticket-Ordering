@@ -13,7 +13,6 @@ class Concert extends Model
         'date_time',
         'venue',
         'concert_image',
-        'ticket_price',
         'description',
         'organizer_name',
         'organizer_contact_number'
