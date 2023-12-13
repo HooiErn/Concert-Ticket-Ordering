@@ -79,7 +79,7 @@ class AdminController extends Controller
         Ticket_type::insert($ticketType);
 
         // Redirect or return a response
-        return redirect('backend/content/event/add_event');
+        return redirect('showProduct');
 
     }
 
@@ -101,7 +101,7 @@ class AdminController extends Controller
         ];
 
         // Pass the variables to the view
-        return view('backend/content/event/show_event', compact('concerts', 'concertImages', 'ticketType'));
+        return view('backend/content/event/edit_event', compact('concerts', 'concertImages', 'ticketType'));
     }
 
     public function updateConcert()
@@ -114,14 +114,16 @@ class AdminController extends Controller
         // Process the uploaded images
         $concertImages = [];
         $concertImages = $existingImages;
-
-        foreach ($r->file('concert_images') as $index => $image) {
-            if ($r->hasFile('concert_images.' . $index)) {
-                $image->move('images', $image->getClientOriginalName());
-                $filename = $image->getClientOriginalName();
-                $concertImages[$index] = $filename;
+        if ($r->hasFile('concert_images')) {
+            foreach ($r->file('concert_images') as $index => $image) {
+                if ($r->hasFile('concert_images.' . $index)) {
+                    $image->move('images', $image->getClientOriginalName());
+                    $filename = $image->getClientOriginalName();
+                    $concertImages[$index] = $filename;
+                }
             }
         }
+       
 
         // Save the concert details and image filenames
         $concert->name = $r->input('concert-name');
@@ -150,16 +152,41 @@ class AdminController extends Controller
             }
         }
         // Redirect or return a response
-        return redirect('showConcert');
+        return redirect()->route('showConcert');
+
 
     }
 
     public function showConcert()
     {
-        $concerts = concert::all();
-        //select * from products
-        return view('showProduct')->with('concerts', $concerts);
+        $concerts = Concert::all();
+
+        $concertImages = [];
+
+        foreach ($concerts as $concert) {
+            $images = json_decode($concert->images, true);
+            if (!empty($images)) {
+                $concertImages[] = $images[0];
+            } else {
+                $concertImages[] = null;
+            }
+        }
+        return view('backend/content/event/show_event', compact('concerts', 'concertImages'))->render();
     }
+
+    public function deleteConcert($id)
+    {
+        $concert = Concert::Find($id);
+        $concert->delete();
+        return redirect()->route('showConcert');
+    }
+
+    public function concertDetails($id)
+    {
+        $concerts = Concert::all()->where('id', $id);
+        return view('backend/content/event/event_details')->with('concerts', $concerts);
+    }
+
 
     // public function addConcert(Request $request){
 

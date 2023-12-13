@@ -111,3 +111,7 @@ Route::post('/update_concert', [App\Http\Controllers\AdminController::class, 'up
 
 Route::get('/show_concert', [App\Http\Controllers\AdminController::class, 'showConcert'])->name('showConcert');
 
+Route::get('/delete_concert/{id}', [App\Http\Controllers\AdminController::class, 'deleteConcert'])->name('deleteConcert');   
+
+Route::get('/concert_details/{id}', [App\Http\Controllers\AdminController::class, 'concertDetails'])->name('concertDetails');   
+

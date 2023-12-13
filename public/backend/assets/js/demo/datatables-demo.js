@@ -6,3 +6,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#ticket-type-table').DataTable();
 });
+
+$(document).ready(function() {
+  $('#concert-table').DataTable();
+});

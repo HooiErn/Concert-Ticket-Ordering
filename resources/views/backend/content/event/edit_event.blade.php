@@ -13,6 +13,8 @@
             reader.readAsDataURL(imgFile);
         }
     </script>
+     <link href="/backend/assets/css/button.css" rel="stylesheet" />
+
 </head>
 @extends('backend/layouts/commonMaster')
 @section('layoutContent')
@@ -145,7 +147,10 @@
             </div>
         </div>
     </div>
+    
     <!-- End ticket type information -->
-    <button type="submit">Update</button>
+    <div class="container-fluid d-flex justify-content-center ">
+        <button type="submit" class="button-18 mb-4" style="padding: 12px 30px;!important">Update</button>
+    </div>
 </form>
 @endsection
