@@ -59,8 +59,21 @@
 
                     <div class="col-md-4">
                         <div class="col-md-12 mb-4 text-center col-sm-12">
-                            <div class="img-fluid"><img style="max-width: 200px; max-height:200px"
-                                    src="https://th.bing.com/th/id/OIP.O1dUKkJZGyfVs6mqtnKCiAAAAA?w=330&h=330&rs=1&pid=ImgDetMain" />
+                            <!-- Generate QR Code with dynamically generated ticket information using simple-qrcode -->
+                            @php
+                                $ticketInfo = [
+                                    'Ticket ID' => '#0618',
+                                    'Event' => "New Year's Concert 2024",
+                                    'Organiser' => 'Selangor Symphony Orchestra',
+                                    'Date' => '18 June 2024 18:00',
+                                    'Venue' => 'Menara KEN TTDI, 37, Jalan Burhanuddin Helmi, Taman Tun Dr Ismail, 60000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia',
+                                    'Total Ticket' => '4',
+                                    'Seat' => 'VIP - V001, VIP - V002, CAT1 - C100, CAT2 - C200',
+                                ];
+                                $qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::size(200)->generate(json_encode($ticketInfo));
+                            @endphp
+                            <div class="img-fluid">
+                                {!! $qrCode !!}
                             </div>
                         </div>
                     </div>
@@ -117,7 +130,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
