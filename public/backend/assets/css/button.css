@@ -1,0 +1,145 @@
+/* CSS */
+.button-59 {
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #000;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    display: inline-flex;
+    fill: #000;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    justify-content: center;
+    letter-spacing: -.8px;
+    line-height: 24px;
+    outline: 0;
+    padding: 6px 6px;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-59:focus {
+    color: #171e29;
+}
+
+.button-59:hover {
+    border-color: rgba(0, 102, 255, 0.703);
+    color: rgba(0, 102, 255, 0.703);
+    fill: rgba(0, 102, 255, 0.703);
+}
+
+.button-59:active {
+    border-color: rgba(0, 102, 255, 0.703);
+    color: rgba(0, 102, 255, 0.703);
+    fill: rgba(0, 102, 255, 0.703);
+}
+
+@media (min-width: 768px) {
+    .button-59 {
+        min-width: 100px;
+    }
+}
+
+/* CSS */
+.button-18 {
+  align-items: center;
+  background-color: #0A66C2;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.button-18:hover,
+.button-18:focus { 
+  background-color: #16437E;
+  color: #ffffff;
+}
+
+.button-18:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.button-18:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+
+/* CSS */
+.button-58 {
+  align-items: center;
+  background-color: #06f;
+  border: 2px solid #06f;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-58:focus {
+  color: #171e29;
+}
+
+.button-58:hover {
+  background-color: #3385ff;
+  border-color: #3385ff;
+  fill: #06f;
+}
+
+.button-58:active {
+  background-color: #3385ff;
+  border-color: #3385ff;
+  fill: #06f;
+}
+
+@media (min-width: 768px) {
+  .button-58 {
+    min-width: 100px;
+  }
+}

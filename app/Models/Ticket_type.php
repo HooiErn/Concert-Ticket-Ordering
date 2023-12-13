@@ -9,6 +9,10 @@ class Ticket_type extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'concert_id',
         'name',
+        'price',
+        'total',
+        'available',
     ];
 }

@@ -53,23 +53,21 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     //Ticket Category
-    Route::get('/add',[AdminController::class,'indexCategory']);
+    Route::get('/add', [AdminController::class, 'indexCategory']);
     // Route::post('admin/addTicketType/post',[AdminController::class,'addCategory'])->name('category.add');
 
-    //Add Event
-    Route::get('admin/add_event', function () {
-        return view('backend/content/event/add_event');
-    });
+
 
     //Event Details
-    Route::get('admin/event_details', function () {
+    Route::get('admin/concert_details', function () {
         return view('backend/content/event/event_details');
     });
 
-    //Show Event
-    Route::get('admin/show_event', function () {
-        return view('backend/content/event/show_event');
-    });
+    // //Show Event
+    // Route::get('admin/show_concert', function () {
+    //     return view('backend/content/event/show_event');
+    // });
+
 
 });
 
@@ -91,4 +89,25 @@ Route::get('ticket_details', function () {
 Route::get('ticket_history', function () {
     return view('backend/content/ticket/ticket_history');
 });
+
+Route::get('profile', function () {
+    return view('backend/content/user/profile');
+});
+
+Route::get('edit_profile', function () {
+    return view('backend/content/user/edit_profile');
+});
+
+//Add Event
+Route::get('admin/add_concert', function () {
+    return view('backend/content/event/add_event');
+});
+
+Route::post('/add_concert/new', [App\Http\Controllers\AdminController::class, 'addConcert'])->name('addConcert');
+
+Route::get('/edit_concert/{id}', [App\Http\Controllers\AdminController::class, 'editConcert'])->name('editConcert');
+
+Route::post('/update_concert', [App\Http\Controllers\AdminController::class, 'updateConcert'])->name('updateConcert');
+
+Route::get('/show_concert', [App\Http\Controllers\AdminController::class, 'showConcert'])->name('showConcert');
 

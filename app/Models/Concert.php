@@ -9,13 +9,11 @@ class Concert extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'concert_name',
+        'name',
         'date_time',
         'venue',
-        'concert_image',
-        'ticket_price',
+        'images',
         'description',
         'organizer_name',
-        'organizer_contact_number'
     ];
 }

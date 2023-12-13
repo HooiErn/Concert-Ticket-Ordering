@@ -1,3 +1,10 @@
+<head>
+    <style>
+        .table td {
+            padding: 0.3rem 0 !important;
+        }
+    </style>
+</head>
 @extends('backend/layouts/commonMaster')
 @section('layoutContent')
 <div class="container-fluid">
@@ -42,10 +49,11 @@
                                 </div>
                                 <div class="col-md-9 mb-4">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-2">Seat</div>
-                                    <div class="h6 mb-0 text-gray-800">VIP - V001, VIP - V002, CAT1 - C100, CAT2 - C200
+                                    <div class="h6 mb-0 text-gray-800">V001, V002, C100, C200
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -57,21 +65,52 @@
                         </div>
                     </div>
                 </div>
+                <div class="row p-2">
+                    <div class="col-md-6">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-2">Tickets</div>
+                        <table class="table  m-0" style="font-size: 0.85rem">
+                            <tbody>
+                                <tr>
+                                    <td>VIP <span>(RM100 x 2)</span></td>
+                                    <td class="font-weight-bold text-primary">RM 200</td>
+                                </tr>
+                                <tr>
+                                    <td>CAT1 <span>(RM80 x 1)</span></td>
+                                    <td class="font-weight-bold text-primary">RM 80</td>
+                                </tr>
+                                <tr>
+                                    <td>CAT2 <span>(RM60 x 1)</span></td>
+                                    <td class="font-weight-bold text-primary">RM 60</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="mt-2">
+                                <tr>
+                                    <td class="font-weight-bold text-primary">Subtotal</td>
+                                    <td class="font-weight-bold text-primary">RM 60</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
                 <div class="row p-2 mt-4">
                     <div class="col-md-12">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-2">Terms & Conditions</div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-2">Terms & Conditions
+                        </div>
                         <div class="text-sm mb-0 text-gray-500" style="font-size: 0.8rem">
                             1. Each ticket includes admission for one (01) person and is applicable across all ages,
                             including children and infants.
-                            <br />2. Tickets are on a first-come, first-served basis and are subject to availability.
+                            <br />2. Tickets are on a first-come, first-served basis and are subject to
+                            availability.
                             <br />3. Tickets sold are NOT refundable or exchangeable.
                             <br />4. The Organiser shall not be liable and responsible for any loss or damage to the
                             tickets sold.
-                            <br />5. The resale of tickets at the same or any price in excess of the initial purchase
+                            <br />5. The resale of tickets at the same or any price in excess of the initial
+                            purchase
                             price
                             is prohibited.
                             <br />6. Strictly no video recording and photography allowed during the show.
-                            <br />7. Video cameras, cameras and tablet computers such as iPads are not allowed in the
+                            <br />7. Video cameras, cameras and tablet computers such as iPads are not allowed in
+                            the
                             venue.
                             <br />8. Lost or damaged ticket(s) will not be entertained.
                             <br />9. Other terms and conditions apply.
