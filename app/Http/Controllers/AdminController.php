@@ -251,6 +251,11 @@ class AdminController extends Controller
         return redirect('backend/content/category');
     }
 
+    public function showMembers(){
+        $users=User::all();
+        return view ('backend/content/member-list')->with('users',$users);
+    }
+
     //Delete Category
     //  public function DeleteCategory(Request $request){
     //     $categories = Ticket_type::where('id',$id)->first();
