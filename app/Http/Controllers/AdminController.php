@@ -79,7 +79,7 @@ class AdminController extends Controller
         Ticket_type::insert($ticketType);
 
         // Redirect or return a response
-        return redirect('showProduct');
+        return redirect()->route('showConcert');
 
     }
 
