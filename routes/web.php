@@ -115,3 +115,4 @@ Route::get('/delete_concert/{id}', [App\Http\Controllers\AdminController::class,
 
 Route::get('/concert_details/{id}', [App\Http\Controllers\AdminController::class, 'concertDetails'])->name('concertDetails');   
 
+Route::get('/showMembers', [App\Http\Controllers\AdminController::class, 'showMembers'])->name('showMembers');   

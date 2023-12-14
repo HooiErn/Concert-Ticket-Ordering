@@ -79,7 +79,7 @@ class AdminController extends Controller
         Ticket_type::insert($ticketType);
 
         // Redirect or return a response
-        return redirect('showProduct');
+        return redirect()->route('showConcert');
 
     }
 
@@ -249,6 +249,11 @@ class AdminController extends Controller
 
         Toastr::success('A new ticket category has been updated', 'Updated Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
         return redirect('backend/content/category');
+    }
+
+    public function showMembers(){
+        $users=User::all();
+        return view ('backend/content/member-list')->with('users',$users);
     }
 
     //Delete Category
