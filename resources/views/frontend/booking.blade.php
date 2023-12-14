@@ -8,12 +8,13 @@
     <br><br><br><br><br>
 
     <div class="movie-container">
-        <label> Select a movie:</label>
+        <label>Concert Name:</label>
+        {{-- <label value="{{ $concertsid->id }}">{{ $concertsid->name }}</label> --}}
         <select id="movie">
-            <option value="220">Godzilla vs Kong (RS.220)</option>
-            <option value="320">Radhe (RS.320)</option>
+            <option value="{{ $concertsid->id }}">{{ $concertsid->name }}</option>
+            {{-- <option value="320">Radhe (RS.320)</option>
             <option value="250">RRR (RS.250)</option>
-            <option value="260">F9 (RS.260)</option>
+            <option value="260">F9 (RS.260)</option> --}}
         </select>
     </div>
 

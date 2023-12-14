@@ -155,8 +155,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading style-2">
-                        <p>See what’s new</p>
-                        <h2>Buy What’s New</h2>
+                        {{-- <p>See what’s new</p> --}}
+                        <h2>Concerts</h2>
                     </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@
             <div class="row">
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b1.jpg" alt="">
@@ -184,25 +184,34 @@
                             <p>Radio Station</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                        <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
+                @foreach($concerts as $concert)
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
+                            <div class="album-thumb">
+                                @foreach(json_decode($concert->images) as $index => $image)
+                                    <img style="width:200px; height:150px;" src="{{ asset('images/' . $image) }}" alt="{{ $concert->name }}">
+                                    @if($index === 0) {{-- Break out of the loop after the first iteration --}}
+                                        @break
+                                    @endif
+                                @endforeach
+                            </div>
+                            <div class="album-info">
+                                <a href="#">
+                                    <h5>{{ $concert->name }}</h5>
+                                </a>
+                                <p>{{ $concert->date_time }}</p>
+                            </div>
                         </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
+                        <a href="{{ url('/viewconcert/' .$concert->id)}}"><button type="submit" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i>View Concert</button></a>
                     </div>
-                </div>
+                    {{-- </div> --}}
+                @endforeach
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b3.jpg" alt="">
@@ -214,10 +223,10 @@
                             <p>The Album</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b4.jpg" alt="">
@@ -229,10 +238,10 @@
                             <p>Buble Gum</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b1.jpg" alt="">
@@ -252,10 +261,10 @@
                             <p>Radio Station</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b2.jpg" alt="">
@@ -267,10 +276,10 @@
                             <p>Buble Gum</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b3.jpg" alt="">
@@ -282,10 +291,10 @@
                             <p>The Album</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b4.jpg" alt="">
@@ -297,10 +306,10 @@
                             <p>Buble Gum</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b1.jpg" alt="">
@@ -320,10 +329,10 @@
                             <p>Radio Station</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b2.jpg" alt="">
@@ -335,10 +344,10 @@
                             <p>Buble Gum</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b3.jpg" alt="">
@@ -350,10 +359,10 @@
                             <p>The Album</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
                         <div class="album-thumb">
                             <img src="img/bg-img/b4.jpg" alt="">
@@ -365,7 +374,7 @@
                             <p>Buble Gum</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 
@@ -378,6 +387,8 @@
             </div>
         </div>
     </section>
+
+    <br><br><br>
     <!-- ##### Buy Now Area End ##### -->
 
     <!-- ##### Featured Artist Area Start ##### -->
@@ -685,7 +696,7 @@
     <!-- ##### Miscellaneous Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->
-    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
+    {{-- <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -731,7 +742,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ##### Contact Area End ##### -->
 
 @endsection('content')

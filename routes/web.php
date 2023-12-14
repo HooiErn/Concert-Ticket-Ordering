@@ -24,6 +24,10 @@ Route::get('/', function () {
     return view('frontend/main');
 });
 
+// Route::get('/viewconcert', function () {
+//     return view('frontend/viewconcert');
+// });
+
 //---------------------------------------------------------------Auth Area-------------------------------------------------//
 // Login & Logout
 Route::get('/login/form', [HomeController::class, 'login_form'])->name('login.form');
@@ -33,14 +37,23 @@ Route::post('/user-register', [HomeController::class, 'registerMember'])->name('
 
 //---------------------------------------------------------------Frontend Area-------------------------------------------------//
 
-// Event Page and Function
-Route::get('/event', [FrontendController::class, 'event'])->name('event');
+// Home Page
+Route::get('/', [FrontendController::class, 'home'])->name('home');
 
-// Contact Page and Function
-Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+// Concert Page and Function
+Route::get('/concert', [FrontendController::class, 'concert'])->name('concert');
+
+// View Concert
+Route::get('/viewconcert/{id}', [FrontendController::class, 'viewconcert'])->name('viewconcert');
+
+// Booking and Function With Concert Id
+Route::get('/bookingconcert/{id}', [FrontendController::class, 'bookingconcert'])->name('bookingconcert');
 
 // Booking and Function
 Route::get('/booking', [FrontendController::class, 'booking'])->name('booking');
+
+// Contact Page and Function
+Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 // Route::get('/event', 'FrontendController@event');
 
@@ -111,8 +124,9 @@ Route::post('/update_concert', [App\Http\Controllers\AdminController::class, 'up
 
 Route::get('/show_concert', [App\Http\Controllers\AdminController::class, 'showConcert'])->name('showConcert');
 
-Route::get('/delete_concert/{id}', [App\Http\Controllers\AdminController::class, 'deleteConcert'])->name('deleteConcert');   
+Route::get('/delete_concert/{id}', [App\Http\Controllers\AdminController::class, 'deleteConcert'])->name('deleteConcert');
 
-Route::get('/concert_details/{id}', [App\Http\Controllers\AdminController::class, 'concertDetails'])->name('concertDetails');   
+Route::get('/concert_details/{id}', [App\Http\Controllers\AdminController::class, 'concertDetails'])->name('concertDetails');
 
-Route::get('/showMembers', [App\Http\Controllers\AdminController::class, 'showMembers'])->name('showMembers');   
+Route::get('/showMembers', [App\Http\Controllers\AdminController::class, 'showMembers'])->name('showMembers');
+

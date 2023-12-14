@@ -7,6 +7,7 @@
 </head>
 @extends('backend/layouts/commonMaster')
 @section('layoutContent')
+
 <!-- Begin Concert Information -->
 <div class="container concert-information">
     <div class="card shadow">
@@ -67,6 +68,7 @@
         </div>
     </div>
 </div>
+
 <!-- End Concert Information -->
 <div class="container-fluid mt-5 mb-5">
     <div class="row d-flex ">
