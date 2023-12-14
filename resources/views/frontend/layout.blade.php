@@ -107,27 +107,36 @@
                                     @endauth
                                 </ul>
 
-                                <!-- Login/Register & Cart Button -->
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Check if the user is authenticated -->
-                                    @auth
-                                        <!-- Display user's name if authenticated -->
-                                        <div class="login-register-btn mr-50">
-                                            <a href="{{ url('/logout') }}" id="logout-link">
-                                                <span onclick="confirmLogout(event)">Welcome, {{ Auth::user()->name }}</span>
-                                            </a>
-                                        </div>
-                                    @else
-                                        <!-- Display login/register link if not authenticated -->
-                                        <div class="login-register-btn mr-50">
-                                            <a href="{{ route('login.form') }}" id="loginBtn">Login / Register</a>
-                                        </div>
-                                    @endauth
-
-                                    <!-- Ticket Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="fa fa-ticket"></span> <span class="quantity">1</span></p>
+                                   <!-- Login/Register & Button with Dropdown Profile -->
+                                    <div class="login-register-cart-button d-flex align-items-center">
+                                        <!-- Check if the user is authenticated -->
+                                        @auth
+                                            <!-- Display user's name and dropdown if authenticated -->
+                                            <div class="dropdown">
+                                                <a class="btn btn-link dropdown-toggle text-white" href="#" id="userDropdown" role="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Welcome, {{ Auth::user()->name }}
+                                                </a>
+                                                <!-- Dropdown - User Information -->
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                                    aria-labelledby="userDropdown">
+                                                    <a class="dropdown-item" href="#">
+                                                        Profile
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="{{url('/logout')}}"  id="logout-link" onclick="confirmLogout(event)">
+                                                        Logout
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <!-- Display login/register link if not authenticated -->
+                                            <div class="login-register-btn mr-50">
+                                                <a href="{{ route('login.form') }}" id="loginBtn">Login / Register</a>
+                                            </div>
+                                        @endauth
                                     </div>
+
                                 </div>
                             </div>
                             <!-- Nav End -->
