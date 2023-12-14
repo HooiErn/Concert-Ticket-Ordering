@@ -36,24 +36,23 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ url('/admin/add_event') }}">Add Concert</a>
-                <a class="collapse-item" href="{{ url('/admin/show_event') }}">Contert List</a>
-                <a class="collapse-item" href="">Create Ticket Type</a>
+                <a class="collapse-item" href="{{ url('admin/add_concert') }}">Add Concert</a>
+                <a class="collapse-item" href="{{ route('showConcert') }}">Contert List</a>
+                <!-- <a class="collapse-item" href="">Create Ticket Type</a>
+                <a class="collapse-item" href="">Create Organizer</a> -->
             </div>
         </div>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Organiser</span>
+            <span>Order List</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link" href="#" >
             <i class="fas fa-fw fa-cog"></i>
             <span>Member List</span>
         </a>

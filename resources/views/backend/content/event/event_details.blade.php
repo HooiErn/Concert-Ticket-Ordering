@@ -138,6 +138,7 @@
                                 <th>Price</th>
                                 <th>Total Ordered</th>
                                 <th>Total Left</th>
+                                <th>Total Seat</th>
                                 <th>Revenue</th>
                             </tr>
                         </thead>
@@ -146,6 +147,7 @@
                                 <td>Tiger Nixon</td>
                                 <td>System Architect</td>
                                 <td>Edinburgh</td>
+                                <td>61</td>
                                 <td>61</td>
                                 <td>2011/04/25</td>
                             </tr>
