@@ -44,10 +44,10 @@ Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('/concert', [FrontendController::class, 'concert'])->name('concert');
 
 // View Concert
-Route::get('/viewconcert/{id}', [FrontendController::class, 'viewconcert'])->name('viewconcert');
+Route::get('/viewConcert/{id}', [FrontendController::class, 'viewConcert'])->name('viewConcert');
 
 // Booking and Function With Concert Id
-Route::get('/bookingconcert/{id}', [FrontendController::class, 'bookingconcert'])->name('bookingconcert');
+Route::get('/bookingConcert/{id}', [FrontendController::class, 'bookingConcert'])->name('bookingConcert');
 
 // Booking and Function
 Route::get('/booking', [FrontendController::class, 'booking'])->name('booking');

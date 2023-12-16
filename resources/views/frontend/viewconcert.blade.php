@@ -86,7 +86,7 @@
                         <span class="size" data-toggle="tooltip" title="xtra large">xl</span> --}}
                     </h5>
 
-                    <a href="{{ url('/bookingconcert/' .$concerts->id)}}"><button type="submit" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i>Book Now</button></a>
+                    <a href="{{ url('/bookingConcert/' .$concerts->id)}}"><button type="submit" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i>Book Now</button></a>
 
                     {{-- <h5 class="colors">colors:
                         <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>

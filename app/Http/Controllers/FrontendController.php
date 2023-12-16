@@ -19,6 +19,12 @@ class FrontendController extends Controller
     {
 
         $concerts = Concert::all();
+         // getting concert price
+        foreach ($concerts as $concert) {
+            $concert->ticketTypes = Ticket_type::where('concert_id', $concert->id)->get();
+            $concert->sortedTicketTypes = $concert->ticketTypes->sortBy('price');
+        }
+
 
         return view('frontend.main',compact('concerts'));
     }
@@ -33,18 +39,18 @@ class FrontendController extends Controller
         return view('frontend.event');
     }
 
-    public function viewconcert($id){
+    public function viewConcert($id){
 
         $concerts = Concert::find($id);
 
-        return view('frontend.viewconcert',compact('concerts'));
+        return view('frontend.viewConcert',compact('concerts'));
     }
 
-    public function bookingconcert($id){
+    public function bookingConcert($id){
 
-        $concertsid = Concert::find($id);
+        $concerts_id = Concert::find($id);
 
-        return view('frontend.booking',compact('concertsid'));
+        return view('frontend.booking',compact('concerts_id'));
     }
 
     public function booking(){
