@@ -1,0 +1,95 @@
+.bg-gradient-primary-custom{
+    background-color: #102a71!important;
+}
+
+.img-upload{
+    position: relative;
+    width: 220px;
+    /* height: 250px; */
+}
+
+.img-upload .img-preview img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.img-edit, .thumb-img-edit{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    right: 0;
+    /*border: solid 2px #57458f;*/
+    
+}
+
+
+
+input#imageUpload {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding: 30px 0 0 0;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg/1024px-Edit_icon_%28the_Noun_Project_30184%29.svg.png');
+    background-size: 30px 30px;
+  }
+
+  .thumb-img-upload{
+    position: relative;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+}
+
+.thumb-img-upload .thumb-img-preview img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.thumb-img-preview{
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+::file-selector-button {
+    display: none;
+}
+
+.event-img-upload{
+    margin-top: 30px;
+}
+
+.thumb-upload-set{
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: 100%;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 20px 50px;
+}
+
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    width: 100%;
+}
+
+.concert-upload-detail{
+    
+    padding: 20px;
+}
+
