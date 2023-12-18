@@ -10,6 +10,7 @@ use App\Models\Ticket;
 use App\Models\Ticket_type;
 use App\Models\Order;
 use App\Models\Concert;
+use App\Models\Seat;
 use Illuminate\Support\Facades\Validator;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -46,12 +47,13 @@ class FrontendController extends Controller
         return view('frontend.viewConcert',compact('concerts'));
     }
 
-    public function bookingConcert($id){
+   public function bookingConcert($id) {
+    $concert = Concert::find($id);
+    
+    $seatPrices = Ticket_type::where('concert_id', $id)->pluck('price', 'name');
 
-        $concerts_id = Concert::find($id);
-
-        return view('frontend.booking',compact('concerts_id'));
-    }
+    return view('frontend.booking', compact('concert', 'seatPrices'));
+}
 
     public function booking(){
 

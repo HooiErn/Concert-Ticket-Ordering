@@ -55,6 +55,9 @@ Route::get('/booking', [FrontendController::class, 'booking'])->name('booking');
 // Contact Page and Function
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
+
+Route::get('/api/ticket-prices/{concertId}', [TicketPriceController::class, 'getTicketPrices']);
+
 // Route::get('/event', 'FrontendController@event');
 
 Auth::routes();

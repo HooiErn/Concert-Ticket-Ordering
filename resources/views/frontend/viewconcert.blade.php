@@ -1,17 +1,11 @@
-<head>
-    <title>View Concerts</title>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> -->
-    <link href="/backend/assets/css/event_details.css" rel="stylesheet" />
-    <link href="/backend/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-</head>
 
 @extends('frontend/layout')
 @section('title', 'View Concert Detail')
 @section('content')
 
 <!-- Begin Concert Information -->
-<div class="container concert-information">
+<div class="container concert-information ">
     <div class="card shadow">
         <div class="container-fluid">
             <div class="wrapper row">
