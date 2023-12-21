@@ -15,12 +15,16 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('ticket_id')->nullable();
-            $table->integer('quantity')->default(1);
-            $table->string('order_id')->nullable();
-            $table->string('user_id')->nullable();
+            $table->unsignedBigInteger('user_id'); // Change to unsignedBigInteger for user_id
+            $table->string('user_name');
+            $table->unsignedBigInteger('concert_id');
+            $table->string('concert_name');
+            $table->string('seat_number'); // Change to string for seat_numbers
+            $table->integer('seat_quantity');
+            $table->decimal('total_price', 10, 2); // Example: 10 digits total, 2 digits after the decimal point
             $table->timestamps();
         });
+
     }
 
     /**

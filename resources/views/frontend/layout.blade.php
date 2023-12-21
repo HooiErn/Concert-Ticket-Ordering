@@ -102,7 +102,7 @@
                                             </li>
                                         </ul>
                                     </li> --}}
-                                    <li><a href="{{ url('/event') }}">Events</a></li>
+                                    <li><a href="{{ url('/concert') }}">Events</a></li>
                                     {{-- <li><a href="blog.html">News</a></li> --}}
                                     <li><a href="{{ route('contact') }}">Contact</a></li>
                                     <!-- Add "Dashboard" link for admin users -->

@@ -1,5 +1,5 @@
 @extends('frontend/layout')
-@section('title','Home')
+@section('title', 'Home')
 @section('content')
 
     <!-- ##### Hero Area Start ##### -->
@@ -16,7 +16,8 @@
                             <div class="hero-slides-content text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
                                 <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="#"
+                                    class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -33,8 +34,10 @@
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span>
+                                </h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="#"
+                                    class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -44,57 +47,57 @@
     </section>
     <!-- ##### Hero Area End ##### -->
 
-    
-<!-- ##### Latest Concerts Area End ##### -->
 
-<section class="latest-albums-area" style="margin:50px 0">
-  <div class="section-heading style-2" style="margin-bottom:0">
-      <p>See what’s new</p>
-      <h2>Latest Concerts</h2>
-  </div>
-</section>
-    
- <!-- ##### Latest Concerts Area Start ##### -->
-<div class="concert-container">
-  @foreach($concerts as $concert)
-    <div class="concert">
-      <div class='concert-main'>
-        <img class='concert-image' src="{{ asset('images/' . json_decode($concert->images)[0]) }}" alt="{{ $concert->name }} Image" />
-        <h2 class="concert-title">{{ $concert->name }}</h2>
-        <p class='concert-description'>{{ $concert->description }}</p>
-        <div class='concert-info'>
-          <div class="concert-price">            
-          <ins style="color:#D4C108 ; margin-top:-4px">$</ins>
-          @php
-                $minPrice = $concert->sortedTicketTypes->first()->price;
-                $maxPrice = $concert->sortedTicketTypes->last()->price;
-            @endphp
-            
-            <p>From RM{{ $minPrice }} to RM{{ $maxPrice }}</p>
-          </div>
-          <div class="concert-duration">
-            <ins style="color:#C82707; margin-top:-4px"">◷</ins>
-            <p>{{ \Carbon\Carbon::parse($concert->date_time)->diffForHumans() }}</p>
-          </div>
+    <!-- ##### Latest Concerts Area End ##### -->
+
+    <section class="latest-albums-area" style="margin:50px 0">
+        <div class="section-heading style-2" style="margin-bottom:0">
+            <p>See what’s new</p>
+            <h2>Latest Concerts</h2>
         </div>
-        <hr />
-        <div class='concert-creator'>
-          <p style="color:#C9C3C2; font-family: 'Oswald', sans-serif;">Organized by <span style="color: #DAA520; font-size:18px;font-family: 'Oswald', sans-serif;">{{ $concert->organizer_name }}</span></p>
-        </div>
-        <div class='concert-info'>
-          <div class="concert-action-container">
-            <p>{{ \Carbon\Carbon::parse($concert->date_time)->format('D, M d, Y h:i A') }}</p>
-            <a href="{{ url('/viewConcert/' . $concert->id) }}" class="concert-action">Book Now</a>
-          </div>
-        </div>
-      </div>
+    </section>
+
+    <!-- ##### Latest Concerts Area Start ##### -->
+    <div class="concert-container">
+        @foreach ($concerts as $concert)
+            <div class="concert">
+                <div class='concert-main'>
+                    <img class='concert-image' src="{{ asset('images/' . json_decode($concert->images)[0]) }}"
+                        alt="{{ $concert->name }} Image" />
+                    <h2 class="concert-title">{{ $concert->name }}</h2>
+                    <p class='concert-description'>{{ $concert->description }}</p>
+                    <div class='concert-info'>
+                        <div class="concert-price">
+                            <ins style="color:#D4C108 ; margin-top:-4px">$</ins>
+                            @php
+                                $minPrice = $concert->sortedTicketTypes->first()->price;
+                                $maxPrice = $concert->sortedTicketTypes->last()->price;
+                            @endphp
+
+                            <p>From RM{{ $minPrice }} to RM{{ $maxPrice }}</p>
+                        </div>
+                        <div class="concert-duration">
+                            <ins style="color:#C82707; margin-top:-4px"">◷</ins>
+                            <p>{{ \Carbon\Carbon::parse($concert->date_time)->diffForHumans() }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class='concert-creator'>
+                        <p style="color:#C9C3C2; font-family: 'Oswald', sans-serif;">Organized by <span
+                                style="color: #DAA520; font-size:18px;font-family: 'Oswald', sans-serif;">{{ $concert->organizer_name }}</span>
+                        </p>
+                    </div>
+                    <div class='concert-info'>
+                        <div class="concert-action-container">
+                            <p>{{ \Carbon\Carbon::parse($concert->date_time)->format('D, M d, Y h:i A') }}</p>
+                            <a href="{{ url('/viewConcert/' . $concert->id) }}" class="concert-action">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
-  @endforeach
-</div>
-<!-- ##### Latest Concerts Area End ##### -->
-
-
-
+    <!-- ##### Latest Concerts Area End ##### -->
 
     <!-- ##### Latest Albums Area Start ##### -->
     <section class="latest-albums-area section-padding-100">
@@ -110,7 +113,10 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-9">
                     <div class="ablums-text text-center mb-70">
-                        <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit non elit pulvinar pellentesque et non eros.</p>
+                        <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius
+                            rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi,
+                            ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit
+                            non elit pulvinar pellentesque et non eros.</p>
                     </div>
                 </div>
             </div>
@@ -433,7 +439,8 @@
     <!-- ##### Buy Now Area End ##### -->
 
     <!-- ##### Featured Artist Area Start ##### -->
-    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/bg-4.jpg);">
+    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed"
+        style="background-image: url(img/bg-img/bg-4.jpg);">
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
@@ -448,7 +455,10 @@
                             <p>See what’s new</p>
                             <h2>Buy What’s New</h2>
                         </div>
-                        <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit non elit pulvinar pellentesque et non eros.</p>
+                        <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius
+                            rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi,
+                            ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit
+                            non elit pulvinar pellentesque et non eros.</p>
                         <div class="song-play-area">
                             <div class="song-name">
                                 <p>01. Main Hit Song</p>
@@ -554,7 +564,8 @@
                         </div>
 
                         <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp"
+                            data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
                                     <img src="img/bg-img/wt7.jpg" alt="">
@@ -570,7 +581,8 @@
                         </div>
 
                         <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="150ms">
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp"
+                            data-wow-delay="150ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
                                     <img src="img/bg-img/wt8.jpg" alt="">
@@ -586,7 +598,8 @@
                         </div>
 
                         <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="200ms">
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp"
+                            data-wow-delay="200ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
                                     <img src="img/bg-img/wt9.jpg" alt="">
@@ -602,7 +615,8 @@
                         </div>
 
                         <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="250ms">
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp"
+                            data-wow-delay="250ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
                                     <img src="img/bg-img/wt10.jpg" alt="">
@@ -618,7 +632,8 @@
                         </div>
 
                         <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="300ms">
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp"
+                            data-wow-delay="300ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
                                     <img src="img/bg-img/wt11.jpg" alt="">
@@ -634,7 +649,8 @@
                         </div>
 
                         <!-- Single Top Item -->
-                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="350ms">
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp"
+                            data-wow-delay="350ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
                                     <img src="img/bg-img/wt12.jpg" alt="">
@@ -737,7 +753,8 @@
     <!-- ##### Miscellaneous Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->
-    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
+    {{-- <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img"
+        style="background-image: url(img/bg-img/bg-2.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -775,7 +792,8 @@
                                     </div>
                                 </div>
                                 <div class="col-12 text-center wow fadeInUp" data-wow-delay="500ms">
-                                    <button class="btn oneMusic-btn mt-30" type="submit">Send <i class="fa fa-angle-double-right"></i></button>
+                                    <button class="btn oneMusic-btn mt-30" type="submit">Send <i
+                                            class="fa fa-angle-double-right"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -783,7 +801,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ##### Contact Area End ##### -->
 
 @endsection('content')

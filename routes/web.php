@@ -43,11 +43,17 @@ Route::get('/', [FrontendController::class, 'home'])->name('home');
 // Concert Page and Function
 Route::get('/concert', [FrontendController::class, 'concert'])->name('concert');
 
+// Concert Page and Function
+// Route::get('/concert', [FrontendController::class, 'concert'])->name('concert');
+
 // View Concert
 Route::get('/viewConcert/{id}', [FrontendController::class, 'viewConcert'])->name('viewConcert');
 
 // Booking and Function With Concert Id
 Route::get('/bookingConcert/{id}', [FrontendController::class, 'bookingConcert'])->name('bookingConcert');
+
+// Add To Cart
+Route::post('/AddToCart', [FrontendController::class, 'AddToCart'])->name('AddToCart');
 
 // Booking and Function
 Route::get('/booking', [FrontendController::class, 'booking'])->name('booking');
@@ -71,8 +77,6 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
     //Ticket Category
     Route::get('/add', [AdminController::class, 'indexCategory']);
     // Route::post('admin/addTicketType/post',[AdminController::class,'addCategory'])->name('category.add');
-
-
 
     //Event Details
     Route::get('admin/concert_details', function () {
