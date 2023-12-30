@@ -9,9 +9,12 @@ class Cart extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'order_id',
         'user_id',
-        'ticket_id',
-        'quantity',
+        'user_name',
+        'concert_id',
+        'concert_name',
+        'seat_number',
+        'seat_quantity',
+        'total_price',
     ];
 }
