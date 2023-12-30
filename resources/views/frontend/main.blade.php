@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
+                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest Concerts</h6>
                                 <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span></h2>
                                 <a data-animation="fadeInUp" data-delay="500ms" href="#"
                                     class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
@@ -33,8 +33,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span>
+                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest Album</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">Melody Moments<span>Melody Moments</span>
                                 </h2>
                                 <a data-animation="fadeInUp" data-delay="500ms" href="#"
                                     class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
