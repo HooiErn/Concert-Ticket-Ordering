@@ -137,3 +137,5 @@ Route::get('/concert_details/{id}', [App\Http\Controllers\AdminController::class
 
 Route::get('/showMembers', [App\Http\Controllers\AdminController::class, 'showMembers'])->name('showMembers');
 
+//Payment
+Route::post('/checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])->name('payment.post');
