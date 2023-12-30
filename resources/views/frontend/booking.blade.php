@@ -69,7 +69,9 @@
             You have selected <span id="count">0</span> seat for a price of RM <span id="total">0</span>
         </p> --}}
 
-        <button type="submit">Add To Cart</button>
+        <button type="submit" class="btn btn-primary" style="background-color:#242333 ; background-size: cover;">
+             Add To Cart
+        </button>
 
     </form>
 
