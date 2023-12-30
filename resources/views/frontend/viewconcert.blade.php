@@ -1,5 +1,3 @@
-
-
 @extends('frontend/layout')
 @section('title', 'View Concert Detail')
 @section('content')
