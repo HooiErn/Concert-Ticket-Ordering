@@ -15,7 +15,7 @@
 
                     <form action="{{ route('stripe.checkout') }}" method="post">
                         @csrf
-                        
+
                         <div class="card rounded-3 mb-4">
                             <div class="card-body p-4">
                                 <div class="row">
@@ -40,15 +40,15 @@
 
                         @foreach ($cartItems as $cartItem)
 
-                        <input type="text" name="user_id" value="{{ auth()->id() }}">
-                        <input type="text" name="user_name" value="{{ auth()->user()->name }}">
-                        <input type="text" name="user_email" value="{{ auth()->user()->email }}">
-                        <input type="text" name="concert_id" value="{{ $cartItem->concert_id }}">
-                        <input type="text" name="concert_name" value="{{ $cartItem->concert_name }}">
-                        <input type="text" name="seat_quantity" value="{{ $cartItem->seat_quantity }}">
-                        <input type="text" name="seat_number" value="{{ $cartItem->seat_number }}">
-                        <input type="text" name="total_price" value="{{ $cartItem->total_price }}">
-                        <input type="text" name="total_amount" value="{{ $totalAmount }}">
+                        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                        <input type="hidden" name="user_name" value="{{ auth()->user()->name }}">
+                        <input type="hidden" name="user_email" value="{{ auth()->user()->email }}">
+                        <input type="hidden" name="concert_id" value="{{ $cartItem->concert_id }}">
+                        <input type="hidden" name="concert_name" value="{{ $cartItem->concert_name }}">
+                        <input type="hidden" name="seat_quantity" value="{{ $cartItem->seat_quantity }}">
+                        <input type="hidden" name="seat_number" value="{{ $cartItem->seat_number }}">
+                        <input type="hidden" name="total_price" value="{{ $cartItem->total_price }}">
+                        <input type="hidden" name="total_amount" value="{{ $totalAmount }}">
 
                             <div class="card rounded-3 mb-4">
                                 <div class="card-body p-4 d-flex flex-column">

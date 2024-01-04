@@ -64,6 +64,13 @@ Route::post('stripe/checkout', [FrontendController::class, 'stripeCheckout'])->n
 // Payment Success
 Route::get('stripe/checkout/success',[FrontendController::class,'stripeCheckoutSuccess'])->name('stripe.checkout.success');
 
+// Show All User Order
+Route::get('/allorder', [FrontendController::class, 'allorder'])->name('allorder');
+
+// Show All User Order Detail
+Route::get('/vieworder/{id}', [FrontendController::class, 'vieworder'])->name('vieworder');
+
+
 // Booking and Function
 Route::get('/booking', [FrontendController::class, 'booking'])->name('booking');
 

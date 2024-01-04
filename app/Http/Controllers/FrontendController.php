@@ -166,7 +166,7 @@ class FrontendController extends Controller
 
                     $orderItems->save();
 
-                    // $cartItem->delete();
+                    $cartItem->delete();
 
                 }
 
@@ -204,6 +204,42 @@ class FrontendController extends Controller
         $response = $stripe->checkout->sessions->retrieve($request->session_id);
 
         return redirect()->route('home')->with('success','Payment successful.');
+    }
+
+    public function allorder(){
+
+        $orders = Order::paginate(10);
+
+        return view('frontend.myorder',compact('orders'));
+    }
+
+    public function vieworder($id)
+    {
+        // Find the order
+        $userorder = Order::find($id);
+
+        // Check if the order exists
+        if (!$userorder) {
+            abort(404); // or handle the case when the order is not found
+        }
+
+        // Retrieve the associated items using the defined relationship
+        $orderItems = $userorder->items;
+
+        // Check if items are retrieved
+        if ($orderItems->isEmpty()) {
+            // Handle the case when no items are found, e.g., return an error message
+            return view('frontend.orderdetail', compact('userorder'))->withErrors('No items found for this order.');
+        }
+
+        // Calculate the total price
+        $totalSum = $orderItems->sum('total_price');
+
+        // Debug: Check if items are retrieved before calculating totalSum
+        // dd($orderItems);
+
+        // Pass the $orderItems variable to the view
+        return view('frontend.orderdetail', compact('userorder', 'orderItems', 'totalSum'));
     }
 
     // public function booking(){

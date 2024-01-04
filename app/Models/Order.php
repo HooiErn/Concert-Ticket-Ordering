@@ -16,4 +16,9 @@ class Order extends Model
         'total amount',
         'payment_status',
     ];
+
+    public function items()
+    {
+        return $this->hasMany(order_item::class, 'order_id', 'id');
+    }
 }
