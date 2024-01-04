@@ -11,13 +11,13 @@
     <form action="{{ url('/AddToCart') }}" method="post">
         @csrf
 
-        <input type="text" name="concert_id" value="{{ $concert->id }}">
-        <input type="text" name="concert_name" value="{{ $concert->name }}">
-        <input type="text" name="seat_quantity" value="">
-        <input type="text" name="seat_number" value="">
-        <input type="text" name="total_price" value="">
-        <input type="text" name="user_name" value="{{ auth()->user()->name }}">
-        <input type="text" name="user_id" value="{{ auth()->user()->id }}">
+        <input type="hidden" name="concert_id" value="{{ $concert->id }}">
+        <input type="hidden" name="concert_name" value="{{ $concert->name }}">
+        <input type="hidden" name="seat_quantity" value="">
+        <input type="hidden" name="seat_number" value="">
+        <input type="hidden" name="total_price" value="">
+        <input type="hidden" name="user_name" value="{{ auth()->user()->name }}">
+        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
         <div class="movie-container">
             <label>Concert Name:</label>

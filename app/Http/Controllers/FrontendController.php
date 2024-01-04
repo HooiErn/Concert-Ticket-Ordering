@@ -79,7 +79,7 @@ class FrontendController extends Controller
         $cart->save();
 
         Toastr::success('A new ticket has been added to cart, add more?', 'Add Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
-        return redirect()->route('home');
+        return redirect()->route('MyCart');
     }
 
     public function MyCart(){
