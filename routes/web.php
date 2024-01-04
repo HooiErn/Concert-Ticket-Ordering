@@ -55,12 +55,20 @@ Route::get('/bookingConcert/{id}', [FrontendController::class, 'bookingConcert']
 // Add To Cart
 Route::post('/AddToCart', [FrontendController::class, 'AddToCart'])->name('AddToCart');
 
+// Show My Cart
+Route::get('/MyCart', [FrontendController::class, 'MyCart'])->name('MyCart');
+
+// Payment Function
+Route::post('stripe/checkout', [FrontendController::class, 'stripeCheckout'])->name('stripe.checkout');
+
+// Payment Success
+Route::get('stripe/checkout/success',[FrontendController::class,'stripeCheckoutSuccess'])->name('stripe.checkout.success');
+
 // Booking and Function
 Route::get('/booking', [FrontendController::class, 'booking'])->name('booking');
 
 // Contact Page and Function
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
-
 
 Route::get('/api/ticket-prices/{concertId}', [TicketPriceController::class, 'getTicketPrices']);
 
