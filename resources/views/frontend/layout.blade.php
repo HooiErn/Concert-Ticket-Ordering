@@ -28,6 +28,9 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <!-- Load jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <!-- Include Toastr CSS and JS -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -10,7 +10,6 @@
 
     <form action="{{ url('/AddToCart') }}" method="post">
         @csrf
-
         <input type="hidden" name="concert_id" value="{{ $concert->id }}">
         <input type="hidden" name="concert_name" value="{{ $concert->name }}">
         <input type="hidden" name="seat_quantity" value="">
@@ -526,12 +525,5 @@
             }
         });
     </script>
-
-
-
-
-
-
-
 
 @endsection
