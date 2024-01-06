@@ -13,7 +13,7 @@ class Order extends Model
         'username',
         'concert_name',
         'order_date',
-        'total amount',
+        'total_amount',
         'payment_status',
     ];
 

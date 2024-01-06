@@ -86,8 +86,6 @@ Auth::routes();
 //---------------------------------------------------------------Admin Area-------------------------------------------------//
 Route::middleware(['auth', 'auth.admin'])->group(function () {
 
-    // Admin Dasboard
-    Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     //Ticket Category
     Route::get('/add', [AdminController::class, 'indexCategory']);
@@ -154,3 +152,6 @@ Route::get('/showMembers', [App\Http\Controllers\AdminController::class, 'showMe
 
 //Payment
 Route::post('/checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])->name('payment.post');
+
+// Admin Dasboard
+Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

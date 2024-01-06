@@ -12,6 +12,7 @@ use App\Models\Concert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -23,7 +24,38 @@ class AdminController extends Controller
 
         if ($user && $user->isAdmin()) {
 
-            return view('backend/content/admin_dashboard');
+            $currentYear = Carbon::now()->format('Y');
+            $currentMonth = Carbon::now()->format('m');
+
+            // Sum up total_amount annually (get current year)
+            $annualTotal = DB::table('orders')
+                ->whereYear('created_at', $currentYear)
+                ->sum('total_amount');
+
+            // Sum up total_amount daily
+            $dailyTotal = DB::table('orders')
+                ->whereDate('created_at', Carbon::today())
+                ->sum('total_amount');
+
+            // Sum up total_amount monthly (current month)
+            $monthlyTotal = DB::table('orders')
+                ->whereMonth('created_at', $currentMonth)
+                ->sum('total_amount');
+
+            $data = DB::table('orders')
+                ->select(DB::raw('SUM(total_amount) as total_amount'), DB::raw('MONTH(created_at) as month'))
+                ->whereYear('created_at', $currentYear)
+                ->groupBy(DB::raw('MONTH(created_at)'))
+                ->get();
+
+            $totalAmounts = [];
+            $months = [];
+            foreach ($data as $row) {
+                $totalAmounts[] = $row->total_amount;
+                $months[] = date('F', mktime(0, 0, 0, $row->month, 1));
+            }
+
+            return view('backend/content/admin_dashboard', compact('annualTotal', 'dailyTotal', 'monthlyTotal','totalAmounts', 'months'));
 
         } else {
 
@@ -193,35 +225,36 @@ class AdminController extends Controller
             ['name' => 'CAT3', 'price' => $ticketTypes->where('name', 'CAT3')->first()->price, 'total' => $ticketTypes->where('name', 'CAT3')->first()->total, 'available' => $ticketTypes->where('name', 'CAT3')->first()->available],
         ];
 
-        $data = DB::table('ticket_types')->where('concert_id',$id)
+        $data = DB::table('ticket_types')->where('concert_id', $id)
             ->select('name', 'available')
             ->get();
         $labels = $data->pluck('name')->toArray();
-        //$values = $data->pluck('available')->toArray();
         $totalValues = $data->pluck('total')->toArray();
         $availableValues = $data->pluck('available')->toArray();
-        
+
         $values = [];
-        
+
         for ($i = 0; $i < count($totalValues); $i++) {
-        //   $difference = $totalValues[$i] - $availableValues[$i];
-        $difference = 30 - $availableValues[$i];
-          $values[] = $difference;
+            //   $difference = $totalValues[$i] - $availableValues[$i];
+            $difference = 30 - $availableValues[$i];
+            $values[] = $difference;
         }
-        
+
         $chartData = [
             'labels' => $labels,
-            'datasets' => [[
-                'data' => $values,
-                // 'data' => [20,30,40],
-                'backgroundColor' => ['#4e73df', '#1cc88a', '#36b9cc'],
-                'hoverBackgroundColor' => ['#2e59d9', '#17a673', '#2c9faf'],
-                'hoverBorderColor' => "rgba(234, 236, 244, 1)",
-            ]],
+            'datasets' => [
+                [
+                    'data' => $values,
+                    // 'data' => [20,30,40],
+                    'backgroundColor' => ['#4e73df', '#1cc88a', '#36b9cc', '#ffcc00'],
+                    'hoverBackgroundColor' => ['#2e59d9', '#17a673', '#2c9faf','#f6c23e'],
+                    'hoverBorderColor' => "rgba(234, 236, 244, 1)",
+                ]
+            ],
         ];
 
         //return view('backend/content/event/event_details')->with('concerts', $concerts);
-        return view('backend/content/event/event_details', compact('concerts', 'ticketTypes','chartData'));
+        return view('backend/content/event/event_details', compact('concerts', 'ticketTypes', 'chartData'));
 
     }
 

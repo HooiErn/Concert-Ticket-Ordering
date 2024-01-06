@@ -3,11 +3,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link href="/backend/assets/css/event_details.css" rel="stylesheet" />
     <link href="/backend/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
     <!-- <script>$encodedChartData = json_encode($chartData);</script> -->
     <!-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> -->
     <script>
-    var chartData = {!! json_encode($chartData) !!};
-</script>
+        var chartData = {!! json_encode($chartData)!!};
+    </script>
 </head>
 @extends('backend/layouts/commonMaster')
 @section('layoutContent')
@@ -90,35 +91,35 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="bi bi-coin fa-2x "></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card border-left-primary shadow py-2 ticket-type-card">
+            <div class="card border-left-info shadow py-2 ticket-type-card">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                 Ticket Ordered</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="bi bi-ticket-perforated-fill fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card border-left-primary shadow py-2 ticket-type-card">
+            <div class="card border-left-success shadow py-2 ticket-type-card">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Ticket Left</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="bi bi-ticket-perforated fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -126,8 +127,23 @@
         </div>
         <div class="col-md-6">
             <div class="card ticket-type-selling shadow">
-                <canvas id="myChart" style="width:100%;"></canvas>
+                <div><canvas id="myChart" style="width:100%;" class="mt-2"></canvas></div>
+                <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-primary"></i> VIP
+                    </span>
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-success"></i> CAT1
+                    </span>
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-info"></i> CAT2
+                    </span>
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-warning"></i> CAT3
+                    </span>
+                </div>
             </div>
+            
         </div>
     </div>
 </div>
@@ -172,5 +188,7 @@
     </div>
 </div>
 
+    <!-- Page level plugins -->
+    <script src="{{ asset('/backend/assets/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{ asset('/backend/assets/js/demo/chart-dougnut-ticket-type.js')}}"></script>
 @endsection
-
