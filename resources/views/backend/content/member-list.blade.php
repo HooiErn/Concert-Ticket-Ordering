@@ -18,7 +18,7 @@
             <div class="card-body">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table" id="concert-table" width="100%" cellspacing="0">
+                        <table class="table" id="user-table" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th></th>

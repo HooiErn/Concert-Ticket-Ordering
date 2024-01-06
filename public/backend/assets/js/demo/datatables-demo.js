@@ -10,3 +10,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#concert-table').DataTable();
 });
+
+$(document).ready(function() {
+  $('#user-table').DataTable();
+});

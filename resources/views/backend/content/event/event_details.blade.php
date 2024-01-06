@@ -1,9 +1,13 @@
 <head>
     <title>Concerts</title>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link href="/backend/assets/css/event_details.css" rel="stylesheet" />
     <link href="/backend/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <!-- <script>$encodedChartData = json_encode($chartData);</script> -->
+    <!-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> -->
+    <script>
+    var chartData = {!! json_encode($chartData) !!};
+</script>
 </head>
 @extends('backend/layouts/commonMaster')
 @section('layoutContent')
@@ -13,30 +17,37 @@
     <div class="card shadow">
         <div class="container-fluid">
             <div class="wrapper row">
-                <div class="preview col-md-6">
-                    <div class="preview-pic tab-content">
-                        <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
-                        <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
-                        <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
-                        <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                <div class="preview col-md-5">
+                    <div class="tab-content">
+                        @foreach(json_decode($concerts->images) as $index => $image)
+                        @if($index === 0)
+                        <div class="tab-pane active" id="pic-1">
+                            <img src="{{ asset('images/' . $image) }}" />
+                        </div>
+                        @else
+                        <div class="tab-pane" id="pic-{{ $index + 1 }}">
+                            <img src="{{ asset('images/' . $image) }}" />
+                        </div>
+                        @endif
+                        @endforeach
                     </div>
+
                     <ul class="preview-thumbnail nav nav-tabs">
-                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
-                                    src="http://placekitten.com/200/126" /></a></li>
-                        <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
+                        @foreach(json_decode($concerts->images) as $index => $image)
+                        <li class="{{ $index === 0 ? 'active' : '' }}">
+                            <a data-target="#pic-{{ $index + 1 }}" data-toggle="tab">
+                                <img src="{{ asset('images/' . $image) }}" />
+                            </a>
                         </li>
-                        <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
-                        </li>
-                        <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
-                        </li>
-                        <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
-                        </li>
+                        @endforeach
                     </ul>
 
                 </div>
-                <div class="details col-md-6">
-                    <h3 class="product-title">men's shoes fashion</h3>
+                <div class="details col-md-7">
+                    <h3 class="product-title">{{ $concerts->name }}</h3>
+                    <h5 class="text-secondary">
+                        {{ $concerts->organizer_name }}
+                    </h5>
                     <div class="rating">
                         <div class="stars">
                             <span class="fa fa-star checked"></span>
@@ -47,21 +58,18 @@
                         </div>
                         <span class="review-no">41 reviews</span>
                     </div>
-                    <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia
-                        sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
-                    <h4 class="price">current price: <span>$180</span></h4>
-                    <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-                    <h5 class="sizes">sizes:
-                        <span class="size" data-toggle="tooltip" title="small">s</span>
-                        <span class="size" data-toggle="tooltip" title="medium">m</span>
-                        <span class="size" data-toggle="tooltip" title="large">l</span>
-                        <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+                    <h5 class="price"><span><i class="bi bi-calendar-event mr-2"></i>{{ $concerts->date_time }}</span>
                     </h5>
-                    <h5 class="colors">colors:
+                    <p class="vote"><strong><i class="bi bi-geo-alt mr-2"></i></strong><strong>{{ $concerts->venue
+                            }}</strong></p>
+                    <p class="product-description">{{ $concerts->description }}</p>
+
+
+                    {{-- <h5 class="colors">colors:
                         <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
                         <span class="color green"></span>
                         <span class="color blue"></span>
-                    </h5>
+                    </h5> --}}
 
                 </div>
             </div>
@@ -133,7 +141,8 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-ticket-type-info" id="ticket-type-table" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-ticket-type-info" id="ticket-type-table" width="100%"
+                        cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Ticket Type</th>
@@ -145,14 +154,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($ticketTypes as $ticketType)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
+                                <td>{{$ticketType->name}}</td>
+                                <td>{{$ticketType->price}}</td>
+                                <td>{{$ticketType->total}}</td>
+                                <td>{{$ticketType->total}}</td>
+                                <td>{{$ticketType->total}}</td>
+                                <td>{{$ticketType->total}}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -162,3 +173,4 @@
 </div>
 
 @endsection
+
