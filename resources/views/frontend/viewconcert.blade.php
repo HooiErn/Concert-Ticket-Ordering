@@ -3,6 +3,7 @@
 @section('content')
 
 <!-- Begin Concert Information -->
+<div>
 <div class="container concert-information">
     <div class="card shadow">
         <div class="container-fluid">
@@ -100,7 +101,5 @@
         </div>
     </div>
 </div>
-
-<br><br>
 
 @endsection

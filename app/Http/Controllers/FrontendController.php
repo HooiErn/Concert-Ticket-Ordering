@@ -30,7 +30,14 @@ class FrontendController extends Controller
             $concert->sortedTicketTypes = $concert->ticketTypes->sortBy('price');
         }
 
-        return view('frontend.main',compact('concerts'));
+       // Fetch cart count for the authenticated user
+        $cartCount = 0;
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $cartCount = Cart::where('user_id', $userId)->count();
+        }
+
+        return view('frontend.main', compact('concerts', 'cartCount'));
     }
 
     public function contact()
@@ -95,8 +102,14 @@ class FrontendController extends Controller
             // Calculate the total order amount
             $totalAmount = $cartItems->sum('total_price');
 
-            return view('frontend.mycart',compact('cartItems','totalAmount'));
+            // Fetch cart count for the authenticated user
+            $cartCount = 0;
+            if (Auth::check()) {
+                $userId = Auth::id();
+                $cartCount = Cart::where('user_id', $userId)->count();
+            }
 
+            return view('frontend.mycart', compact('cartItems', 'totalAmount', 'cartCount'));
         }
     }
 
@@ -167,7 +180,6 @@ class FrontendController extends Controller
                     $orderItems->save();
 
                     $cartItem->delete();
-
                 }
 
                 // Mail::send('backend.email.orderemail', ['data' => $data], function($message) use ($data) {
@@ -241,11 +253,4 @@ class FrontendController extends Controller
         // Pass the $orderItems variable to the view
         return view('frontend.orderdetail', compact('userorder', 'orderItems', 'totalSum'));
     }
-
-    // public function booking(){
-
-    //     return view('frontend.booking');
-    // }
-
-    // Add similar methods for other views as needed
 }
