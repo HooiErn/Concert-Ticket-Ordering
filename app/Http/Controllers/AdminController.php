@@ -123,7 +123,7 @@ class AdminController extends Controller
                 }
             }
         }
-       
+
 
         // Save the concert details and image filenames
         $concert->name = $r->input('concert-name');
@@ -183,8 +183,59 @@ class AdminController extends Controller
 
     public function concertDetails($id)
     {
-        $concerts = Concert::all()->where('id', $id);
-        return view('backend/content/event/event_details')->with('concerts', $concerts);
+        $concerts = Concert::find($id);
+        $ticketTypes = Ticket_type::all()->where('concert_id', $id);
+
+        $ticketType = [
+            ['name' => 'VIP', 'price' => $ticketTypes->where('name', 'VIP')->first()->price, 'total' => $ticketTypes->where('name', 'VIP')->first()->total, 'available' => $ticketTypes->where('name', 'VIP')->first()->available],
+            ['name' => 'CAT1', 'price' => $ticketTypes->where('name', 'CAT1')->first()->price, 'total' => $ticketTypes->where('name', 'CAT1')->first()->total, 'available' => $ticketTypes->where('name', 'CAT1')->first()->available],
+            ['name' => 'CAT2', 'price' => $ticketTypes->where('name', 'CAT2')->first()->price, 'total' => $ticketTypes->where('name', 'CAT2')->first()->total, 'available' => $ticketTypes->where('name', 'CAT2')->first()->available],
+            ['name' => 'CAT3', 'price' => $ticketTypes->where('name', 'CAT3')->first()->price, 'total' => $ticketTypes->where('name', 'CAT3')->first()->total, 'available' => $ticketTypes->where('name', 'CAT3')->first()->available],
+        ];
+
+        $data = DB::table('ticket_types')->where('concert_id',$id)
+            ->select('name', 'available')
+            ->get();
+        $labels = $data->pluck('name')->toArray();
+        //$values = $data->pluck('available')->toArray();
+        $totalValues = $data->pluck('total')->toArray();
+        $availableValues = $data->pluck('available')->toArray();
+        
+        $values = [];
+        
+        for ($i = 0; $i < count($totalValues); $i++) {
+        //   $difference = $totalValues[$i] - $availableValues[$i];
+        $difference = 30 - $availableValues[$i];
+          $values[] = $difference;
+        }
+        
+        $chartData = [
+            'labels' => $labels,
+            'datasets' => [[
+                'data' => $values,
+                // 'data' => [20,30,40],
+                'backgroundColor' => ['#4e73df', '#1cc88a', '#36b9cc'],
+                'hoverBackgroundColor' => ['#2e59d9', '#17a673', '#2c9faf'],
+                'hoverBorderColor' => "rgba(234, 236, 244, 1)",
+            ]],
+        ];
+
+        //return view('backend/content/event/event_details')->with('concerts', $concerts);
+        return view('backend/content/event/event_details', compact('concerts', 'ticketTypes','chartData'));
+
+    }
+
+    public function showTicketHistory()
+    {
+        $tickets = Ticket::all();
+
+        return view('backend/content/ticket/ticket_history', compact('tickets'));
+    }
+
+    public function showTicketDetails($id)
+    {
+        $tickets = Ticket::find($id);
+        return view('backend/content/ticket/ticket_details', compact('tickets'));
     }
 
 
@@ -251,9 +302,10 @@ class AdminController extends Controller
         return redirect('backend/content/category');
     }
 
-    public function showMembers(){
-        $users=User::all();
-        return view ('backend/content/member-list')->with('users',$users);
+    public function showMembers()
+    {
+        $users = User::all();
+        return view('backend/content/member-list')->with('users', $users);
     }
 
     //Delete Category
