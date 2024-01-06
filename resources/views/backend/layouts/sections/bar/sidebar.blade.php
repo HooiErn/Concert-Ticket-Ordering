@@ -4,9 +4,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.dashboard') }}">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fas fa-ticket-alt"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Concert Booking <sup></sup></div>
     </a>
 
     <!-- Divider -->
@@ -31,7 +31,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-calendar-week"></i>
             <span>Concert</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -46,14 +46,14 @@
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-list"></i>
             <span>Order List</span>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{route('showMembers')}}" >
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-male"></i>
             <span>Member List</span>
         </a>
     </li>

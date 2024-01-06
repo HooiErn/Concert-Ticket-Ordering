@@ -3,7 +3,6 @@
 @section('content')
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="description" content="">
@@ -23,11 +22,6 @@
     </head>
 
     <body>
-        <!-- ##### Breadcumb Area Start ##### -->
-        <section class="breadcumb-area bg-img bg-overlay"
-            style="background-image: url(img/bg-img/breadcumb3.jpg); height:100px">
-        </section>
-        <!-- ##### Breadcumb Area End ##### -->
 
         <!-- ##### Login Area Start ##### -->
         <section class="login-area section-padding-100">

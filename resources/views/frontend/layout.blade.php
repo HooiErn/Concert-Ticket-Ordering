@@ -21,22 +21,24 @@
     <link href="/backend/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <!-- Load jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <!-- Include Toastr CSS and JS -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
 <body>
     <!-- Include Toastr CSS and JS -->
-    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
 
@@ -124,11 +126,11 @@
                                         <!-- Check if the user is authenticated -->
                                         @auth
                                             <!-- Display user's name and dropdown if authenticated -->
-                                            <div class="dropdown">
+                                            <div class="dropdown mr-50">
                                                 <a class="btn btn-link dropdown-toggle text-white" href="#" id="userDropdown" role="button"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Welcome, {{ Auth::user()->name }}
-                                                </a>
+                                                    <i class="fas fa-user-circle" style="font-size: 24px;"></i>
+                                                    <span class="user-name" style="font-weight: bold; font-size: 16px;">{{ Auth::user()->name }}</span>                                                </a>
                                                 <!-- Dropdown - User Information -->
                                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                                     aria-labelledby="userDropdown">
@@ -147,6 +149,11 @@
                                                 <a href="{{ route('login.form') }}" id="loginBtn">Login / Register</a>
                                             </div>
                                         @endauth
+
+                                          <!-- Cart Button -->
+                                            <div class="cart-btn">
+                                                   <p><span class="icon-shopping-cart"></span> <span class="quantity">{{ isset($cartCount) ? $cartCount : 0 }}</span></p>
+                                            </div>
                                     </div>
 
                                 </div>

@@ -3,6 +3,13 @@
 @section('content')
 
     <br><br><br><br><br>
+     <style> 
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: bold; /* Make headings bold */
+            color: black; /* Set a color for headings */
+        }
+
+    </style>
 
     <section class="h-100" style="background-color: #eee;">
         <div class="container h-100 py-5">
@@ -10,7 +17,7 @@
                 <div class="col-10">
 
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h3 class="fw-normal mb-0 text-black">My Cart</h3>
+                        <h1 class="fw-normal mb-0 text-black">My Cart</h1>
                     </div>
 
                     <form action="{{ route('stripe.checkout') }}" method="post">
@@ -20,19 +27,19 @@
                             <div class="card-body p-4">
                                 <div class="row">
                                     <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <p class="lead fw-normal mb-2">Concert Name</p>
+                                        <h3 class="mb-0">Concert Name</h3>
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <p class="lead fw-normal mb-2">Seat Quantity</p>
+                                        <h3 class="mb-0">Seat Quantity</h3>
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <p class="lead fw-normal mb-2">Seat Number</p>
+                                        <h3 class="mb-0">Seat Number</h3>
                                     </div>
                                     <div class="col-md-2 col-lg-2 col-xl-2">
-                                        <h5 class="mb-0">Price</h5>
+                                        <h3 class="mb-0">Price</h3>
                                     </div>
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                        <h5 class="mb-0">Action</h5>
+                                        <h3 class="mb-0">Action</h3>
                                     </div>
                                 </div>
                             </div>
@@ -55,16 +62,16 @@
                                     <!-- Header and Data Row -->
                                     <div class="row mb-2">
                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h5 class="mb-0">{{ $cartItem->concert_name }}</h5>
+                                            <h4 class="mb-0">{{ $cartItem->concert_name }}</h4>
                                         </div>
                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h5 class="mb-0">{{ $cartItem->seat_quantity }}</h5>
+                                            <h4 class="mb-0">{{ $cartItem->seat_quantity }}</h4>
                                         </div>
                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h5 class="mb-0">{{ $cartItem->seat_number }}</h5>
+                                            <h4 class="mb-0">{{ $cartItem->seat_number }}</h4>
                                         </div>
                                         <div class="col-md-2 col-lg-2 col-xl-2">
-                                            <h5 class="mb-0">{{ $cartItem->total_price }}</h5>
+                                            <h4 class="mb-0">{{ $cartItem->total_price }}</h4>
                                         </div>
                                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                             <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
@@ -78,7 +85,7 @@
                             <div class="card-body p-4">
                                 <div class="row">
                                     <div class="col-md-10 col-lg-10 col-xl-10 text-end">
-                                        <h5 class="mb-0">Total Price: ${{ $totalAmount }} </h5>
+                                        <h2 class="mb-0">Total Price: ${{ $totalAmount }} </h2>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +93,7 @@
 
                         <div class="card">
                             <div class="card-body">
-                                <button type="submit" class="btn btn-warning btn-block btn-lg">Payment</button>
+                                <button type="submit" class="btn btn-warning btn-block btn-lg" style="font-weight:bold; font-size:20px">Payment</button>
                             </div>
                         </div>
                     </form>

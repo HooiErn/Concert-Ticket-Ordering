@@ -1,8 +1,12 @@
 @extends('frontend/layout')
 @section('title', 'View Concert Detail')
+<!-- Include Bootstrap 3 stylesheet for this specific view -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 @section('content')
 
 <!-- Begin Concert Information -->
+<div>
 <div class="container concert-information">
     <div class="card shadow">
         <div class="container-fluid">
@@ -100,7 +104,5 @@
         </div>
     </div>
 </div>
-
-<br><br>
 
 @endsection
