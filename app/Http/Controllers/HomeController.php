@@ -97,7 +97,6 @@ class HomeController extends Controller
 
     public function registerMember(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'm_name' => 'required',
             'm_email' => 'required|email|unique:users,email',

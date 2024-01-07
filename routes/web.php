@@ -70,7 +70,6 @@ Route::get('/allorder', [FrontendController::class, 'allorder'])->name('allorder
 // Show All User Order Detail
 Route::get('/vieworder/{id}', [FrontendController::class, 'vieworder'])->name('vieworder');
 
-
 // Booking and Function
 Route::get('/booking', [FrontendController::class, 'booking'])->name('booking');
 
@@ -86,7 +85,6 @@ Auth::routes();
 //---------------------------------------------------------------Admin Area-------------------------------------------------//
 Route::middleware(['auth', 'auth.admin'])->group(function () {
 
-
     //Ticket Category
     Route::get('/add', [AdminController::class, 'indexCategory']);
     // Route::post('admin/addTicketType/post',[AdminController::class,'addCategory'])->name('category.add');
@@ -95,12 +93,6 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('admin/concert_details', function () {
         return view('backend/content/event/event_details');
     });
-
-    // //Show Event
-    // Route::get('admin/show_concert', function () {
-    //     return view('backend/content/event/show_event');
-    // });
-
 
 });
 

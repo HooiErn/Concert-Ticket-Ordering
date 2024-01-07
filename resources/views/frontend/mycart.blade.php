@@ -9,6 +9,10 @@
             color: black; /* Set a color for headings */
         }
 
+        h5 {
+            font-size: 16px !important;
+        }
+
     </style>
 
     <section class="h-100" style="background-color: #eee;">
@@ -27,19 +31,19 @@
                             <div class="card-body p-4">
                                 <div class="row">
                                     <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <h3 class="mb-0">Concert Name</h3>
+                                        <h5 class="mb-0">Concert Name</h5>
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <h3 class="mb-0">Seat Quantity</h3>
+                                        <h5 class="mb-0">Seat Quantity</h5>
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <h3 class="mb-0">Seat Number</h3>
+                                        <h5 class="mb-0">Seat Number</h5>
                                     </div>
                                     <div class="col-md-2 col-lg-2 col-xl-2">
-                                        <h3 class="mb-0">Price</h3>
+                                        <h5 class="mb-0">Price</h5>
                                     </div>
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                        <h3 class="mb-0">Action</h3>
+                                        <h5 class="mb-0">Action</h5>
                                     </div>
                                 </div>
                             </div>
@@ -62,16 +66,16 @@
                                     <!-- Header and Data Row -->
                                     <div class="row mb-2">
                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h4 class="mb-0">{{ $cartItem->concert_name }}</h4>
+                                            <h5 class="mb-0">{{ $cartItem->concert_name }}</h4>
                                         </div>
                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h4 class="mb-0">{{ $cartItem->seat_quantity }}</h4>
+                                            <h5 class="mb-0">{{ $cartItem->seat_quantity }}</h5>
                                         </div>
                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h4 class="mb-0">{{ $cartItem->seat_number }}</h4>
+                                            <h5 class="mb-0">{{ $cartItem->seat_number }}</h5>
                                         </div>
                                         <div class="col-md-2 col-lg-2 col-xl-2">
-                                            <h4 class="mb-0">{{ $cartItem->total_price }}</h4>
+                                            <h5 class="mb-0">{{ $cartItem->total_price }}</h5>
                                         </div>
                                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                             <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>

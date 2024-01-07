@@ -30,23 +30,21 @@ class FrontendController extends Controller
             $concert->sortedTicketTypes = $concert->ticketTypes->sortBy('price');
         }
 
-       // Fetch cart count for the authenticated user
-        $cartCount = 0;
-        if (Auth::check()) {
-            $userId = Auth::id();
-            $cartCount = Cart::where('user_id', $userId)->count();
-        }
+        // Fetch cart count for the authenticated user
+        $cartCount = $this->getCartCount();
 
         return view('frontend.main', compact('concerts', 'cartCount'));
     }
 
     public function contact()
     {
-        return view('frontend.contact');
+         $cartCount = $this->getCartCount();
+         return view('frontend.contact', compact('cartCount'));
     }
 
     public function concert()
     {
+        $cartCount = $this->getCartCount();
         $concerts = Concert::all();
          // getting concert price
         foreach ($concerts as $concert) {
@@ -54,23 +52,42 @@ class FrontendController extends Controller
             $concert->sortedTicketTypes = $concert->ticketTypes->sortBy('price');
         }
 
-        return view('frontend.event',compact('concerts'));
+        return view('frontend.event',compact('concerts', 'cartCount'));
     }
 
     public function viewConcert($id){
-
+        $cartCount = $this->getCartCount();
         $concerts = Concert::find($id);
 
-        return view('frontend.viewConcert',compact('concerts'));
+        return view('frontend.viewConcert',compact('concerts', 'cartCount'));
     }
 
-    public function bookingConcert($id) {
+   public function bookingConcert($id, Request $request) {
+    // Check if the user is authenticated
+    $cartCount = $this->getCartCount();
+    if (Auth::check()) {
+        // The user is authenticated, 
+        $user = Auth::user(); // Get the authenticated user
 
         $concert = Concert::find($id);
 
         $seatPrices = Ticket_type::where('concert_id', $id)->pluck('price', 'name');
 
-        return view('frontend.booking', compact('concert', 'seatPrices'));
+        return view('frontend.booking', compact('concert', 'seatPrices', 'user', 'cartCount'));
+    } else {
+        // The user is not authenticated, redirect them to the login page
+        return redirect('/login/form')->with('error', 'You need to log in first.');
+    }
+}
+
+    public function getCartCount()
+    {
+        $cartCount = 0;
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $cartCount = Cart::where('user_id', $userId)->count();
+        }
+        return $cartCount;
     }
 
     public function AddToCart(Request $request){

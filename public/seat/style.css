@@ -4,23 +4,37 @@
   box-sizing: border-box;
 } */
 
-body {
+.seatPage {
   background-color: #242333;
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   font-family: "Lato", sans-serif;
   margin: 0;
 }
 
+.bookingForm {
+  width: 65%;
+  margin-top: 80px;
+  margin-bottom: 50px
+}
+
 .movie-container {
+  display: flex;
+  justify-content: space-between;
+  align-items:baseline;
   margin: 20px 0;
 }
 
-.movie-container select {
+.movie-container h5{
+  color: white;
+  line-height: none !important;
+}
+
+.movie-container span {
+  color: #000;
   background-color: #fff;
   border: 0;
   border-radius: 5px;
@@ -33,13 +47,13 @@ body {
 }
 
 .container {
-  perspective: 1000px;
+  perspective: 1300px;
   margin-bottom: 30px;
 }
 
 .row {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .seat-label {
@@ -50,8 +64,8 @@ body {
   font-size: 12px;
   color: #fff;
   text-align: center;
-    padding: 5px;
-      /* 添加内边距 */
+  padding: 5px;
+  /* 添加内边距 */
 }
 
 .seat {
@@ -63,8 +77,8 @@ body {
   font-size: 50px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-    padding: 5px;
-      /* 添加内边距 */
+  padding: 5px;
+  /* 添加内边距 */
 }
 
 .seat.selected {
@@ -108,85 +122,6 @@ body {
   transform: scale(1);
 }
 
-@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
-
-/* * {
-  box-sizing: border-box;
-} */
-
-body {
-  background-color: #242333;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  font-family: "Lato", sans-serif;
-  margin: 0;
-}
-
-.movie-container {
-  margin: 20px 0;
-}
-
-.movie-container select {
-  background-color: #fff;
-  border: 0;
-  border-radius: 5px;
-  font-size: 16px;
-  margin-left: 10px;
-  padding: 5px 15px 5px 15px;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.container {
-  perspective: 1000px;
-  margin-bottom: 30px;
-}
-
-.row {
-    display: flex;
-    justify-content: center;
-}
-
-.seat {
-  background-color: #444451;
-  height: 26px;
-  width: 32px;
-  margin: 3px;
-  font-size: 50px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.seat.selected {
-  background-color: green;
-}
-
-.seat-selected-display {
-  background-color: green;
-}
-
-.seat.sold {
-  background-color: #fff;
-}
-
-.seat:nth-of-type(2) {
-  margin-right: 18px;
-}
-
-.seat:nth-last-of-type(2) {
-  margin-left: 18px;
-}
-
-.seat:not(.sold):hover {
-  cursor: pointer;
-  transform: scale(1.2);
-}
-
 .seat:not(.sold):hover::before {
   content: attr(data-seat-type);
   position: absolute;
@@ -219,6 +154,7 @@ body {
   justify-content: center;
   margin: 0 10px;
 }
+
 .showcase li small {
   margin-left: 2px;
 }
@@ -236,12 +172,12 @@ body {
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
 }
 
-p.text{
-    margin: 5px 0;
+p.text {
+  margin: 5px 0;
 }
 
-p.text span{
-    color: rgb(158, 248, 158);
+p.text span {
+  color: rgb(158, 248, 158);
 }
 
 
@@ -251,6 +187,7 @@ p.text span{
   justify-content: center;
   margin: 0 10px;
 }
+
 .showcase li small {
   margin-left: 2px;
 }
@@ -268,10 +205,67 @@ p.text span{
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
 }
 
-p.text{
-    margin: 5px 0;
+p.text {
+  margin: 5px 0;
 }
 
-p.text span{
-    color: rgb(158, 248, 158);
+p.text span {
+  color: rgb(158, 248, 158);
+}
+
+.addtocart {
+  display: block;
+  padding: 0.3em 5em 0.3em 5em;
+  border-radius: 100px;
+  border: none;
+  font-size: 1.2em;
+  position: relative;
+  background: #0652DD;
+  cursor: pointer;
+  height: 2em;
+  width: 10em;
+  overflow: hidden;
+  transition: transform 0.1s;
+  z-index: 1;
+}
+
+.addtocart:hover {
+  transform: scale(1.1);
+}
+
+.pretext {
+  color: #fff;
+  background: #0652DD;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+}
+
+i {
+  margin-right: 10px;
+}
+
+.done {
+  background: #160105;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease;
+
+  transform: translate(-110%) skew(-40deg);
+}
+
+.posttext {
+  background: #141214;
+}
+
+.fa-check {
+  background: #0f0e0f;
 }

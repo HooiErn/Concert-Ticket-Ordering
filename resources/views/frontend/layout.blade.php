@@ -150,10 +150,16 @@
                                             </div>
                                         @endauth
 
-                                          <!-- Cart Button -->
-                                            <div class="cart-btn">
-                                                   <p><span class="icon-shopping-cart"></span> <span class="quantity">{{ isset($cartCount) ? $cartCount : 0 }}</span></p>
-                                            </div>
+                                         <!-- Cart Button -->
+                                        @if (Auth::check())
+                                            <a href="{{ route('MyCart') }}" class="cart-btn">
+                                                <p><span class="icon-shopping-cart"></span> <span class="quantity">{{ isset($cartCount) ? $cartCount : 0 }}</span></p>
+                                            </a>
+                                        @else
+                                            <a href="{{ url('/login/form') }}" class="cart-btn">
+                                                <p><span class="icon-shopping-cart"></span> <span class="quantity">{{ isset($cartCount) ? $cartCount : 0 }}</span></p>
+                                            </a>
+                                        @endif
                                     </div>
 
                                 </div>
