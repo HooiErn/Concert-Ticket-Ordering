@@ -56,4 +56,11 @@ class User extends Authenticatable
     {
         return $this->role() === self::MEMBER;
     }
+
+    // Define the relationship to tickets
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
+

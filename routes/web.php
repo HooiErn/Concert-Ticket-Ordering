@@ -40,11 +40,11 @@ Route::post('/user-register', [HomeController::class, 'registerMember'])->name('
 // Home Page
 Route::get('/', [FrontendController::class, 'home'])->name('home');
 
-// Concert Page and Function
-Route::get('/concert', [FrontendController::class, 'concert'])->name('concert');
+// user profile page
+Route::get('/user-dashboard', [FrontendController::class, 'showUserDashboard'])->name('show.userDashboard');
 
 // Concert Page and Function
-// Route::get('/concert', [FrontendController::class, 'concert'])->name('concert');
+Route::get('/concert', [FrontendController::class, 'concert'])->name('concert');
 
 // View Concert
 Route::get('/viewConcert/{id}', [FrontendController::class, 'viewConcert'])->name('viewConcert');
@@ -57,6 +57,9 @@ Route::post('/AddToCart', [FrontendController::class, 'AddToCart'])->name('AddTo
 
 // Show My Cart
 Route::get('/MyCart', [FrontendController::class, 'MyCart'])->name('MyCart');
+
+//Payment
+Route::post('/checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])->name('payment.post');
 
 // Payment Function
 Route::post('stripe/checkout', [FrontendController::class, 'stripeCheckout'])->name('stripe.checkout');
@@ -96,13 +99,6 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
 
 });
 
-//Admin
-// Route::get('admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin');
-
-// Route::get('/add_ticket_type', function () {
-//     return view('backend/content/event/add_ticket_type');
-// });
-
 Route::get('admin/order_list', function () {
     return view('backend/content/order/order_list');
 });
@@ -141,9 +137,6 @@ Route::get('/delete_concert/{id}', [App\Http\Controllers\AdminController::class,
 Route::get('/concert_details/{id}', [App\Http\Controllers\AdminController::class, 'concertDetails'])->name('concertDetails');
 
 Route::get('/showMembers', [App\Http\Controllers\AdminController::class, 'showMembers'])->name('showMembers');
-
-//Payment
-Route::post('/checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])->name('payment.post');
 
 // Admin Dasboard
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
