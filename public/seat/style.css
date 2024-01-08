@@ -101,7 +101,7 @@
 }
 
 .seat.sold {
-  background-color: #fff;
+  background-color: #ff0c0c;
 }
 
 .seat:nth-of-type(2) {
@@ -180,7 +180,6 @@ p.text span {
   color: rgb(158, 248, 158);
 }
 
-
 .showcase li {
   display: flex;
   align-items: center;
@@ -213,9 +212,16 @@ p.text span {
   color: rgb(158, 248, 158);
 }
 
+.seat-information{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .addtocart {
   display: block;
-  padding: 0.3em 5em 0.3em 5em;
+  padding: 1.2em 9em 1.2em 9em;
   border-radius: 100px;
   border: none;
   font-size: 1.2em;

@@ -66,17 +66,25 @@ class FrontendController extends Controller
         // Check if the user is authenticated
         $cartCount = $this->getCartCount();
         if (Auth::check()) {
-            // The user is authenticated, 
+            // The user is authenticated,
             $user = Auth::user(); // Get the authenticated user
 
+            // Retrieve the concert details by its ID
             $concert = Concert::find($id);
 
+            // Retrieve seat prices for the specific concert
             $seatPrices = Ticket_type::where('concert_id', $id)->pluck('price', 'name');
 
-            // Retrieve the sold seat numbers for the specific concert
-            // $soldSeatNumbers = Ticket::where('concert_id', $id)->pluck('seat_numbers');
-            $soldSeatNumbers = explode(', ', Ticket::where('concert_id', $id)->pluck('seat_numbers')->first());
+            // Retrieve all the sold seat numbers for the specific concert
+            $seatNumbersString = Ticket::where('concert_id', $id)->pluck('seat_numbers')->toArray();
+            $soldSeatNumbers = [];
 
+            // Iterate over each set of seat numbers and merge them into the $soldSeatNumbers array
+            foreach ($seatNumbersString as $numbers) {
+                $soldSeatNumbers = array_merge($soldSeatNumbers, explode(', ', $numbers));
+            }
+
+            // Pass the retrieved data to the frontend.booking view
             return view('frontend.booking', compact('concert', 'seatPrices', 'user', 'cartCount', 'soldSeatNumbers'));
         } else {
             // The user is not authenticated, redirect them to the login page

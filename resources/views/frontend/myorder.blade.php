@@ -23,7 +23,6 @@
                                 <tr>
                                     <th>Order ID</th>
                                     <th>User Name</th>
-                                    <th>Concert Name</th>
                                     <th>User Email</th>
                                     <th>Total Amount</th>
                                     <th>Payment_Status</th>
@@ -36,7 +35,6 @@
                                 <tr>
                                     <td>{{$order->id}}</td>
                                     <td>{{$order->user_name}}</td>
-                                    <td>{{$order->concert_name}}</td>
                                     <td>{{$order->user_email}}</td>
                                     <td>{{$order->total_amount}}</td>
                                     <td>{{$order->payment_status}}</td>
