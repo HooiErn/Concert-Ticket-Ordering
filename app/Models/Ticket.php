@@ -18,4 +18,14 @@ class Ticket extends Model
         'seat_number',
     ];
 
+     // Define the relationship with the User model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function concert()
+    {
+        return $this->belongsTo(Concert::class, 'concert_id');
+    }
 }

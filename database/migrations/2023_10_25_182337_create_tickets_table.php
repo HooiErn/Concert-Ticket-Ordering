@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id'); 
             $table->string('ticket_id');
             $table->string('concert_id');
-            $table->string('concert_name');
-            $table->string('ticket_type');
-            $table->double('ticket_price',8,2);
-            $table->integer('seat_number');
+            $table->string('seat_numbers');
+            $table->double('total_price',8,2);
             $table->timestamps();
+
+            // Define foreign key constraint
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

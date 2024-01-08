@@ -62,23 +62,26 @@ class FrontendController extends Controller
         return view('frontend.viewConcert',compact('concerts', 'cartCount'));
     }
 
-   public function bookingConcert($id, Request $request) {
-    // Check if the user is authenticated
-    $cartCount = $this->getCartCount();
-    if (Auth::check()) {
-        // The user is authenticated, 
-        $user = Auth::user(); // Get the authenticated user
+    public function bookingConcert($id, Request $request) {
+        // Check if the user is authenticated
+        $cartCount = $this->getCartCount();
+        if (Auth::check()) {
+            // The user is authenticated, 
+            $user = Auth::user(); // Get the authenticated user
 
-        $concert = Concert::find($id);
+            $concert = Concert::find($id);
 
-        $seatPrices = Ticket_type::where('concert_id', $id)->pluck('price', 'name');
+            $seatPrices = Ticket_type::where('concert_id', $id)->pluck('price', 'name');
 
-        return view('frontend.booking', compact('concert', 'seatPrices', 'user', 'cartCount'));
-    } else {
-        // The user is not authenticated, redirect them to the login page
-        return redirect('/login/form')->with('error', 'You need to log in first.');
+            // Retrieve the sold seat numbers for the specific concert
+            $soldSeatNumbers = Ticket::where('concert_id', $id)->pluck('seat_numbers');
+
+            return view('frontend.booking', compact('concert', 'seatPrices', 'user', 'cartCount', 'soldSeatNumbers'));
+        } else {
+            // The user is not authenticated, redirect them to the login page
+            return redirect('/login/form')->with('error', 'You need to log in first.');
+        }
     }
-}
 
     public function getCartCount()
     {
@@ -196,6 +199,15 @@ class FrontendController extends Controller
 
                     $orderItems->save();
 
+                   // Add To Ticket
+                    $ticket = new Ticket();
+                    $ticket->ticket_id = 'TICKET-' . uniqid();
+                    $ticket->user_id = $request->user_id;
+                    $ticket->concert_id = $cartItem->concert_id;
+                    $ticket->total_price = $cartItem->total_price;
+                    $ticket->seat_numbers = $cartItem->seat_number;
+                    $ticket->save();
+
                     $cartItem->delete();
                 }
 
@@ -269,5 +281,18 @@ class FrontendController extends Controller
 
         // Pass the $orderItems variable to the view
         return view('frontend.orderdetail', compact('userorder', 'orderItems', 'totalSum'));
+    }
+
+      public function showUserDashboard()
+    {
+        // Retrieve the authenticated user
+        $user = Auth::user();
+
+        // Retrieve the user's tickets with eager-loaded user data
+        $userTickets = Ticket::where('user_id', $user->id)->with('user')->get();
+
+        // Add logic to retrieve and display the user's profile
+        // For example, you can pass $user and $userTickets to the view
+        return view('frontend.userdashboard', compact('user', 'userTickets'));
     }
 }

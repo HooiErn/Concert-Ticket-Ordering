@@ -134,7 +134,7 @@
                                                 <!-- Dropdown - User Information -->
                                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                                     aria-labelledby="userDropdown">
-                                                    <a class="dropdown-item" href="#">
+                                                    <a href="{{ route('show.userDashboard') }}" class="dropdown-item">
                                                         Profile
                                                     </a>
                                                     <div class="dropdown-divider"></div>
