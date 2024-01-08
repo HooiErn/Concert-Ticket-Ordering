@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontendController;
-
+use App\Http\Controllers\TicketPriceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
