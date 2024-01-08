@@ -74,7 +74,8 @@ class FrontendController extends Controller
             $seatPrices = Ticket_type::where('concert_id', $id)->pluck('price', 'name');
 
             // Retrieve the sold seat numbers for the specific concert
-            $soldSeatNumbers = Ticket::where('concert_id', $id)->pluck('seat_numbers');
+            // $soldSeatNumbers = Ticket::where('concert_id', $id)->pluck('seat_numbers');
+            $soldSeatNumbers = explode(', ', Ticket::where('concert_id', $id)->pluck('seat_numbers')->first());
 
             return view('frontend.booking', compact('concert', 'seatPrices', 'user', 'cartCount', 'soldSeatNumbers'));
         } else {
