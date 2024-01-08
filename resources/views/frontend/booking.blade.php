@@ -51,7 +51,7 @@
                     <br />
                 @endforeach
             </div>
-            
+
             <div class="seat-information">
                 <p class="text">
                     You have selected <span id="count">0</span> seat(s) with number(s): <span id="seatNumbers"></span>
@@ -70,6 +70,7 @@
                 </button>
             </div>
         </form>
+
     </section>
 
     <script>
@@ -107,10 +108,27 @@
                     seat.classList.add('sold');
                 }
 
-                seat.addEventListener('click', function() {
+                 // Replace the alert with the toast modal
+                seat.addEventListener('click', function () {
                     // Check if the seat is already sold
                     if (soldSeatNumbers.includes(seatNumber)) {
-                        alert('Seat ' + seatNumber + ' has already been sold.');
+                        // Create and show the toast modal
+                        var toast = document.createElement('div');
+                        toast.className = 'toast';
+                        toast.textContent = 'Seat ' + seatNumber + ' has already been sold.';
+                        document.body.appendChild(toast);
+
+                        // Show the toast modal
+                        toast.classList.add('show');
+
+                        // Hide the toast modal after 3 seconds
+                        setTimeout(function () {
+                            toast.classList.remove('show');
+                            // Remove the toast element from the DOM after the animation completes
+                            setTimeout(function () {
+                                document.body.removeChild(toast);
+                            }, 500);
+                        }, 3000);
                         return;
                     }
 
@@ -185,7 +203,9 @@
                     alert('Please select at least one seat before submitting the form.');
                 }
             });
+
         });
+
     </script>
 
 @endsection
