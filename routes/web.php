@@ -83,6 +83,9 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 Route::get('/api/ticket-prices/{concertId}', [TicketPriceController::class, 'getTicketPrices']);
 
+//search event
+Route::get('/search', [FrontendController::class, 'search'])->name('search.event');
+
 //generate pdf
 Route::get('/download-ticket-pdf/{ticketId}', [TicketController::class, 'downloadTicketPdf'])->name('download.ticket.pdf');
 

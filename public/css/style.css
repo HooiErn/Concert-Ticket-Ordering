@@ -60,7 +60,7 @@ ol {
 
 img {
   height: auto;
-  max-width: 100%; 
+  max-width: 100%;
 }
 
 /* :: 3.1.0 Spacing */
@@ -518,6 +518,57 @@ img {
   }
 }
 
+.searchBox {
+    margin-right: 20px;
+    margin-top: 3px;
+    background: #2f3640;
+    border-radius: 40px;
+    padding: 1px 6px;
+}
+
+.searchBox:hover>.searchInput {
+    width: 160px;
+    padding: 0 6px;
+}
+
+.searchBox:hover>.searchButton {
+    background: white;
+    color: #2f3640;
+}
+
+.searchButton {
+    color: white;
+    float: right;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.searchInput {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 30px;
+    width: 0px;
+
+}
+
+@media screen and (max-width: 990px) {
+    .searchBox {
+      display: none;
+    }
+}
+
 .concert {
   width: 100%;
   user-select: none;
@@ -627,7 +678,7 @@ img {
           margin-bottom: 0;
           font-size: 0.9em;
           color: #fff;
-          font-family: 'Nunito', sans-serif;        
+          font-family: 'Nunito', sans-serif;
         }
 
         .concert-action {
