@@ -57,6 +57,9 @@ Route::get('/bookingConcert/{id}', [FrontendController::class, 'bookingConcert']
 // Add To Cart
 Route::post('/AddToCart', [FrontendController::class, 'AddToCart'])->name('AddToCart');
 
+//delete cart
+Route::get('/delete-cart-item/{cartItemId}', [FrontendController::class, 'deleteCartItem'])->name('delete.cartItem');
+
 // Show My Cart
 Route::get('/MyCart', [FrontendController::class, 'MyCart'])->name('MyCart');
 

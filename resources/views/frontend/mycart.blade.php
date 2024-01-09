@@ -3,16 +3,22 @@
 @section('content')
 
     <br><br><br><br><br>
-     <style> 
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: bold; /* Make headings bold */
-            color: black; /* Set a color for headings */
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: bold;
+            /* Make headings bold */
+            color: black;
+            /* Set a color for headings */
         }
 
         h5 {
             font-size: 16px !important;
         }
-
     </style>
 
     <section class="h-100" style="background-color: #eee;">
@@ -50,16 +56,15 @@
                         </div>
 
                         @foreach ($cartItems as $cartItem)
-
-                        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                        <input type="hidden" name="user_name" value="{{ auth()->user()->name }}">
-                        <input type="hidden" name="user_email" value="{{ auth()->user()->email }}">
-                        <input type="hidden" name="concert_id" value="{{ $cartItem->concert_id }}">
-                        <input type="hidden" name="concert_name" value="{{ $cartItem->concert_name }}">
-                        <input type="hidden" name="seat_quantity" value="{{ $cartItem->seat_quantity }}">
-                        <input type="hidden" name="seat_number" value="{{ $cartItem->seat_number }}">
-                        <input type="hidden" name="total_price" value="{{ $cartItem->total_price }}">
-                        <input type="hidden" name="total_amount" value="{{ $totalAmount }}">
+                            <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                            <input type="hidden" name="user_name" value="{{ auth()->user()->name }}">
+                            <input type="hidden" name="user_email" value="{{ auth()->user()->email }}">
+                            <input type="hidden" name="concert_id" value="{{ $cartItem->concert_id }}">
+                            <input type="hidden" name="concert_name" value="{{ $cartItem->concert_name }}">
+                            <input type="hidden" name="seat_quantity" value="{{ $cartItem->seat_quantity }}">
+                            <input type="hidden" name="seat_number" value="{{ $cartItem->seat_number }}">
+                            <input type="hidden" name="total_price" value="{{ $cartItem->total_price }}">
+                            <input type="hidden" name="total_amount" value="{{ $totalAmount }}">
 
                             <div class="card rounded-3 mb-4">
                                 <div class="card-body p-4 d-flex flex-column">
@@ -78,7 +83,11 @@
                                             <h5 class="mb-0">{{ $cartItem->total_price }}</h5>
                                         </div>
                                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                            <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                            <a href="{{ route('delete.cartItem', ['cartItemId' => $cartItem->id]) }}"
+                                                class="text-danger"
+                                                onclick="return confirm('Are you sure you want to delete this item?')">
+                                                <i class="fas fa-trash fa-lg"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +106,8 @@
 
                         <div class="card">
                             <div class="card-body">
-                                <button type="submit" class="btn btn-warning btn-block btn-lg" style="font-weight:bold; font-size:20px">Payment</button>
+                                <button type="submit" class="btn btn-warning btn-block btn-lg"
+                                    style="font-weight:bold; font-size:20px">Payment</button>
                             </div>
                         </div>
                     </form>

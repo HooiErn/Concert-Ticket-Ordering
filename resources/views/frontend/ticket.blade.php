@@ -105,7 +105,7 @@
             </table>
         </div>
         <div class="total">
-            <p style="font-weight:bold">Total Price: RM{{ $ticket->total_price }}</p>
+            <p style="font-weight:bold">Total Price: ${{ $ticket->total_price }}</p>
         </div>
         <div class="footer">
             <p>Thank you, {{ $ticket->user->name }} ({{ $ticket->user->email }}), for your purchase! Enjoy the concert!</p>

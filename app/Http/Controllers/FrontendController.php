@@ -122,6 +122,23 @@ class FrontendController extends Controller
         return redirect()->route('MyCart');
     }
 
+    public function deleteCartItem($cartItemId){
+        // Find the cart item by ID
+        $cartItem = Cart::find($cartItemId);
+
+        // Check if the cart item exists
+        if ($cartItem) {
+            // Delete the cart item
+            $cartItem->delete();
+
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'Cart item deleted successfully.');
+        }
+
+        // Redirect back with an error message if the cart item is not found
+        return redirect()->back()->with('error', 'Cart item not found.');
+    }
+
     public function MyCart(){
 
         if(Auth::check()){
