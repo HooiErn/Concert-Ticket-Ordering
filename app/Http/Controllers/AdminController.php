@@ -341,6 +341,16 @@ class AdminController extends Controller
         return view('backend/content/member-list')->with('users', $users);
     }
 
+    public function showOrderList()
+    {
+        $orders = Order::with('items') // Eager load the 'items' relationship
+        ->leftJoin('concerts', 'orders.concert_name', '=', 'concerts.name')
+        ->select('orders.*', 'concerts.date_time')
+        ->get();
+
+        return view('backend/content/order/order_list', compact('orders'));
+    }
+
     //Delete Category
     //  public function DeleteCategory(Request $request){
     //     $categories = Ticket_type::where('id',$id)->first();

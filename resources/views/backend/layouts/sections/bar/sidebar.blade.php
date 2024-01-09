@@ -45,14 +45,14 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{{ url('admin/order_list')}}">
             <i class="fas fa-list"></i>
             <span>Order List</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{route('showMembers')}}" >
+        <a class="nav-link" href="{{ route('showMembers')}}" >
             <i class="fas fa-male"></i>
             <span>Member List</span>
         </a>

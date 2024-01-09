@@ -103,9 +103,7 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
 
 });
 
-Route::get('admin/order_list', function () {
-    return view('backend/content/order/order_list');
-});
+Route::get('admin/order_list', [AdminController::class, 'showOrderList']);
 
 Route::get('ticket_details', function () {
     return view('backend/content/ticket/ticket_details');
