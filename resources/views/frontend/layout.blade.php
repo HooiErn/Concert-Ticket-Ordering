@@ -78,7 +78,7 @@
                             </div>
 
                             <!-- Nav Start -->
-                            <div class="classynav">
+                            <div class="classynav" >
                                 <ul>
                                     <li><a href="{{ url('/') }}">Home</a></li>
                                     {{-- <li><a href="albums-store.html">Albums</a></li> --}}
@@ -121,55 +121,86 @@
                                     @endauth
                                 </ul>
 
-                                   <!-- Login/Register & Button with Dropdown Profile -->
-                                    <div class="login-register-cart-button d-flex align-items-center">
-                                        <!-- Check if the user is authenticated -->
-                                        @auth
-                                            <!-- Display user's name and dropdown if authenticated -->
-                                            <div class="dropdown mr-50">
-                                                <a class="btn btn-link dropdown-toggle text-white" href="#" id="userDropdown" role="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-user-circle" style="font-size: 24px;"></i>
-                                                    <span class="user-name" style="font-weight: bold; font-size: 16px;">{{ Auth::user()->name }}</span>                                                </a>
-                                                <!-- Dropdown - User Information -->
-                                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                                    aria-labelledby="userDropdown">
-                                                    <a href="{{ route('show.userDashboard') }}" class="dropdown-item">
-                                                        Ticket History
-                                                    </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="{{url('/logout')}}"  id="logout-link" onclick="confirmLogout(event)">
-                                                        Logout
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <!-- Display login/register link if not authenticated -->
-                                            <div class="login-register-btn mr-50">
-                                                <a href="{{ route('login.form') }}" id="loginBtn">Login / Register</a>
-                                            </div>
-                                        @endauth
 
-                                         <!-- Cart Button -->
-                                        @if (Auth::check())
-                                            <a href="{{ route('MyCart') }}" class="cart-btn">
-                                                <p><span class="icon-shopping-cart"></span> <span class="quantity">{{ isset($cartCount) ? $cartCount : 0 }}</span></p>
+                                {{-- <!-- Search Bar -->
+                                <div class="search-bar">
+                                    <form action="{{ route('search.event') }}" method="GET">
+                                        <input type="text" name="query" placeholder="Search concerts...">
+                                        <button type="submit"><i class="fas fa-search"></i></button>
+                                    </form>
+                                </div> --}}
+                                <!-- Login/Register & Button with Dropdown Profile -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+
+                                    <form action="{{ route('search.event') }}" class="searchBox" method="GET">
+                                        <input class="searchInput"type="text" name="query" placeholder="Search">
+                                        <button class="searchButton" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </form>
+
+                                    {{-- <form action="{{ route('search.event') }}" class="search-bar" method="GET">
+                                        <input type="search" name="query" pattern=".*\S.*" required>
+                                        <button class="search-btn" type="submit">
+                                            <span>Search</span>
+                                        </button>
+                                    </form> --}}
+
+                                    <!-- Cart Button -->
+                                    @if (Auth::check())
+                                        <a href="{{ route('MyCart') }}" class="cart-btn">
+                                            <p><span class="icon-shopping-cart"></span> <span
+                                                    class="quantity">{{ isset($cartCount) ? $cartCount : 0 }}</span>
+                                            </p>
+                                        </a>
+                                    @else
+                                        <a href="{{ url('/login/form') }}" class="cart-btn">
+                                            <p><span class="icon-shopping-cart"></span> <span
+                                                    class="quantity">{{ isset($cartCount) ? $cartCount : 0 }}</span>
+                                            </p>
+                                        </a>
+                                    @endif
+                                    <!-- Check if the user is authenticated -->
+                                    @auth
+                                        <!-- Display user's name and dropdown if authenticated -->
+                                        <div class="dropdown">
+                                            <a class="btn btn-link dropdown-toggle text-white" href="#"
+                                                id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <i class="fas fa-user-circle" style="font-size: 24px;"></i>
+                                                <span class="user-name"
+                                                    style="font-weight: bold; font-size: 16px;">{{ Auth::user()->name }}</span>
                                             </a>
-                                        @else
-                                            <a href="{{ url('/login/form') }}" class="cart-btn">
-                                                <p><span class="icon-shopping-cart"></span> <span class="quantity">{{ isset($cartCount) ? $cartCount : 0 }}</span></p>
-                                            </a>
-                                        @endif
-                                    </div>
+                                            <!-- Dropdown - User Information -->
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                                aria-labelledby="userDropdown">
+                                                <a href="{{ route('show.userDashboard') }}" class="dropdown-item">
+                                                    Ticket History
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="{{ url('/logout') }}" id="logout-link"
+                                                    onclick="confirmLogout(event)">
+                                                    Logout
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <!-- Display login/register link if not authenticated -->
+                                        <div class="login-register-btn mr-50">
+                                            <a href="{{ route('login.form') }}" id="loginBtn">Login / Register</a>
+                                        </div>
+                                    @endauth
 
                                 </div>
-                            </div>
-                            <!-- Nav End -->
 
+                            </div>
                         </div>
-                    </nav>
+                        <!-- Nav End -->
+
                 </div>
+                </nav>
             </div>
+        </div>
         </div>
     </header>
     <!-- ##### Header Area End ##### -->

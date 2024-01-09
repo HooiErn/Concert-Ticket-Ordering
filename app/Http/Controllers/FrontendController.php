@@ -309,4 +309,15 @@ class FrontendController extends Controller
         // For example, you can pass $user and $userTickets to the view
         return view('frontend.userdashboard', compact('user', 'userTickets'));
     }
+
+     public function search(Request $request)
+        {
+            $query = $request->input('query');
+
+            // Perform the search logic
+            $concerts = Concert::where('name', 'like', '%' . $query . '%')->get();
+
+            // Return the search results to the view
+            return view('frontend.event', compact('concerts', 'query'));
+        }
 }
