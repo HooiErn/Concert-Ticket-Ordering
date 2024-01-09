@@ -13,7 +13,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -36,8 +36,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ url('admin/add_concert') }}">Add Concert</a>
-                <a class="collapse-item" href="{{ route('showConcert') }}">Contert List</a>
+                <a class="collapse-item" href="{{ url('admin/add_concert') }}" id="addConcertLink">Add Concert</a>
+                <a class="collapse-item" href="{{ route('showConcert') }}" id="showConcertLink">Contert List</a>
                 <!-- <a class="collapse-item" href="">Create Ticket Type</a>
                 <a class="collapse-item" href="">Create Organizer</a> -->
             </div>
@@ -51,7 +51,7 @@
         </a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ request()->routeIs('showMembers') ? 'active' : '' }}">
         <a class="nav-link" href="{{route('showMembers')}}" >
             <i class="fas fa-male"></i>
             <span>Member List</span>
@@ -124,5 +124,22 @@
             document.getElementById('logout-form').submit();
         }
     }
+</script>
+<script>
+    $(document).ready(function() {
+        // Check if addConcert link is clicked
+        if (window.location.href.includes("admin/add_concert")) {
+            $('#collapseTwo').addClass('show'); // Add 'show' class to the dropdown element
+            $('#collapseTwo').parent().addClass('active'); // Add 'active' class to the parent <li> element
+            $('#addConcertLink').addClass('active'); // Add 'active' class to the addConcertLink
+        }
+
+        // Check if showConcert link is clicked
+        if (window.location.href.includes("show_concert")) {
+            $('#collapseTwo').addClass('show'); // Add 'show' class to the dropdown element
+            $('#collapseTwo').parent().addClass('active'); // Add 'active' class to the parent <li> element
+            $('#showConcertLink').addClass('active'); // Add 'active' class to the showConcertLink
+        }
+    });
 </script>
 <!-- End of Sidebar -->

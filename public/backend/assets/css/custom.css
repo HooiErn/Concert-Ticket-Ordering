@@ -1,5 +1,5 @@
 .bg-gradient-primary-custom{
-    background-color: #102a71!important;
+    background-color: #000000!important;
 }
 
 .img-upload{
@@ -93,3 +93,12 @@ textarea {
     padding: 20px;
 }
 
+/* Sidebar dropdown active class */
+/* Styles for the selected item */
+.collapse-item.active {
+    font-weight: bold;
+  }
+  
+  .collapse-item.active:hover {
+    background-color: #0062cc;
+  }

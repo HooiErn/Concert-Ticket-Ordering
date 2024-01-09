@@ -1,4 +1,5 @@
 <head>
+    <title>Concert List</title>
     <script>
         $(function () {
             $(".dropdown-menu").on('click', 'a', function () {

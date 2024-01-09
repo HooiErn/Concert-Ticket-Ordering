@@ -16,7 +16,7 @@ var myPieChart = new Chart(ctx, {
   //   // }],
     
   // },
-  data: chartData,
+  data: ticketTypeChart,
   options: {
     maintainAspectRatio: false,
     tooltips: {

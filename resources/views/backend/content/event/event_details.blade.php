@@ -7,7 +7,7 @@
     <!-- <script>$encodedChartData = json_encode($chartData);</script> -->
     <!-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> -->
     <script>
-        var chartData = {!! json_encode($chartData)!!};
+        var ticketTypeChart = {!! json_encode($ticketTypeChart)!!};
     </script>
 </head>
 @extends('backend/layouts/commonMaster')
@@ -88,7 +88,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Revenue</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{$totalRevenue}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="bi bi-coin fa-2x "></i>
@@ -102,7 +102,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                 Ticket Ordered</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalOrdered}} pcs</div>
                         </div>
                         <div class="col-auto">
                             <i class="bi bi-ticket-perforated-fill fa-2x text-gray-300"></i>
@@ -116,7 +116,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Ticket Left</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalTicketLeft}} pcs</div>
                         </div>
                         <div class="col-auto">
                             <i class="bi bi-ticket-perforated fa-2x text-gray-300"></i>
@@ -127,6 +127,9 @@
         </div>
         <div class="col-md-6">
             <div class="card ticket-type-selling shadow">
+                <div class="mb-1 text-center small">
+                    Ticket Type Selling Information
+                </div>
                 <div><canvas id="myChart" style="width:100%;" class="mt-2"></canvas></div>
                 <div class="mt-4 text-center small">
                     <span class="mr-2">
@@ -143,7 +146,7 @@
                     </span>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -173,11 +176,11 @@
                             @foreach($ticketTypes as $ticketType)
                             <tr>
                                 <td>{{$ticketType->name}}</td>
-                                <td>{{$ticketType->price}}</td>
+                                <td>$ {{$ticketType->price}}</td>
+                                <td>{{$ticketType->total-$ticketType->available}}</td>
+                                <td>{{$ticketType->available}}</td>
                                 <td>{{$ticketType->total}}</td>
-                                <td>{{$ticketType->total}}</td>
-                                <td>{{$ticketType->total}}</td>
-                                <td>{{$ticketType->total}}</td>
+                                <td>$ {{$ticketType->price*($ticketType->total-$ticketType->available)}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -188,7 +191,7 @@
     </div>
 </div>
 
-    <!-- Page level plugins -->
-    <script src="{{ asset('/backend/assets/vendor/chart.js/Chart.min.js')}}"></script>
-    <script src="{{ asset('/backend/assets/js/demo/chart-dougnut-ticket-type.js')}}"></script>
+<!-- Page level plugins -->
+<script src="{{ asset('/backend/assets/vendor/chart.js/Chart.min.js')}}"></script>
+<script src="{{ asset('/backend/assets/js/demo/chart-dougnut-ticket-type.js')}}"></script>
 @endsection
