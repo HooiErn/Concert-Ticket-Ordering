@@ -109,9 +109,11 @@ class FrontendController extends Controller
         $cart->user_name = $request->user_name;
         $cart->concert_id = $request->concert_id;
         $cart->concert_name = $request->concert_name;
-        $cart->seat_number = $request->seat_number;
+        // Process and sort seat numbers
+        $seatNumbers = explode(', ', $request->seat_number);
+        sort($seatNumbers); // Sort seat numbers in ascending order
         $sortedSeatNumbers = implode(', ', $seatNumbers);
-        $cart->seat_number = $sortedSeatNumbers;;
+        $cart->seat_number = $sortedSeatNumbers;
         $cart->seat_quantity = $request->seat_quantity;
         $cart->total_price = $request->total_price;
         $cart->save();
