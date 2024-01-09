@@ -29,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($orders as $order)
+                    @foreach($orderList as $order)
                         <tr>
                             <td>{{ $order->id }}</td>
                             <td>{{ $order->user_name }}</td>
@@ -39,7 +39,7 @@
                                     {{ $item->seat_quantity }} <br>
                                 @endforeach
                             </td>
-                            <td>{{ $order->date_time }}</td>
+                            <td>{{ $order->dateTime }}</td>
                             <td>{{ $order->total_amount }}</td>
                             <td>{{ $order->payment_status }}</td>
                         </tr>

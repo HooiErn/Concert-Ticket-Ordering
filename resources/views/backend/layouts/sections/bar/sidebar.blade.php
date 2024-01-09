@@ -13,10 +13,10 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('admin.dashboard') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+    <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('home') }}">
+            <i class="bi bi-house-door-fill"></i>
+            <span>Home</span></a>
     </li>
 
     <!-- Divider -->
@@ -26,6 +26,13 @@
     <div class="sidebar-heading">
         Interface
     </div>
+
+     <!-- Nav Item - Dashboard -->
+     <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.dashboard') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -58,8 +65,8 @@
         </a>
     </li>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
-    {{-- <li class="nav-item">
+    <!-- Nav Item - Utilities Collapse Menu
+     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
@@ -74,10 +81,10 @@
                 <a class="collapse-item" href="utilities-other.html">Other</a>
             </div>
         </div>
-    </li> --}}
+    </li> -->
 
     <!-- Nav Item - Pages Collapse Menu -->
-    {{-- <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
@@ -95,7 +102,7 @@
                 <a class="collapse-item" href="blank.html">Blank Page</a>
             </div>
         </div>
-    </li> --}}
+    </li>  --> 
     <!-- Nav Item - Logout -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}" onclick="confirmLogout(event)">
