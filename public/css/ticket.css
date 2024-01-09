@@ -92,6 +92,7 @@ h1, h2, h3, h4, h5, h6, p{
 
  .navy-blue-button:hover {
      background-color: #001f3f;
+     color: #fff;
  }
 
 .ticket-date {
@@ -102,7 +103,7 @@ h1, h2, h3, h4, h5, h6, p{
     font-weight: 700;
     display: flex;
     align-items: center;
-    justify-content: space-around;    
+    justify-content: space-around;
 }
 
 .ticket-date span {
@@ -119,7 +120,7 @@ h1, h2, h3, h4, h5, h6, p{
     text-align: right;
 }
 
-.ticket-date .june-29 {
+.ticket-date .month-day {
     color: #d83565;
     font-size: 20px;
 }

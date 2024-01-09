@@ -37,8 +37,7 @@
                             <p class="ticket-date">
                                 <span>{{ \Carbon\Carbon::parse($ticket->concert->date_time)->format('l') }}</span>
                                 <!--format('l') returns the day of the week (e.g., Tuesday). -->
-                                <span
-                                    class="june-29">{{ \Carbon\Carbon::parse($ticket->concert->date_time)->format('F j') }}</span>
+                                <span class="month-day">{{ \Carbon\Carbon::parse($ticket->concert->date_time)->format('F j') }}</span>
                                 <!--format('F j') returns the month (e.g., June) and day (e.g., 29). -->
                                 <span>{{ \Carbon\Carbon::parse($ticket->concert->date_time)->format('Y') }}</span>
                                 <!-- format('Y') returns the year. -->
@@ -49,18 +48,12 @@
                             </div>
                             <div class="ticket-time">
                                 <p>{{ \Carbon\Carbon::parse($ticket->concert->date_time)->diffForHumans() }}</p>
-                                <!-- <p>8:00 PM <span>TO</span> 11:00 PM</p>
-                <p>DOORS <span>@</span> 7:00 PM</p> -->
                             </div>
                             <p class="ticket-location">{{ $ticket->concert->description }}</p>
                         </div>
                     </div>
                     <div class="right">
                         <div class="right-info-container">
-                            <!-- <div class="ticket-show-name">
-                <h1>SOUR Prom</h1>
-               </div> -->
-
                             <div class="ticket-time">
                                 <p style="font-weight:500">Start from: <span
                                         style=" color: #d83565; font-weight:bold">{{ \Carbon\Carbon::parse($ticket->concert->date_time)->format('g:i A') }}</span>
@@ -76,7 +69,8 @@
                             <div class="ticket-time">
                                 <p style="color: #d83565; font-weight:bold">{{ $ticket->seat_numbers }}</p>
                             </div>
-                            <button class="navy-blue-button">Verify Now</button>
+                            <a href="{{ route('download.ticket.pdf', ['ticketId' => $ticket->id]) }}" target="_blank"
+                                class="navy-blue-button">Verify Now</a>
                         </div>
                     </div>
                 </div>

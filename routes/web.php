@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TicketPriceController;
+use App\Http\Controllers\TicketController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,7 +83,9 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 Route::get('/api/ticket-prices/{concertId}', [TicketPriceController::class, 'getTicketPrices']);
 
-// Route::get('/event', 'FrontendController@event');
+//generate pdf
+Route::get('/download-ticket-pdf/{ticketId}', [TicketController::class, 'downloadTicketPdf'])->name('download.ticket.pdf');
+
 
 Auth::routes();
 

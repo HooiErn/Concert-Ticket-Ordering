@@ -164,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -195,5 +196,6 @@ return [
         // ...
         'Toastr' => Brian2694\Toastr\Facades\Toastr::class,
     ])->toArray(),
+    'PDF' => Barryvdh\DomPDF\Facade::class,
 
 ];

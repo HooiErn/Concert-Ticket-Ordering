@@ -110,6 +110,8 @@ class FrontendController extends Controller
         $cart->concert_id = $request->concert_id;
         $cart->concert_name = $request->concert_name;
         $cart->seat_number = $request->seat_number;
+        $sortedSeatNumbers = implode(', ', $seatNumbers);
+        $cart->seat_number = $sortedSeatNumbers;;
         $cart->seat_quantity = $request->seat_quantity;
         $cart->total_price = $request->total_price;
         $cart->save();
@@ -213,6 +215,7 @@ class FrontendController extends Controller
                     $ticket->ticket_id = 'TICKET-' . uniqid();
                     $ticket->user_id = $request->user_id;
                     $ticket->concert_id = $cartItem->concert_id;
+                    $ticket->seat_quantity = $cartItem->seat_quantity;
                     $ticket->total_price = $cartItem->total_price;
                     $ticket->seat_numbers = $cartItem->seat_number;
                     $ticket->save();
