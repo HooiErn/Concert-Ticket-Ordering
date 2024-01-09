@@ -135,7 +135,7 @@
                                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                                     aria-labelledby="userDropdown">
                                                     <a href="{{ route('show.userDashboard') }}" class="dropdown-item">
-                                                        Profile
+                                                        Ticket History
                                                     </a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="{{url('/logout')}}"  id="logout-link" onclick="confirmLogout(event)">

@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); 
+            $table->unsignedBigInteger('user_id');
             $table->string('ticket_id');
             $table->string('concert_id');
             $table->string('seat_numbers');
+            $table->integer('seat_quantity');
             $table->double('total_price',8,2);
             $table->timestamps();
 
