@@ -45,16 +45,15 @@ class AdminController extends Controller
                 ->whereYear('created_at', $currentYear)
                 ->sum('total_amount');
 
+            $totalSeats = Ticket::whereDate('created_at', Carbon::today())
+                ->pluck('seat_numbers')
+                ->map(function ($seats) {
+                    return explode(',', $seats);
+                })
+                ->flatten()
+                ->count();
+            
                 //show the earning by month
-
-            // $totalSeats = Ticket::whereDate('created_at', Carbon::today())
-            //     ->pluck('seat_numbers')
-            //     ->map(function ($seats) {
-            //         return explode(',', $seats);
-            //     })
-            //     ->flatten()
-            //     ->count();
-
             //     $data = DB::table('orders')
             //     ->select(DB::raw('SUM(total_amount) as total_amount'), DB::raw('MONTH(created_at) as month'))
             //     ->whereYear('created_at', $currentYear)
