@@ -59,24 +59,35 @@ class AdminController extends Controller
                 })
                 ->flatten()
                 ->count();
+                
+            $startDate = now()->startOfWeek();
+            $endDate = now()->startOfWeek()->addDays(6);
 
-            // $totalSeats now contains the sum of all the seats sold on the current day
-
-            $data = DB::table('orders')
-                ->select(DB::raw('SUM(total_amount) as total_amount'), DB::raw('MONTH(created_at) as month'))
-                ->whereYear('created_at', $currentYear)
-                ->groupBy(DB::raw('MONTH(created_at)'))
-                ->get();
-
+            $dates = [];
             $totalAmounts = [];
-            $months = [];
-            foreach ($data as $row) {
-                $totalAmounts[] = $row->total_amount;
-                $months[] = date('F', mktime(0, 0, 0, $row->month, 1));
+
+            for ($date = $startDate; $date <= $endDate; $date->addDay()) {
+                $orders = DB::table('orders')
+                    ->whereDate('created_at', $date)
+                    ->get();
+
+                $totalAmount = 0;
+
+                foreach ($orders as $order) {
+                    $totalAmount += $order->total_amount;
+                }
+
+                // $dates[] = $date->format('l');
+                $dates[] = [
+                    'day' => $date->format('l'),
+                    'date' => $date->format('d F Y'),
+                ];
+                $totalAmounts[] = $totalAmount;
             }
 
             $areaChartData = [
-                'labels' => $months,
+                // 'labels' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                'labels' => array_column($dates, 'day'),
                 'datasets' => [
                     [
                         'label' => "Earnings",
@@ -87,7 +98,7 @@ class AdminController extends Controller
                         'pointBackgroundColor' => "rgba(78, 115, 223, 1)",
                         'pointBorderColor' => "rgba(78, 115, 223, 1)",
                         'pointHoverRadius' => 3,
-                        'pointHoverBackgroundColor' => "rgba(78, 115, 223, 1)",
+                        'pointHoverBackgroundColor' => array_column($dates, 'date'),
                         'pointHoverBorderColor' => "rgba(78, 115, 223, 1)",
                         'pointHitRadius' => 10,
                         'pointBorderWidth' => 2,
@@ -95,6 +106,8 @@ class AdminController extends Controller
                     ]
                 ],
             ];
+            $startWeek = now()->startOfWeek()->format('d M Y');
+            $endWeek = now()->startOfWeek()->addDays(6)->format('d M Y');
 
             $topThreeConcerts = DB::table('order_items')
                 ->select('concert_name', DB::raw('SUM(seat_quantity) as total_seats_sold'))
@@ -109,7 +122,7 @@ class AdminController extends Controller
             //     return $concert;
             // });
 
-            return view('backend/content/admin_dashboard', compact('annualTotal', 'dailyTotal', 'monthlyTotal', 'areaChartData', 'totalSeats', 'topThreeConcerts'));
+            return view('backend/content/admin_dashboard', compact('annualTotal', 'dailyTotal', 'monthlyTotal', 'areaChartData', 'totalSeats', 'topThreeConcerts','startWeek','endWeek'));
 
         } else {
 
@@ -267,7 +280,8 @@ class AdminController extends Controller
         return redirect()->route('showConcert');
     }
 
-    public function getTicketTypeInformation($id){
+    public function getTicketTypeInformation($id)
+    {
 
         $concertTickets = order_item::where('concert_id', $id)->get();
 
@@ -318,8 +332,8 @@ class AdminController extends Controller
         ];
 
         $currentTicketType = Ticket_type::where('concert_id', $id)->get();
-        foreach($currentTicketType as $ticket){
-            foreach($ticketType as $index => $newTicket){
+        foreach ($currentTicketType as $ticket) {
+            foreach ($ticketType as $index => $newTicket) {
                 if ($ticket->name == $newTicket['name'] && $ticket->available != $newTicket['available']) {
                     $ticket->available = $newTicket['available'];
                     $ticket->save();
@@ -343,7 +357,7 @@ class AdminController extends Controller
         // dd($data);
         $concerts = Concert::find($id);
 
-        $data= $this->getTicketTypeInformation($id);
+        $data = $this->getTicketTypeInformation($id);
 
         $ticketTypeChart = [
             'labels' => ['VIP', 'CAT1', 'CAT2', 'CAT3'],
@@ -355,8 +369,8 @@ class AdminController extends Controller
                     'hoverBorderColor' => "rgba(234, 236, 244, 1)",
                 ]
             ],
-        ]; 
-        
+        ];
+
         $ticketTypes = Ticket_type::all()->where('concert_id', $id);
 
         $totalRevenue = DB::table('order_items')
@@ -583,9 +597,9 @@ class AdminController extends Controller
     {
 
         $orderList = Order::with('items') // Eager load the 'items' relationship
-        ->leftJoin('concerts', 'orders.concert_name', '=', 'concerts.name')
-        ->select('orders.*', 'concerts.date_time as dateTime')
-        ->get();
+            ->leftJoin('concerts', 'orders.concert_name', '=', 'concerts.name')
+            ->select('orders.*', 'concerts.date_time as dateTime')
+            ->get();
 
         return view('backend/content/order/order_list', compact('orderList'));
     }
@@ -594,10 +608,10 @@ class AdminController extends Controller
     {
         $users = User::Find($id);
         $users->delete();
-        
+
         Toastr::success('User deleted successfully', 'Deleted Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
         return redirect()->back();
     }
-    
+
 
 }

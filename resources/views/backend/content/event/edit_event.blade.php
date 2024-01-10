@@ -1,5 +1,5 @@
 <head>
-    <title>Add Concert</title>
+    <title>Edit Concert</title>
     <script>
         function handleImgUpload(event, previewId) {
             let imgFile = event.target.files[0];

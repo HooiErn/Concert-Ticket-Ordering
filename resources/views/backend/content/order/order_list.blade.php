@@ -1,7 +1,7 @@
 <head>
  <!-- Custom styles for this page -->
  <link href="/backend/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+<title>Order List</title>
 </head>
 @extends('backend/layouts/commonMaster')
 @section('layoutContent')
