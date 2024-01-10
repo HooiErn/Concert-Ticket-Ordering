@@ -590,13 +590,14 @@ class AdminController extends Controller
         return view('backend/content/order/order_list', compact('orderList'));
     }
 
-    //Delete Category
-    //  public function DeleteCategory(Request $request){
-    //     $categories = Ticket_type::where('id',$id)->first();
-    //     $categories -> delete();
-
-    //     Toastr::success('A ticket category has been deleted', 'Deleted Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" =>true, "positionClass" =>"toast-top-right"]);
-    //     return redirect('backend/content/category');
-    // }
+    public function deleteUser($id)
+    {
+        $users = User::Find($id);
+        $users->delete();
+        
+        Toastr::success('User deleted successfully', 'Deleted Successfully', ["progressBar" => true, "debug" => true, "newestOnTop" => true, "positionClass" => "toast-top-right"]);
+        return redirect()->back();
+    }
+    
 
 }
