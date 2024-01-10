@@ -581,22 +581,13 @@ class AdminController extends Controller
 
     public function showOrderList()
     {
-        // $orderList = DB::table('orders')->leftJoin('concerts', 'concerts.name', '=', 'orders.concert_name')
-        // ->select('orders.*', 'concerts.date_time as dateTime')
-        // ->get();
 
-        $orderList = DB::table('orders')->leftJoin('concerts', 'concerts.name', '=', 'orders.concert_name')
+        $orderList = Order::with('items') // Eager load the 'items' relationship
+        ->leftJoin('concerts', 'orders.concert_name', '=', 'concerts.name')
         ->select('orders.*', 'concerts.date_time as dateTime')
         ->get();
 
-        return view('backend/content/order/order_list')->with('orderList', $orderList);
-
-        // $orders = Order::with('items') // Eager load the 'items' relationship
-        // ->leftJoin('concerts', 'orders.concert_name', '=', 'concerts.name')
-        // ->select('orders.*', 'concerts.date_time')
-        // ->get();
-
-        // return view('backend/content/order/order_list', compact('orders'));
+        return view('backend/content/order/order_list', compact('orderList'));
     }
 
     //Delete Category
