@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\order_item;
 use DB;
-use Session;
 use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Ticket_type;
