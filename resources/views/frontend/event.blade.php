@@ -14,7 +14,7 @@
     <div class="concert-container">
         @if ($concerts->count() > 0)
             @foreach ($concerts as $concert)
-                <div class="concert">
+                <div class="concert" style="margin: 100px 0 70px 0">
                     <div class='concert-main'>
                         <img class='concert-image' src="{{ asset('images/' . json_decode($concert->images)[0]) }}"
                             alt="{{ $concert->name }} Image" />
@@ -55,7 +55,7 @@
                 </div>
             @endforeach
         @else
-           <p style="margin-top:40px; font-size:24px; display:block">No Events Found</p>
+            <p style="margin-top:40px; font-size:24px; display:block">No Events Found</p>
         @endif
     </div>
     <!-- ##### Latest Concerts Area End ##### -->

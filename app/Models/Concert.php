@@ -16,4 +16,10 @@ class Concert extends Model
         'description',
         'organizer_name',
     ];
+
+     // Define the relationship with TicketType
+    public function sortedTicketTypes()
+    {
+        return $this->hasMany(Ticket_type::class)->orderBy('price', 'asc');
+    }
 }

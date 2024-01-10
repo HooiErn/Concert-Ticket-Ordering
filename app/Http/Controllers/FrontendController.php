@@ -323,7 +323,6 @@ class FrontendController extends Controller
         $userTickets = Ticket::where('user_id', $user->id)->with('user')->get();
 
         // Add logic to retrieve and display the user's profile
-        // For example, you can pass $user and $userTickets to the view
         return view('frontend.userdashboard', compact('user', 'userTickets'));
     }
 
@@ -332,7 +331,9 @@ class FrontendController extends Controller
             $query = $request->input('query');
 
             // Perform the search logic
-            $concerts = Concert::where('name', 'like', '%' . $query . '%')->get();
+            $concerts = Concert::with('sortedTicketTypes')
+            ->where('name', 'like', '%' . $query . '%')
+            ->get();
 
             // Return the search results to the view
             return view('frontend.event', compact('concerts', 'query'));
