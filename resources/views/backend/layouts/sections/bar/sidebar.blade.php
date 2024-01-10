@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-ticket-alt"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Concert Booking <sup></sup></div>
+        <div class="sidebar-brand-text mx-3">One Sound <sup></sup></div>
     </a>
 
     <!-- Divider -->
@@ -102,7 +102,7 @@
                 <a class="collapse-item" href="blank.html">Blank Page</a>
             </div>
         </div>
-    </li>  --> 
+    </li>  -->
     <!-- Nav Item - Logout -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('logout') }}" onclick="confirmLogout(event)">
