@@ -267,27 +267,7 @@ class AdminController extends Controller
         return redirect()->route('showConcert');
     }
 
-    public function concertDetails($id)
-    {
-        $concerts = Concert::find($id);
-
-        // $data = DB::table('ticket_types')->where('concert_id', $id)
-        //     ->select('name', 'available')
-        //     ->get();
-
-        // $labels = $data->pluck('name')->toArray();
-        // $totalValues = $data->pluck('total')->toArray();
-        // $availableValues = $data->pluck('available')->toArray();
-
-        // $values = [];
-
-        // for ($i = 0; $i < count($totalValues); $i++) {
-        //     //   $difference = $totalValues[$i] - $availableValues[$i];
-        //     $difference = 30 - $availableValues[$i];
-        //     $values[] = $difference;
-        // }
-
-
+    public function getTicketTypeInformation($id){
 
         $concertTickets = order_item::where('concert_id', $id)->get();
 
@@ -326,27 +306,6 @@ class AdminController extends Controller
             'CAT3' => $seatCount['CAT3'],
         ];
 
-        // // Print the ticket counts for each concert
-        // // echo "Concert ID: " . $concert->id . PHP_EOL;
-        // echo "VIP Tickets: " . $data['VIP'] . PHP_EOL;
-        // echo "CAT1 Tickets: " . $data['CAT1'] . PHP_EOL;
-        // echo "CAT2 Tickets: " . $data['CAT2'] . PHP_EOL;
-        // echo "CAT3 Tickets: " . $data['CAT3'] . PHP_EOL;
-        // echo "---------------------" . PHP_EOL;
-
-        // dd($data);
-        $ticketTypeChart = [
-            'labels' => ['VIP', 'CAT1', 'CAT2', 'CAT3'],
-            'datasets' => [
-                [
-                    'data' => [$data['VIP'], $data['CAT1'], $data['CAT2'], $data['CAT3']],
-                    'backgroundColor' => ['#4e73df', '#1cc88a', '#36b9cc', '#ffcc00'],
-                    'hoverBackgroundColor' => ['#2e59d9', '#17a673', '#2c9faf', '#f6c23e'],
-                    'hoverBorderColor' => "rgba(234, 236, 244, 1)",
-                ]
-            ],
-        ];
-
         //Ticket type table information (name,price,total,available)
 
         $ticketTypes = Ticket_type::all()->where('concert_id', $id);
@@ -368,6 +327,38 @@ class AdminController extends Controller
             }
         }
 
+        return $data;
+    }
+
+    public function concertDetails($id)
+    {
+        // // Print the ticket counts for each concert
+        // // echo "Concert ID: " . $concert->id . PHP_EOL;
+        // echo "VIP Tickets: " . $data['VIP'] . PHP_EOL;
+        // echo "CAT1 Tickets: " . $data['CAT1'] . PHP_EOL;
+        // echo "CAT2 Tickets: " . $data['CAT2'] . PHP_EOL;
+        // echo "CAT3 Tickets: " . $data['CAT3'] . PHP_EOL;
+        // echo "---------------------" . PHP_EOL;
+
+        // dd($data);
+        $concerts = Concert::find($id);
+
+        $data= $this->getTicketTypeInformation($id);
+
+        $ticketTypeChart = [
+            'labels' => ['VIP', 'CAT1', 'CAT2', 'CAT3'],
+            'datasets' => [
+                [
+                    'data' => [$data['VIP'], $data['CAT1'], $data['CAT2'], $data['CAT3']],
+                    'backgroundColor' => ['#4e73df', '#1cc88a', '#36b9cc', '#ffcc00'],
+                    'hoverBackgroundColor' => ['#2e59d9', '#17a673', '#2c9faf', '#f6c23e'],
+                    'hoverBorderColor' => "rgba(234, 236, 244, 1)",
+                ]
+            ],
+        ]; 
+        
+        $ticketTypes = Ticket_type::all()->where('concert_id', $id);
+
         $totalRevenue = DB::table('order_items')
             ->where('concert_id', '=', $id)
             ->sum('total_price');
@@ -385,6 +376,125 @@ class AdminController extends Controller
         return view('backend/content/event/event_details', compact('concerts', 'ticketTypes', 'totalRevenue', 'totalOrdered', 'totalTicketLeft', 'ticketTypeChart'));
 
     }
+
+    // public function concertDetails($id)
+    // {
+    //     $concerts = Concert::find($id);
+
+    //     // $data = DB::table('ticket_types')->where('concert_id', $id)
+    //     //     ->select('name', 'available')
+    //     //     ->get();
+
+    //     // $labels = $data->pluck('name')->toArray();
+    //     // $totalValues = $data->pluck('total')->toArray();
+    //     // $availableValues = $data->pluck('available')->toArray();
+
+    //     // $values = [];
+
+    //     // for ($i = 0; $i < count($totalValues); $i++) {
+    //     //     //   $difference = $totalValues[$i] - $availableValues[$i];
+    //     //     $difference = 30 - $availableValues[$i];
+    //     //     $values[] = $difference;
+    //     // }
+
+
+
+    //     $concertTickets = order_item::where('concert_id', $id)->get();
+
+    //     $seatCount = [
+    //         'VIP' => 0,
+    //         'CAT1' => 0,
+    //         'CAT2' => 0,
+    //         'CAT3' => 0,
+    //     ];
+
+    //     foreach ($concertTickets as $ticket) {
+    //         $seatNumbers = explode(',', $ticket->seat_number);
+    //         foreach ($seatNumbers as $seatNumber) {
+    //             $seatNumber = trim($seatNumber);
+
+    //             if (!empty($seatNumber)) {
+    //                 $startingLetter = strtoupper($seatNumber[0]);
+
+    //                 if (in_array($startingLetter, ['A', 'B'])) {
+    //                     $seatCount['VIP']++;
+    //                 } elseif (in_array($startingLetter, ['C', 'D'])) {
+    //                     $seatCount['CAT1']++;
+    //                 } elseif (in_array($startingLetter, ['E', 'F'])) {
+    //                     $seatCount['CAT2']++;
+    //                 } elseif (in_array($startingLetter, ['G', 'H'])) {
+    //                     $seatCount['CAT3']++;
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     $data = [
+    //         'VIP' => $seatCount['VIP'],
+    //         'CAT1' => $seatCount['CAT1'],
+    //         'CAT2' => $seatCount['CAT2'],
+    //         'CAT3' => $seatCount['CAT3'],
+    //     ];
+
+    //     // // Print the ticket counts for each concert
+    //     // // echo "Concert ID: " . $concert->id . PHP_EOL;
+    //     // echo "VIP Tickets: " . $data['VIP'] . PHP_EOL;
+    //     // echo "CAT1 Tickets: " . $data['CAT1'] . PHP_EOL;
+    //     // echo "CAT2 Tickets: " . $data['CAT2'] . PHP_EOL;
+    //     // echo "CAT3 Tickets: " . $data['CAT3'] . PHP_EOL;
+    //     // echo "---------------------" . PHP_EOL;
+
+    //     // dd($data);
+    //     $ticketTypeChart = [
+    //         'labels' => ['VIP', 'CAT1', 'CAT2', 'CAT3'],
+    //         'datasets' => [
+    //             [
+    //                 'data' => [$data['VIP'], $data['CAT1'], $data['CAT2'], $data['CAT3']],
+    //                 'backgroundColor' => ['#4e73df', '#1cc88a', '#36b9cc', '#ffcc00'],
+    //                 'hoverBackgroundColor' => ['#2e59d9', '#17a673', '#2c9faf', '#f6c23e'],
+    //                 'hoverBorderColor' => "rgba(234, 236, 244, 1)",
+    //             ]
+    //         ],
+    //     ];
+
+    //     //Ticket type table information (name,price,total,available)
+
+    //     $ticketTypes = Ticket_type::all()->where('concert_id', $id);
+
+    //     $ticketType = [
+    //         ['name' => 'VIP', 'price' => $ticketTypes->where('name', 'VIP')->first()->price, 'total' => $ticketTypes->where('name', 'VIP')->first()->total, 'available' => $ticketTypes->where('name', 'VIP')->first()->total - $data['VIP']],
+    //         ['name' => 'CAT1', 'price' => $ticketTypes->where('name', 'CAT1')->first()->price, 'total' => $ticketTypes->where('name', 'CAT1')->first()->total, 'available' => $ticketTypes->where('name', 'CAT1')->first()->total - $data['CAT1']],
+    //         ['name' => 'CAT2', 'price' => $ticketTypes->where('name', 'CAT2')->first()->price, 'total' => $ticketTypes->where('name', 'CAT2')->first()->total, 'available' => $ticketTypes->where('name', 'CAT2')->first()->total - $data['CAT2']],
+    //         ['name' => 'CAT3', 'price' => $ticketTypes->where('name', 'CAT3')->first()->price, 'total' => $ticketTypes->where('name', 'CAT3')->first()->total, 'available' => $ticketTypes->where('name', 'CAT3')->first()->total - $data['CAT3']],
+    //     ];
+
+    //     $currentTicketType = Ticket_type::where('concert_id', $id)->get();
+    //     foreach($currentTicketType as $ticket){
+    //         foreach($ticketType as $index => $newTicket){
+    //             if ($ticket->name == $newTicket['name'] && $ticket->available != $newTicket['available']) {
+    //                 $ticket->available = $newTicket['available'];
+    //                 $ticket->save();
+    //             }
+    //         }
+    //     }
+
+    //     $totalRevenue = DB::table('order_items')
+    //         ->where('concert_id', '=', $id)
+    //         ->sum('total_price');
+
+    //     $totalOrdered = DB::table('order_items')
+    //         ->where('concert_id', '=', $id)
+    //         ->sum('seat_quantity');
+
+    //     $totalSeat = DB::table('ticket_types')
+    //         ->where('concert_id', '=', $id)
+    //         ->sum('total');
+
+    //     $totalTicketLeft = $totalSeat - $totalOrdered;
+
+    //     return view('backend/content/event/event_details', compact('concerts', 'ticketTypes', 'totalRevenue', 'totalOrdered', 'totalTicketLeft', 'ticketTypeChart'));
+
+    // }
 
     public function showTicketHistory()
     {
