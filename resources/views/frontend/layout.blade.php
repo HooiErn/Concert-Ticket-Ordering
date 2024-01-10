@@ -187,7 +187,8 @@
                                     @else
                                         <!-- Display login/register link if not authenticated -->
                                         <div class="login-register-btn mr-50">
-                                            <a href="{{ route('login.form') }}" id="loginBtn">Login / Register</a>
+                                            <a href="{{ route('login.form') }}" id="loginBtn" style="margin-left: 5px;">
+                                            Login / Register</a>
                                         </div>
                                     @endauth
 

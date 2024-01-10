@@ -8,7 +8,7 @@
 <!-- Begin Concert Information -->
 <div>
 <div class="container concert-information">
-    <div class="card shadow">
+    <div class="card shadow" style="margin-top:120px">
         <div class="container-fluid">
             <div class="wrapper row">
                 <div class="preview col-md-6">
@@ -51,7 +51,7 @@
                             <a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
                         </li>
                     </ul> --}} -->
-
+                    
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#image-carousel" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
