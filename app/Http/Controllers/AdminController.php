@@ -45,21 +45,29 @@ class AdminController extends Controller
                 ->whereYear('created_at', $currentYear)
                 ->sum('total_amount');
 
+                //show the earning by month
 
-            //Sum up all the tickets
-            // $sum = Ticket::all()->sum(function ($ticket) {
-            //     $seats = explode(',', $ticket->seat_numbers);
-            //     return count($seats);
-            // });
+            // $totalSeats = Ticket::whereDate('created_at', Carbon::today())
+            //     ->pluck('seat_numbers')
+            //     ->map(function ($seats) {
+            //         return explode(',', $seats);
+            //     })
+            //     ->flatten()
+            //     ->count();
 
-            $totalSeats = Ticket::whereDate('created_at', Carbon::today())
-                ->pluck('seat_numbers')
-                ->map(function ($seats) {
-                    return explode(',', $seats);
-                })
-                ->flatten()
-                ->count();
-                
+            //     $data = DB::table('orders')
+            //     ->select(DB::raw('SUM(total_amount) as total_amount'), DB::raw('MONTH(created_at) as month'))
+            //     ->whereYear('created_at', $currentYear)
+            //     ->groupBy(DB::raw('MONTH(created_at)'))
+            //     ->get();
+            // $totalAmounts = [];
+            // $months = [];
+            // foreach ($data as $row) {
+            //     $totalAmounts[] = $row->total_amount;
+            //     $months[] = date('F', mktime(0, 0, 0, $row->month, 1));
+            // }
+
+
             $startDate = now()->startOfWeek();
             $endDate = now()->startOfWeek()->addDays(6);
 
