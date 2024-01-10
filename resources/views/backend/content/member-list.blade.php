@@ -7,7 +7,7 @@
         });
     </script>
     <link href="/backend/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <head>Member List</head>
+    <title>Member List</title>
 </head>
 @extends('backend/layouts/commonMaster')
 @section('layoutContent')
