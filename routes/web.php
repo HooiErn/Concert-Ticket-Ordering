@@ -148,5 +148,7 @@ Route::get('/concert_details/{id}', [App\Http\Controllers\AdminController::class
 
 Route::get('/showMembers', [App\Http\Controllers\AdminController::class, 'showMembers'])->name('showMembers');
 
+Route::get('/delete_user/{id}', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('deleteUser');
+
 // Admin Dasboard
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

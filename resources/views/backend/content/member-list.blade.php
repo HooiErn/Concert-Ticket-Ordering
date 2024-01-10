@@ -55,11 +55,11 @@
                                                     Action
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#"><i class="bi bi-eye mr-2"></i>View
-                                                        Details</a>
-                                                    <a class="dropdown-item" href="#" class="btn btn-danger btn-xs"
-                                                        onClick="return confirm('Are you sure to delete this user?')"><i
-                                                            class="bi bi-trash mr-2"></i>Delete</a>
+                                                    <a class="dropdown-item" href="#"><i class="bi bi-eye mr-2"></i>View Details</a>    
+                                                    <a class="dropdown-item" href="{{ route('deleteUser', ['id' => $user->id]) }}"
+                                                    class="btn btn-danger btn-xs" onClick="return confirm('Are you sure to delete this user?')">
+                                                        <i class="bi bi-trash mr-2"></i>Delete
+                                                    </a>
                                                 </div>
                                             </div>
                                         </td>
