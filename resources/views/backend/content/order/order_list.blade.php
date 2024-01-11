@@ -38,7 +38,9 @@
                                 <tr>
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->user_name }}</td>
-                                    <td>{{ $order->concert_name }}</td>
+                                    <td>@foreach ($order->items as $item)
+                                             {{ $item->concert_name }}<br>
+                                        @endforeach</td>
                                     <td>
                                         @foreach ($order->items as $item)
                                             @php
