@@ -21,6 +21,7 @@
                                 <th>Customer</th>
                                 <th>Concert Name</th>
                                 <th>Total Ticket</th>
+                                <th>Seat Number</th>
                                 <th>Date</th>
                                 <th>Total Amount</th>
                                 <th>Status</th>
@@ -46,6 +47,10 @@
                                         @endforeach
                                         {{ $totalSeats }}
                                         <!-- Display the total seat quantity for the order -->
+                                    </td>
+                                    <td>@foreach ($order->items as $item)
+                                             {{ $item->seat_number }}
+                                        @endforeach
                                     </td>
                                     <td>{{ $order->dateTime }}</td>
                                     <td>{{ $order->total_amount }}</td>
