@@ -319,11 +319,17 @@ class FrontendController extends Controller
         // Retrieve the authenticated user
         $user = Auth::user();
 
+        // Fetch cart count for the authenticated user
+        $cartCount = $this->getCartCount();
         // Retrieve the user's tickets with eager-loaded user data
-        $userTickets = Ticket::where('user_id', $user->id)->with('user')->get();
+        $userTickets = Ticket::where('user_id', $user->id)
+            ->with('user')
+            ->orderBy('id', 'desc')
+            ->get();
+
 
         // Add logic to retrieve and display the user's profile
-        return view('frontend.userdashboard', compact('user', 'userTickets'));
+        return view('frontend.userdashboard', compact('user', 'userTickets', 'cartCount'));
     }
 
      public function search(Request $request)

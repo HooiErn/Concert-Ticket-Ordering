@@ -104,6 +104,40 @@
                             </div>
                         </div>
 
+
+    <div class="card rounded-3 mb-4">
+        <div class="card-body p-4">
+            <!-- Existing code for concert details -->
+
+            <!-- Card Information -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber" name="cardNumber" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="expirationMonth">Expiration Month</label>
+                    <input type="text" class="form-control" id="expirationMonth" name="expirationMonth" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="expirationYear">Expiration Year</label>
+                    <input type="text" class="form-control" id="expirationYear" name="expirationYear" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nameOnCard">Name on Card</label>
+                    <input type="text" class="form-control" id="nameOnCard" name="nameOnCard" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="cvc">CVC</label>
+                    <input type="text" class="form-control" id="cvc" name="cvc" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
                         <div class="card">
                             <div class="card-body">
                                 <button type="submit" class="btn btn-warning btn-block btn-lg"
