@@ -102,7 +102,7 @@ class HomeController extends Controller
             'm_email' => 'required|email|unique:users,email',
             'm_password' => 'required|min:8|max:12',
             'm_confirm_password' => 'required|same:m_password',
-            'm_contact_number' => 'required|regex:/^[0-9 \-]{10,}$/',
+            // 'm_contact_number' => 'required|regex:/^[0-9 \-]{10,}$/',
 
         ]);
 

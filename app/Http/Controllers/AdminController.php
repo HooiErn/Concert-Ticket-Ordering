@@ -199,10 +199,10 @@ class AdminController extends Controller
 
 
         $ticketType = [
-            ['name' => 'VIP', 'price' => $ticketTypes->where('name', 'VIP')->first()->price, 'total' => 0, 'available' => 0],
-            ['name' => 'CAT1', 'price' => $ticketTypes->where('name', 'CAT1')->first()->price, 'total' => 0, 'available' => 0],
-            ['name' => 'CAT2', 'price' => $ticketTypes->where('name', 'CAT2')->first()->price, 'total' => 0, 'available' => 0],
-            ['name' => 'CAT3', 'price' => $ticketTypes->where('name', 'CAT3')->first()->price, 'total' => 0, 'available' => 0],
+            ['name' => 'VIP', 'price' => $ticketTypes->where('name', 'VIP')->first()->price, 'total' => $ticketTypes->where('name', 'VIP')->first()->total, 'available' => $ticketTypes->where('name', 'VIP')->first()->available],
+            ['name' => 'CAT1', 'price' => $ticketTypes->where('name', 'CAT1')->first()->price, 'total' => $ticketTypes->where('name', 'CAT1')->first()->total, 'available' => $ticketTypes->where('name', 'CAT1')->first()->available],
+            ['name' => 'CAT2', 'price' => $ticketTypes->where('name', 'CAT2')->first()->price, 'total' => $ticketTypes->where('name', 'CAT2')->first()->total, 'available' => $ticketTypes->where('name', 'CAT2')->first()->available],
+            ['name' => 'CAT3', 'price' => $ticketTypes->where('name', 'CAT3')->first()->price, 'total' => $ticketTypes->where('name', 'CAT3')->first()->total, 'available' => $ticketTypes->where('name', 'CAT3')->first()->available],
         ];
 
         // Pass the variables to the view
@@ -239,23 +239,32 @@ class AdminController extends Controller
         $concert->images = json_encode($concertImages);
         $concert->save();
 
-        $ticketType = [
+        $ticketTypes = [
             ['concert_id' => $concert->id, 'name' => 'VIP', 'price' => $r->input('price-VIP')],
             ['concert_id' => $concert->id, 'name' => 'CAT1', 'price' => $r->input('price-CAT1')],
             ['concert_id' => $concert->id, 'name' => 'CAT2', 'price' => $r->input('price-CAT2')],
             ['concert_id' => $concert->id, 'name' => 'CAT3', 'price' => $r->input('price-CAT3')],
         ];
 
-        foreach ($ticketType as $type) {
-            $ticketType = Ticket_type::where('id', $concert->id)
-                ->where('name', $type['name'])
-                ->first();
-
-            if ($ticketType) {
-                $ticketType->price = $type['price'];
-                $ticketType->save();
+        $types = Ticket_type::where('concert_id', $concert->id)->get();
+        foreach($types as $type){
+            foreach($ticketTypes as $ticketType){
+                if($type->name == $ticketType['name']){
+                    $type->price=$ticketType['price'];
+                    $type->save();
+                }
             }
         }
+        // foreach ($ticketTypes as $type) {
+        //     $ticketType = Ticket_type::where('id', $concert->id)
+        //         ->where('name', $type['name'])
+        //         ->first();
+
+        //     if ($ticketType) {
+        //         $ticketType->price = $type['price'];
+        //         $ticketType->save();
+        //     }
+        // }
         // Redirect or return a response
         return redirect()->route('showConcert');
 
