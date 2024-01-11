@@ -603,8 +603,7 @@ class AdminController extends Controller
     {
 
         $orderList = Order::with('items') // Eager load the 'items' relationship
-            ->leftJoin('concerts', 'orders.concert_name', '=', 'concerts.name')
-            ->select('orders.*', 'concerts.date_time as dateTime')
+            ->select('orders.*', 'orders.created_at as dateTime')
             ->get();
 
         return view('backend/content/order/order_list', compact('orderList'));
